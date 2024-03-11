@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90D8717A2B9F778A00F282A0 /* QuizOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D871792B9F778A00F282A0 /* QuizOptionViewController.swift */; };
 		90FE3EC22B90C9C00091C9BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE3EC12B90C9C00091C9BC /* AppDelegate.swift */; };
 		90FE3EC42B90C9C00091C9BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE3EC32B90C9C00091C9BC /* SceneDelegate.swift */; };
 		90FE3EC62B90C9C00091C9BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE3EC52B90C9C00091C9BC /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90D871792B9F778A00F282A0 /* QuizOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizOptionViewController.swift; sourceTree = "<group>"; };
 		90FE3EBE2B90C9C00091C9BC /* BeeSL_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeeSL_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FE3EC12B90C9C00091C9BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90FE3EC32B90C9C00091C9BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				90FE3EC12B90C9C00091C9BC /* AppDelegate.swift */,
 				90FE3EC32B90C9C00091C9BC /* SceneDelegate.swift */,
+				90D871792B9F778A00F282A0 /* QuizOptionViewController.swift */,
 				90FE3EC52B90C9C00091C9BC /* ViewController.swift */,
 				90FE3EC72B90C9C00091C9BC /* Main.storyboard */,
 				90FE3ECA2B90C9C10091C9BC /* Assets.xcassets */,
@@ -260,6 +263,7 @@
 			files = (
 				90FE3EC62B90C9C00091C9BC /* ViewController.swift in Sources */,
 				90FE3EC22B90C9C00091C9BC /* AppDelegate.swift in Sources */,
+				90D8717A2B9F778A00F282A0 /* QuizOptionViewController.swift in Sources */,
 				90FE3EC42B90C9C00091C9BC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
