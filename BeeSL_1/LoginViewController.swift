@@ -9,14 +9,32 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    
+    
+    @IBOutlet weak var textFieldUser: UITextField!
+    
+    @IBOutlet weak var textFieldPass: UITextField!
+    @IBOutlet weak var loginResult: UILabel!
+    
+    
+    
     @IBAction func loginTapped(_ sender: UIButton) {
         
-        //after login is completed, may want to put login web service is compltete here
+        //can also be if (textFieldUser.text = "" || textFieldPass.text == "") {
+        //if (((textFieldUser.text?.isEmpty) != nil) || ((textFieldPass.text?.isEmpty) != nil)){
+        if (textFieldUser.text == "" || textFieldPass.text == "") {
+            loginResult.text = "Username or password required please.."
+        }
+        else {
+            //after login is completed, may want to put login web service is compltete here
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+            
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+        }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-        
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
