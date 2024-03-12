@@ -215,6 +215,21 @@
             </objects>
             <point key="canvasLocation" x="-3622.1374045801526" y="4942.9577464788736"/>
         </scene>
+        <!--Game View Controller-->
+        <scene sceneID="ufb-bj-K5r">
+            <objects>
+                <viewController storyboardIdentifier="game" id="VAK-xw-fxK" customClass="GameViewController" customModule="BeeSL_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KoO-Tg-9Wg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Cez-aS-jBx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bUl-kH-TBS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3622" y="5692"/>
+        </scene>
         <!--Groups-->
         <scene sceneID="qNo-I7-RXi">
             <objects>

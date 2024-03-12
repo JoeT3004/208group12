@@ -13,7 +13,7 @@ class QuizOptionViewController: UIViewController {
     
     @IBOutlet weak var tableViewCreatedQuizzes: UITableView!
     
-    let ourQuizzes = ["quiz 1","quiz 2","quiz 3"]
+    let ourQuizzes = ["quiz 1","quiz 2","quiz 3", "quiz 4"]
     let selfMadeQuizzes = ["Created quiz 1","Created quiz 2","Created quiz 3"]
     
     override func viewDidLoad() {
@@ -77,7 +77,18 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
 //QuizTableViewDelegate = MyTableVeiwCellDelegate
 extension QuizOptionViewController: QuizTableViewDelegate {
     
+    
+    // some functionality here?? -> if quiz1 then play quiz 1, elsif quiz 2
     func didTapButton(with title: String) {
-        print("\(title)")
+        
+        //can do || or if statements to decide which quizzes do what when tapped
+        if title == "quiz 1" || title == "quiz 2" {
+            print("\(title)")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "game") as! GameViewController
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+            //some functionality here to say: if quiz 1 was picked when reaching the new view controller then quiz one will play. this will be done in the new view controller.
+        }
+
     }
 }
