@@ -13,14 +13,32 @@ protocol QuestionTypes{
     //hand gesture variable
 }
 
+struct QuestionType1: QuestionTypes {
+    var text: String
+    var answers: [Answer]
+}
+
+struct QuestionType2: QuestionTypes {
+    var text: String
+    var answers: [Answer]
+}
+
+struct Answer {
+    let text: String
+    let correct: Bool
+}
+
 class GameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+
     
     
     var gameModels1 = [QuestionType1]()
     //not implemented yet
     var gameModels2 = [QuestionType2]()
     
-    var currentQuestion: QuestionTypes
+    var currentQuestion: QuestionTypes?
     
     @IBOutlet var label: UILabel!
     @IBOutlet var answerTable: UITableView!
@@ -55,7 +73,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             Answer(text: "3", correct: false),
             Answer(text: "5", correct: false),
             Answer(text: "2", correct: false)
-        
+            
         ]))
         
         gameModels1.append(QuestionType1(text: "what is 5 minus 1", answers: [
@@ -63,15 +81,15 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             Answer(text: "3", correct: false),
             Answer(text: "4", correct: false),
             Answer(text: "2", correct: false)
-        
+            
         ]))
         
         gameModels1.append(QuestionType1(text: "what is 3 plus 3", answers: [
-            Answer(text: "4", correct: true),
+            Answer(text: "4", correct: false),
             Answer(text: "3", correct: false),
             Answer(text: "5", correct: false),
-            Answer(text: "6", correct: false)
-        
+            Answer(text: "6", correct: true)
+            
         ]))
         
         gameModels1.append(QuestionType1(text: "What is the true final boss in bloodborne?", answers: [
@@ -79,10 +97,58 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             Answer(text: "Moon Presence", correct: false),
             Answer(text: "Mergos Wet Nurce", correct: false),
             Answer(text: "Orphan of Kos", correct: false)
-        
+            
         ]))
     }
     
+    //answer table view section and functions
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Safely unwrap currentQuestion using optional binding
+        if let currentQuestion = currentQuestion {
+            return currentQuestion.answers.count
+        } else {
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        // Use optional chaining to access answers property safely
+        cell.textLabel?.text = currentQuestion?.answers[indexPath.row].text
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+       
+        // Safely unwrap currentQuestion using optional binding
+        if let question = currentQuestion {
+            let answer = question.answers[indexPath.row]
+           
+            if checkAnswer(answer: answer, question: question as! QuestionType1) {
+                print("correct")
+                if let index = gameModels1.firstIndex(where: { $0.text == question.text }) {
+                    if index < (gameModels1.count - 1) {
+                        let nextQuestion = gameModels1[index + 1]
+                        configureUI(question: nextQuestion)
+                        answerTable.reloadData()
+                    } else {
+                        let alert = UIAlertController(title: "Done", message: "You will now go back to the menu", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Retry", style: .cancel, handler: nil))
+                        present(alert, animated: true)
+                    }
+                }
+            } else {
+                print("wrong")
+                let alert = UIAlertController(title: "Wrong", message: "Get Gud", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                present(alert, animated: true)
+            }
+        }
+    }
+}
+
     //here there should be two types of questions (just one for now)
     
     //before reading below:
@@ -94,6 +160,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     //variable for the video player which is the quesiton variable
     //count for question number
     // Answers variable
+    /*
     struct QuestionType1 {
         var text: String //this will be replaced by a video of sign
         var answers: [Answer]
@@ -108,11 +175,12 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         var answers: [Answer]
         //hand gesture variable
     }
-    
+    */
     //may have to have multiple answer types (not sure)
     //if incorrect give the correct answer
     //if question type 1 a correct video gesture displayed
     // if question type 2 correct translated sword will show or will display in green and answer picked will be highlighted in red after user has chosen an answer.
+    /*
     struct Answer {
         let text: String
         let correct: Bool
@@ -120,7 +188,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -128,6 +196,6 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+     
 
-}
+     }*/
