@@ -9,9 +9,9 @@ import UIKit
 
 class QuizOptionViewController: UIViewController {
 
-    @IBOutlet weak var quizzes: UITableView!
+    @IBOutlet weak var tableViewQuizzes: UITableView!
     
-    @IBOutlet weak var createdQuizzes: UITableView!
+    @IBOutlet weak var tableViewCreatedQuizzes: UITableView!
     
     let ourQuizzes = ["quiz 1","quiz 2","quiz 3"]
     let selfMadeQuizzes = ["Created quiz 1","Created quiz 2","Created quiz 3"]
@@ -19,10 +19,12 @@ class QuizOptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        quizzes.delegate = self
-        quizzes.dataSource = self
-        createdQuizzes.delegate = self
-        createdQuizzes.dataSource = self
+        tableViewQuizzes.register(QuizTableViewCell.nib(), forCellReuseIdentifier: QuizTableViewCell.identifier)
+        
+        tableViewQuizzes.delegate = self
+        tableViewQuizzes.dataSource = self
+        tableViewCreatedQuizzes.delegate = self
+        tableViewCreatedQuizzes.dataSource = self
         
         // Do any additional setup after loading the view.
     }
@@ -40,6 +42,8 @@ class QuizOptionViewController: UIViewController {
 
 }
 
+
+
 extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,16 +59,25 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == 0
         {
-            let cell = quizzes.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = ourQuizzes[indexPath.row]
+            let cell = tableViewQuizzes.dequeueReusableCell(withIdentifier: QuizTableViewCell.identifier, for: indexPath) as! QuizTableViewCell
+            cell.configure(with: ourQuizzes[indexPath.row])
+            cell.delegate = self
             return cell
         }
         else{
-            let cell = createdQuizzes.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = tableViewCreatedQuizzes.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = selfMadeQuizzes[indexPath.row]
             return cell
             
         }
     }
     
+}
+
+//QuizTableViewDelegate = MyTableVeiwCellDelegate
+extension QuizOptionViewController: QuizTableViewDelegate {
+    
+    func didTapButton(with title: String) {
+        print("\(title)")
+    }
 }
