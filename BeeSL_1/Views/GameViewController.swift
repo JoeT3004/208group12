@@ -18,10 +18,6 @@ struct QuestionType1: QuestionTypes {
     var answers: [Answer]
 }
 
-struct QuestionType2: QuestionTypes {
-    var text: String
-    var answers: [Answer]
-}
 
 struct Answer {
     let text: String
@@ -30,13 +26,8 @@ struct Answer {
 
 class GameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-
-    
-    
     var gameModels1 = [QuestionType1]()
     //not implemented yet
-    var gameModels2 = [QuestionType2]()
     
     var currentQuestion: QuestionTypes?
     
