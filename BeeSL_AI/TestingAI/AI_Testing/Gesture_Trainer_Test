@@ -1,0 +1,43 @@
+import tensorflow as tf
+from tensorflow.keras import layers
+
+# Function to extract hand landmarks (assuming in-graph integration)
+def extract_landmarks(video_frame):
+    # ... (MediaPipe integration logic using tflite_runtime.Interpreter or custom operation)
+    return landmarks  # Array of hand landmark coordinates
+
+def create_model(num_classes, frame_size):
+    """Creates a CNN-LSTM model for action recognition.
+
+    Args:
+        num_classes: The number of action classes.
+        frame_size: The number of frames in a video clip.
+
+    Returns:
+        A compiled TensorFlow model.
+    """
+
+    inputs = keras.Input(shape=(frame_size, num_landmarks * 2))  # Input: sequence of frames with landmarks
+
+    # Feature extraction using CNN (optional)
+    # x = layers.Conv1D(32, kernel_size=3, activation='relu')(inputs)
+    # x = layers.MaxPooling1D(pool_size=2)(x)
+
+    # Sequence processing using LSTM layers
+    x = layers.LSTM(64, return_sequences=True)(inputs)
+    x = layers.LSTM(32)(x)
+
+    outputs = layers.Dense(num_classes, activation="softmax")(x)  # Output layer for classification
+
+    model = keras.Model(inputs=inputs, outputs=outputs)
+
+    model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
+
+    return model
+
+
+
+model = create_model(num_classes, frame_length)
+
+# Train the model
+history = model.fit(train_x, train_y, epochs=10, validation_data=(val_x, val_y))
