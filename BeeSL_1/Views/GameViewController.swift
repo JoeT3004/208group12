@@ -92,6 +92,13 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         ]))
     }
     
+    func restartQuiz(){
+        let index = 0
+        configureUI(question: gameModels1.first!)
+        self.answerTable.reloadData()
+    }
+    
+    
     //answer table view section and functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,7 +133,13 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                         answerTable.reloadData()
                     } else {
                         let alert = UIAlertController(title: "Done", message: "You will now go back to the menu", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Retry", style: .cancel, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Retry?", style: .default, handler: { [weak self] _ in
+                            self?.restartQuiz()
+                        }))
+                        
+                        alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { [weak self] _ in
+                            self?.dismiss(animated: true, completion: nil)
+                        }))
                         present(alert, animated: true)
                     }
                 }
