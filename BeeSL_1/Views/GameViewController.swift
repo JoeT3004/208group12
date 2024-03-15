@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 protocol QuestionTypes{
     var text: String { get }
     var answers: [Answer] { get }
@@ -26,10 +28,12 @@ struct Answer {
 
 class GameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var gameModels1 = [QuestionType1]()
+    var questions = [QuestionType1]()
     //not implemented yet
     
     var currentQuestion: QuestionTypes?
+    var correctAnswers: Int = 0
+    var index: Int = 0
     
     @IBOutlet var label: UILabel!
     @IBOutlet var answerTable: UITableView!
@@ -42,7 +46,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
-        configureUI(question: gameModels1.first!)
+        configureUI(question: questions.first!)
     }
     
     private func configureUI(question: QuestionType1){
@@ -59,7 +63,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     //right now this is just simple text questions
     // will be changed to display a video player
     private func setupQuestions() {
-        gameModels1.append(QuestionType1(text: "what is two plus two", answers: [
+        questions.append(QuestionType1(text: "what is two plus two", answers: [
             Answer(text: "4", correct: true),
             Answer(text: "3", correct: false),
             Answer(text: "5", correct: false),
@@ -67,7 +71,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         ]))
         
-        gameModels1.append(QuestionType1(text: "what is 5 minus 1", answers: [
+        questions.append(QuestionType1(text: "what is 5 minus 1", answers: [
             Answer(text: "5", correct: true),
             Answer(text: "3", correct: false),
             Answer(text: "4", correct: false),
@@ -75,7 +79,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         ]))
         
-        gameModels1.append(QuestionType1(text: "what is 3 plus 3", answers: [
+        questions.append(QuestionType1(text: "what is 3 plus 3", answers: [
             Answer(text: "4", correct: false),
             Answer(text: "3", correct: false),
             Answer(text: "5", correct: false),
@@ -83,7 +87,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         ]))
         
-        gameModels1.append(QuestionType1(text: "What is the true final boss in bloodborne?", answers: [
+        questions.append(QuestionType1(text: "What is the true final boss in bloodborne?", answers: [
             Answer(text: "Gehrman, The First Hunter", correct: true),
             Answer(text: "Moon Presence", correct: false),
             Answer(text: "Mergos Wet Nurce", correct: false),
@@ -93,9 +97,28 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func restartQuiz(){
-        let index = 0
-        configureUI(question: gameModels1.first!)
+        index = 0
+        correctAnswers = 0
+        configureUI(question: questions.first!)
         self.answerTable.reloadData()
+    }
+    
+    func moveToNextQuestion() {
+        index += 1
+        if index < questions.count {
+            let nextQuestion = questions[index]
+            configureUI(question: nextQuestion)
+            answerTable.reloadData()
+        }
+        else {
+            completionAlert()
+        }
+        
+    }
+    
+    
+    private func findCorrectAnswer (for question: QuestionTypes) -> Answer? {
+        return question.answers.first(where: { $0.correct })
     }
     
     
@@ -122,34 +145,43 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
        
         // Safely unwrap currentQuestion using optional binding
         if let question = currentQuestion {
-            let answer = question.answers[indexPath.row]
+            
+            let selectedAnswer = question.answers[indexPath.row]
+            //let answer = question.answers[indexPath.row]
            
-            if checkAnswer(answer: answer, question: question as! QuestionType1) {
+            if checkAnswer(answer: selectedAnswer, question: question as! QuestionType1) {
                 print("correct")
-                if let index = gameModels1.firstIndex(where: { $0.text == question.text }) {
-                    if index < (gameModels1.count - 1) {
-                        let nextQuestion = gameModels1[index + 1]
-                        configureUI(question: nextQuestion)
-                        answerTable.reloadData()
-                    } else {
-                        let alert = UIAlertController(title: "Done", message: "You will now go back to the menu", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Retry?", style: .default, handler: { [weak self] _ in
-                            self?.restartQuiz()
-                        }))
-                        
-                        alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { [weak self] _ in
-                            self?.dismiss(animated: true, completion: nil)
-                        }))
-                        present(alert, animated: true)
-                    }
+                correctAnswers += 1
+                if let index = questions.firstIndex(where: { $0.text == question.text }) {
+                    moveToNextQuestion()
                 }
             } else {
                 print("wrong")
-                let alert = UIAlertController(title: "Wrong", message: "Get Gud", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-                present(alert, animated: true)
+                
+                if let correctAnswer = findCorrectAnswer(for: question) {
+                    let alert = UIAlertController(title: "Wrong", message: "Get Gud, the correct answer is: \(correctAnswer.text)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Next question", style: .default, handler: { [weak self] _ in
+                        self?.moveToNextQuestion()
+                    }))
+                    present(alert, animated: true)
+                }
+
             }
         }
+    }
+    
+    
+    func completionAlert(){
+        let alert = UIAlertController(title: "Done", message: "You got this many correct answers: \(correctAnswers)/\(index)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Retry?", style: .default, handler: { [weak self] _ in
+            self?.restartQuiz()
+        }))
+        alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
+        return
     }
 }
 
