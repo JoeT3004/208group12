@@ -41,11 +41,18 @@ class Game2ViewController: UIViewController {
     private func displayCurrentQuestion() {
         guard currentQuestionIndex < questions.count else {
             
-            let alert = UIAlertController(title: "Quiz is complete", message: "Well done", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "wooo ok", style: .default) { _ in self.navigationController?.popViewController(animated: true)
-            })
+            let alert = UIAlertController(title: "Done", message: "You will now go back to the menu", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Retry?", style: .default, handler: { [weak self] _ in
+                self?.currentQuestionIndex = 0
+                self?.displayCurrentQuestion()
+            }))
+            alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }))
+            
             present(alert, animated: true)
             return
+            
         }
         let currentQuestion = questions[currentQuestionIndex]
         questionLabel.text = currentQuestion.text
