@@ -7,10 +7,7 @@
 
 import UIKit
 
-struct QuestionType2: QuestionTypes {
-    var text: String
-    var answers: [Answer]
-}
+
 
 class Game2ViewController: UIViewController {
     
@@ -23,22 +20,37 @@ class Game2ViewController: UIViewController {
     var currentQuestionIndex: Int = 0
     var correctAnswers: Int = 0
     
+    var quiz: Quiz? {
+        didSet {
+            if isViewLoaded {
+                loadQuizQuestions()
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupQuestions()
+        //setupQuestions()
         //currentQuestionIndex = 0
-        moveOntoNextQuestion()
+        loadQuizQuestions()
         // Do any additional setup after loading the view.
     }
     
+    func loadQuizQuestions() {
+        guard let quizQuestions = quiz?.questions as? [QuestionType2] else { return }
+        questions = quizQuestions
+        currentQuestionIndex = 0
+        moveOntoNextQuestion()
+    }
+    /*
     private func setupQuestions() {
         questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
         questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
         questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
         questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
     }
-    
+    */
     func restartQuiz() {
         currentQuestionIndex = 0
         correctAnswers = 0

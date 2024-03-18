@@ -7,22 +7,7 @@
 
 import UIKit
 
-protocol QuestionTypes{
-    var text: String { get }
-    var answers: [Answer] { get }
-    //hand gesture variable
-}
 
-struct QuestionType1: QuestionTypes {
-    var text: String
-    var answers: [Answer]
-}
-
-
-struct Answer {
-    let text: String
-    let correct: Bool
-}
 
 class GameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -36,10 +21,25 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var label: UILabel!
     @IBOutlet var answerTable: UITableView!
     
+    var quiz: Quiz? {
+        didSet {
+            if isViewLoaded {
+                loadQuizQuestions()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupQuestions()
+        //setupQuestions()
+        loadQuizQuestions()
         // Do any additional setup after loading the view.
+    }
+    
+    func loadQuizQuestions() {
+        guard let quizQuestions = quiz?.questions as? [QuestionType1] else { return }
+        questions = quizQuestions
+        configureUI(question: questions.first!)
     }
     
     override func viewDidLayoutSubviews(){
@@ -57,6 +57,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func checkAnswer(answer: Answer, question: QuestionType1) -> Bool{
         return question.answers.contains(where: { $0.text == answer.text}) && answer.correct
     }
+    /*
     
     //right now this is just simple text questions
     // will be changed to display a video player
@@ -93,7 +94,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         ]))
     }
-    
+    */
     func restartQuiz(){
         index = 0
         correctAnswers = 0
