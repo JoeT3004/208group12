@@ -21,12 +21,14 @@ class Game2ViewController: UIViewController {
     
     var questions: [QuestionType2] = []
     var currentQuestionIndex: Int = 0
+    var correctAnswers: Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupQuestions()
-        displayCurrentQuestion()
+        //currentQuestionIndex = 0
+        moveOntoNextQuestion()
         // Do any additional setup after loading the view.
     }
     
@@ -35,48 +37,85 @@ class Game2ViewController: UIViewController {
         questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
         questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
         questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
-        questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
     }
     
-    private func displayCurrentQuestion() {
-        guard currentQuestionIndex < questions.count else {
+    func restartQuiz() {
+        currentQuestionIndex = 0
+        correctAnswers = 0
+        moveOntoNextQuestion()
+        
+    }
+    
+    func moveOntoNextQuestion() {
+        
+        if currentQuestionIndex < questions.count {
             
-            let alert = UIAlertController(title: "Done", message: "You will now go back to the menu", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry?", style: .default, handler: { [weak self] _ in
-                self?.currentQuestionIndex = 0
-                self?.displayCurrentQuestion()
-            }))
-            alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { [weak self] _ in
-                self?.dismiss(animated: true, completion: nil)
-            }))
-            
-            present(alert, animated: true)
-            return
-            
+            let currentQuestion = questions[currentQuestionIndex]
+            questionLabel.text = currentQuestion.text
+            answerTextField.text = ""
         }
-        let currentQuestion = questions[currentQuestionIndex]
-        questionLabel.text = currentQuestion.text
-        answerTextField.text = ""
+        else {
+            completionAlert()
+        }
+        
     }
     
     @IBAction func checkAnswerTapped(_ sender: UIButton) {
         
+        guard currentQuestionIndex < questions.count else {
+            completionAlert()
+            return
+        }
         
         
-        guard currentQuestionIndex < questions.count else { return }
         let currentQuestion = questions[currentQuestionIndex]
-        let userAnswer = answerTextField.text ?? ""
+        let userAnswer = answerTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
         
-        if currentQuestion.answers.contains(where: { $0.text.lowercased() == userAnswer.lowercased() && $0.correct}) {
-            //correct will now move onto next question
-            currentQuestionIndex += 1
-            displayCurrentQuestion()
-        } else {
-            let alert = UIAlertController(title: "Incorrect", message: "Get gud and try again cuck", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            present(alert, animated: true)
+        if currentQuestion.answers.contains(where: { $0.text.lowercased() == userAnswer && $0.correct}){
+            correctAnswers += 1
+        }
+        else{
+            wrongAnswerAlert()
+        }
+        
+        
+        if currentQuestionIndex < questions.count {
+            moveOntoNextQuestion()
+        }
+        
+        currentQuestionIndex += 1
+        
+        if currentQuestionIndex < questions.count {
+            moveOntoNextQuestion()
+        }
+        else{
+            completionAlert()
         }
     }
+    
+    func wrongAnswerAlert(){
+        let alert = UIAlertController(title: "Incorrect", message: "Get gud and try again cuck", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Next question", style: .default, handler: { [weak self] _ in
+            self?.moveOntoNextQuestion()
+            
+        }))
+        present(alert, animated: true)
+        return
+    }
+    
+    func completionAlert(){
+        let alert = UIAlertController(title: "Done", message: "You got this many correct answers: \(correctAnswers)/\(currentQuestionIndex)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Retry?", style: .default, handler: { [weak self] _ in
+            self?.restartQuiz()
+        }))
+        alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true)
+        return
+    }
+    
 
     
     
