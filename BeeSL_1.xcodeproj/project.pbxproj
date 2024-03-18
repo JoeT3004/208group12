@@ -13,6 +13,7 @@
 		90DE78DD2BA0746E00623E8D /* QuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE78DB2BA0746E00623E8D /* QuizTableViewCell.swift */; };
 		90DE78DE2BA0746E00623E8D /* QuizTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DE78DC2BA0746E00623E8D /* QuizTableViewCell.xib */; };
 		90DE78E42BA08D6F00623E8D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DE78E32BA08D6F00623E8D /* GameViewController.swift */; };
+		90E2AC042BA8A714005FBDBF /* ModelFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E2AC032BA8A714005FBDBF /* ModelFiles.swift */; };
 		90FE3EC22B90C9C00091C9BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE3EC12B90C9C00091C9BC /* AppDelegate.swift */; };
 		90FE3EC42B90C9C00091C9BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FE3EC32B90C9C00091C9BC /* SceneDelegate.swift */; };
 		90FE3EC92B90C9C00091C9BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90FE3EC72B90C9C00091C9BC /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		90DE78DB2BA0746E00623E8D /* QuizTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTableViewCell.swift; sourceTree = "<group>"; };
 		90DE78DC2BA0746E00623E8D /* QuizTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizTableViewCell.xib; sourceTree = "<group>"; };
 		90DE78E32BA08D6F00623E8D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		90E2AC032BA8A714005FBDBF /* ModelFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFiles.swift; sourceTree = "<group>"; };
 		90FE3EBE2B90C9C00091C9BC /* BeeSL_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeeSL_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90FE3EC12B90C9C00091C9BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90FE3EC32B90C9C00091C9BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				90DE78DB2BA0746E00623E8D /* QuizTableViewCell.swift */,
 				90DE78DC2BA0746E00623E8D /* QuizTableViewCell.xib */,
+				90E2AC032BA8A714005FBDBF /* ModelFiles.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				90DE78E42BA08D6F00623E8D /* GameViewController.swift in Sources */,
 				90FE3EC42B90C9C00091C9BC /* SceneDelegate.swift in Sources */,
 				90DCAB172BA36E10004957A1 /* Game2ViewController.swift in Sources */,
+				90E2AC042BA8A714005FBDBF /* ModelFiles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
