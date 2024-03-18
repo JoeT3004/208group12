@@ -18,6 +18,9 @@ class QuizOptionViewController: UIViewController {
     let englishToBSL = ["Quiz a", "Quiz b", "Quiz z"]
     let selfMadeQuizzes = ["Created quiz 1","Created quiz 2","Created quiz 3"]
     
+    var quizResults: [String: Int] = [:]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +65,7 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if tableView == tableViewQuizzes {
-            return section == 0 ? "BSL -> English" : "English -> BSL"
+            return section == 0 ? "Learn BSL -> English!" : "Learn English -> BSL!"
         }
         return nil
     }
@@ -102,7 +105,7 @@ extension QuizOptionViewController: QuizTableViewDelegate {
             let vc = storyboard?.instantiateViewController(withIdentifier: "game") as! GameViewController
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
-            //some functionality here to say: if quiz 1 was picked when reaching the new view controller then quiz one will play. this will be done in the new view controller.
+ 
         }
         else if title == "Quiz a" {
             print("\(title)")
