@@ -56,7 +56,9 @@ class QuizOptionViewController: UIViewController {
                 questions: [
                     QuestionType1(
                         //Change to "What BSL sign is this"
-                        text: "What BSL sign is this? (Gesture of Dog would be played)",
+                        text: "What BSL sign is this? (Dog)",
+                        
+                        videoFileName: "Dog",
                         //Here would be vid of sign
                         answers: [
                             Answer(text: "Dog", correct: true),
@@ -64,9 +66,12 @@ class QuizOptionViewController: UIViewController {
                             Answer(text: "Elephant", correct: false),
                             Answer(text: "Frog", correct: false)
                         ]
+                        //error: Argument 'videoFileName' must precede argument 'answers'
+                        
                     ),
                     QuestionType1(
-                        text: "What BSL sign is this? (Gesture of Cow would be played)",
+                        text: "What BSL sign is this? (Cow)",
+                        videoFileName: "Cow",
                         answers: [
                             Answer(text: "Pig", correct: false),
                             Answer(text: "Monke", correct: false),
@@ -82,7 +87,8 @@ class QuizOptionViewController: UIViewController {
                 type: .BSLtoEnglish,
                 questions: [
                     QuestionType1(
-                        text: "What BSL sign is this? (Gesture would be played of some signing 'Whats your name')",
+                        text: "What BSL sign is this? ('Whats your name')",
+                        videoFileName: "Whats your name",
                         answers: [
                             Answer(text: "Hello there", correct: false),
                             Answer(text: "Whats your name", correct: true),
@@ -91,7 +97,8 @@ class QuizOptionViewController: UIViewController {
                         ]
                     ),
                     QuestionType1(
-                        text: "What BSL sign is this? (Gesture would be played of someone signing 'How are you?')",
+                        text: "What BSL sign is this? ('How are you?')",
+                        videoFileName: "How are you",
                         answers: [
                             Answer(text: "What do you want biotch", correct: false),
                             Answer(text: "Mammaaaa ooooooo", correct: false),

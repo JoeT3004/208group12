@@ -6,6 +6,8 @@
 //
 
 import UIKit
+//import AVFoundation
+import AVKit
 
 
 
@@ -20,6 +22,8 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet var label: UILabel!
     @IBOutlet var answerTable: UITableView!
+    
+    var playerViewController: AVPlayerViewController?
     
     //For completion block
     var onCompletion: ((Int, Int) -> Void)?
@@ -46,60 +50,45 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         configureUI(question: questions.first!)
     }
     
-    override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
-        configureUI(question: questions.first!)
-    }
     
     private func configureUI(question: QuestionType1){
         label.text = question.text
         currentQuestion = question
         answerTable.delegate = self
         answerTable.dataSource = self
+        playVideoForQuestion(question: question)
+    }
+    
+    func playVideoForQuestion(question: QuestionType1) {
+        //error: Value of type 'QuestionType1' has no member 'videofileName'
+        guard let path = Bundle.main.path(forResource: question.videoFileName, ofType: "mp4") else {
+            print("Where is the video?")
+            return
+        }
+        
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        playerViewController = AVPlayerViewController()
+        playerViewController?.player = player
+        playerViewController?.view.frame = CGRect(x: 0, y: 180, width: 390, height: 200)
+        if let playerView = playerViewController?.view {
+            self.view.addSubview(playerView)
+        }
+        
+        NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+        //plays sign video on repeat
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { [weak self] _ in
+            player.seek(to: .zero)
+            player.play()
+        }
+        
+        player.play()
     }
 
     
     private func checkAnswer(answer: Answer, question: QuestionType1) -> Bool{
         return question.answers.contains(where: { $0.text == answer.text}) && answer.correct
     }
-    /*
     
-    //right now this is just simple text questions
-    // will be changed to display a video player
-    private func setupQuestions() {
-        questions.append(QuestionType1(text: "what is two plus two", answers: [
-            Answer(text: "4", correct: true),
-            Answer(text: "3", correct: false),
-            Answer(text: "5", correct: false),
-            Answer(text: "2", correct: false)
-            
-        ]))
-        
-        questions.append(QuestionType1(text: "what is 5 minus 1", answers: [
-            Answer(text: "5", correct: true),
-            Answer(text: "3", correct: false),
-            Answer(text: "4", correct: false),
-            Answer(text: "2", correct: false)
-            
-        ]))
-        
-        questions.append(QuestionType1(text: "what is 3 plus 3", answers: [
-            Answer(text: "4", correct: false),
-            Answer(text: "3", correct: false),
-            Answer(text: "5", correct: false),
-            Answer(text: "6", correct: true)
-            
-        ]))
-        
-        questions.append(QuestionType1(text: "What is the true final boss in bloodborne?", answers: [
-            Answer(text: "Gehrman, The First Hunter", correct: true),
-            Answer(text: "Moon Presence", correct: false),
-            Answer(text: "Mergos Wet Nurce", correct: false),
-            Answer(text: "Orphan of Kos", correct: false)
-            
-        ]))
-    }
-    */
     func restartQuiz(){
         index = 0
         correctAnswers = 0
@@ -112,6 +101,8 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         if index < questions.count {
             let nextQuestion = questions[index]
             configureUI(question: nextQuestion)
+            playerViewController?.view.removeFromSuperview()
+            playVideoForQuestion(question: nextQuestion)
             answerTable.reloadData()
         }
         else {

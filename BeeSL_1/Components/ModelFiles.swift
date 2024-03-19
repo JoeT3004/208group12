@@ -9,6 +9,7 @@ import Foundation
 
 struct QuestionType1: QuestionTypes {
     var text: String
+    var videoFileName: String?
     var answers: [Answer]
 }
 
