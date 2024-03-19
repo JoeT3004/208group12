@@ -20,6 +20,10 @@ class Game2ViewController: UIViewController {
     var currentQuestionIndex: Int = 0
     var correctAnswers: Int = 0
     
+    //For completion block
+    var onCompletion: ((Int, Int) -> Void)?
+
+    
     var quiz: Quiz? {
         didSet {
             if isViewLoaded {
@@ -101,6 +105,7 @@ class Game2ViewController: UIViewController {
             moveOntoNextQuestion()
         }
         else{
+            onCompletion?(correctAnswers, questions.count)
             completionAlert()
         }
     }
@@ -128,20 +133,4 @@ class Game2ViewController: UIViewController {
         return
     }
     
-
-    
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
