@@ -13,7 +13,7 @@ class Game2ViewController: UIViewController {
     
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var answerTextField: UITextField!
+   // @IBOutlet weak var answerTextField: UITextField!
     @IBOutlet weak var checkButton: UIButton!
     
     var questions: [QuestionType2] = []
@@ -22,6 +22,9 @@ class Game2ViewController: UIViewController {
     
     //For completion block
     var onCompletion: ((Int, Int) -> Void)?
+    
+    //placeholder
+    var lastRecognisedGesture: String?
 
     
     var quiz: Quiz? {
@@ -42,6 +45,8 @@ class Game2ViewController: UIViewController {
     }
     
     func loadQuizQuestions() {
+        
+        
         guard let quizQuestions = quiz?.questions as? [QuestionType2] else { return }
         questions = quizQuestions
         currentQuestionIndex = 0
@@ -63,7 +68,8 @@ class Game2ViewController: UIViewController {
             
             let currentQuestion = questions[currentQuestionIndex]
             questionLabel.text = currentQuestion.text
-            answerTextField.text = ""
+            startGestureRecognition()
+            //answerTextField.text = ""
         }
         else {
             completionAlert()
@@ -71,39 +77,49 @@ class Game2ViewController: UIViewController {
         
     }
     
+    func startGestureRecognition(){
+        //sign recognition here?
+        //here is simulated recognized gesture with a delay of 2 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.lastRecognisedGesture = "Simulated Gesture"
+        }
+    }
+    
     @IBAction func checkAnswerTapped(_ sender: UIButton) {
         
-        guard currentQuestionIndex < questions.count else {
-            completionAlert()
+        guard let recognisedGesture = lastRecognisedGesture else {
+            
+            
+            //alert here to say: "No gesture recognised, try again" with retry button
             return
         }
         
-        
-        let currentQuestion = questions[currentQuestionIndex]
-        let userAnswer = answerTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
-        
-        if currentQuestion.answers.contains(where: { $0.text.lowercased() == userAnswer && $0.correct}){
-            correctAnswers += 1
-        }
-        else{
-            wrongAnswerAlert()
-        }
-        
-        
-        if currentQuestionIndex < questions.count {
-            moveOntoNextQuestion()
-        }
-        
-        currentQuestionIndex += 1
-        
-        if currentQuestionIndex < questions.count {
-            moveOntoNextQuestion()
-        }
-        else{
-            onCompletion?(correctAnswers, questions.count)
-            completionAlert()
-        }
+        checkAnswer(withGesture: recognisedGesture)
     }
+    
+    func checkAnswer(withGesture gesture: String) {
+            guard currentQuestionIndex < questions.count else {
+                completionAlert()
+                return
+            }
+            
+            let currentQuestion = questions[currentQuestionIndex]
+            if currentQuestion.answers.contains(where: { $0.text.lowercased() == gesture.lowercased() && $0.correct }) {
+                correctAnswers += 1
+            } else {
+                wrongAnswerAlert()
+            }
+            
+            currentQuestionIndex += 1
+            
+            if currentQuestionIndex < questions.count {
+                moveOntoNextQuestion()
+            } else {
+                onCompletion?(correctAnswers, questions.count)
+                completionAlert()
+            }
+        }
+
     
     func wrongAnswerAlert(){
         let alert = UIAlertController(title: "Incorrect", message: "Get gud and try again cuck", preferredStyle: .alert)
