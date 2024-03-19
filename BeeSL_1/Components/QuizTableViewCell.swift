@@ -41,14 +41,14 @@ class QuizTableViewCell: UITableViewCell {
         scoreLabel.text = scoreText
         //print("\(scoreText ?? title)")
     }
-    
+    /*
     override func prepareForReuse() {
         super.prepareForReuse()
         // Reset the cell's state
         scoreLabel.text = nil
         buttonCell.setTitle(nil, for: .normal)
     }
-
+    */
     
     override func awakeFromNib() {
         super.awakeFromNib()

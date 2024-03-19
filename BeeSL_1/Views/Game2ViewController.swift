@@ -46,15 +46,10 @@ class Game2ViewController: UIViewController {
         questions = quizQuestions
         currentQuestionIndex = 0
         moveOntoNextQuestion()
+        
     }
-    /*
-    private func setupQuestions() {
-        questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
-        questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
-        questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
-        questions.append(QuestionType2(text: "Translate Hello into BSL", answers: [Answer(text: "Hello", correct: true)]))
-    }
-    */
+    
+    
     func restartQuiz() {
         currentQuestionIndex = 0
         correctAnswers = 0

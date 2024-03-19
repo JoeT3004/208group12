@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9070C2772BA9D4B000158D83 /* Dog.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C2762BA9D4AF00158D83 /* Dog.mp4 */; };
+		9070C27D2BA9DA3D00158D83 /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27A2BA9DA3800158D83 /* Cow.mp4 */; };
+		9070C27E2BA9DA3D00158D83 /* How are you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27B2BA9DA3B00158D83 /* How are you.mp4 */; };
+		9070C27F2BA9DA3D00158D83 /* Whats your name.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27C2BA9DA3D00158D83 /* Whats your name.mp4 */; };
 		90D8717A2B9F778A00F282A0 /* QuizOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D871792B9F778A00F282A0 /* QuizOptionViewController.swift */; };
 		90D8717E2B9F84FB00F282A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8717D2B9F84FB00F282A0 /* LoginViewController.swift */; };
 		90DCAB172BA36E10004957A1 /* Game2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DCAB162BA36E10004957A1 /* Game2ViewController.swift */; };
@@ -42,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9070C2762BA9D4AF00158D83 /* Dog.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dog.mp4; sourceTree = "<group>"; };
+		9070C27A2BA9DA3800158D83 /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cow.mp4; sourceTree = "<group>"; };
+		9070C27B2BA9DA3B00158D83 /* How are you.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How are you.mp4"; sourceTree = "<group>"; };
+		9070C27C2BA9DA3D00158D83 /* Whats your name.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Whats your name.mp4"; sourceTree = "<group>"; };
 		90D871792B9F778A00F282A0 /* QuizOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizOptionViewController.swift; sourceTree = "<group>"; };
 		90D8717D2B9F84FB00F282A0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		90DCAB162BA36E10004957A1 /* Game2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9070C2792BA9D53700158D83 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				9070C27A2BA9DA3800158D83 /* Cow.mp4 */,
+				9070C27B2BA9DA3B00158D83 /* How are you.mp4 */,
+				9070C27C2BA9DA3D00158D83 /* Whats your name.mp4 */,
+				9070C2762BA9D4AF00158D83 /* Dog.mp4 */,
+			);
+			name = Videos;
+			sourceTree = "<group>";
+		};
 		90DE78DF2BA0858300623E8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +151,7 @@
 		90FE3EC02B90C9C00091C9BC /* BeeSL_1 */ = {
 			isa = PBXGroup;
 			children = (
+				9070C2792BA9D53700158D83 /* Videos */,
 				90DE78DF2BA0858300623E8D /* Views */,
 				90DE78E02BA085C900623E8D /* Components */,
 				90FE3EC12B90C9C00091C9BC /* AppDelegate.swift */,
@@ -266,8 +286,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				90FE3ECE2B90C9C10091C9BC /* LaunchScreen.storyboard in Resources */,
+				9070C27F2BA9DA3D00158D83 /* Whats your name.mp4 in Resources */,
 				90FE3ECB2B90C9C10091C9BC /* Assets.xcassets in Resources */,
 				90DE78DE2BA0746E00623E8D /* QuizTableViewCell.xib in Resources */,
+				9070C27E2BA9DA3D00158D83 /* How are you.mp4 in Resources */,
+				9070C27D2BA9DA3D00158D83 /* Cow.mp4 in Resources */,
+				9070C2772BA9D4B000158D83 /* Dog.mp4 in Resources */,
 				90FE3EC92B90C9C00091C9BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
