@@ -17,6 +17,7 @@ class QuizTableViewCell: UITableViewCell {
     
     weak var delegate: QuizTableViewDelegate?
     
+    
     static let identifier = "QuizTableViewCell"
     
     static func nib() -> UINib {
@@ -24,24 +25,35 @@ class QuizTableViewCell: UITableViewCell {
     }
 
 
+    @IBOutlet weak var buttonCell: UIButton!
     
-    
-    @IBOutlet var buttonCell: UIButton!
     private var title: String = ""
     
-    @IBAction func didTapButton() {
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    @IBAction func didTapButton(_ sender: UIButton) {
         delegate?.didTapButton(with: title)
-        
     }
     
-    func configure(with title: String) {
+    func configure(with title: String, scoreText: String?) {
         self.title = title
         buttonCell.setTitle(title, for: .normal)
+        scoreLabel.text = scoreText
+        //print("\(scoreText ?? title)")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // Reset the cell's state
+        scoreLabel.text = nil
+        buttonCell.setTitle(nil, for: .normal)
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        scoreLabel.text = "Static Score"
         buttonCell.setTitleColor(.link, for: .normal)
     }
     

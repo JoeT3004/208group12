@@ -23,9 +23,12 @@ class QuizOptionViewController: UIViewController {
 
     let selfMadeQuizzes = ["Created quiz 1","Created quiz 2","Created quiz 3"]
     
-    var quizResults: [String: Int] = [:]
+    //var quizResults: [String: Int] = [:]
     
     var quizzes: [Quiz] = []
+    
+    var quizScores: [String: (correctAnswers: Int, totalQuestions: Int)] = [:]
+
     
     
     override func viewDidLoad() {
@@ -52,25 +55,69 @@ class QuizOptionViewController: UIViewController {
                 type: .BSLtoEnglish,
                 questions: [
                     QuestionType1(
-                        text: "What BSL sign represents a 'Dog'?",
+                        //Change to "What BSL sign is this"
+                        text: "What BSL sign is this? (Gesture of Dog would be played)",
+                        //Here would be vid of sign
                         answers: [
-                            Answer(text: "Patting your leg", correct: true),
-                            Answer(text: "Waving your hand", correct: false),
-                            Answer(text: "Pointing to your eye", correct: false),
-                            Answer(text: "Making a fish face", correct: false)
+                            Answer(text: "Dog", correct: true),
+                            Answer(text: "Cat", correct: false),
+                            Answer(text: "Elephant", correct: false),
+                            Answer(text: "Frog", correct: false)
                         ]
                     ),
                     QuestionType1(
-                        text: "How do you sign 'Cat' in BSL?",
+                        text: "What BSL sign is this? (Gesture of Cow would be played)",
                         answers: [
-                            Answer(text: "Pulling whiskers away from face", correct: true),
-                            Answer(text: "Flicking your ears", correct: false),
-                            Answer(text: "Waving your tail", correct: false),
-                            Answer(text: "Climbing a tree motion", correct: false)
+                            Answer(text: "Pig", correct: false),
+                            Answer(text: "Monke", correct: false),
+                            Answer(text: "Cow", correct: true),
+                            Answer(text: "Orangatang", correct: false)
                         ]
                     )
                 ]
             ),
+            
+            Quiz(
+                title: "Learn the basics!",
+                type: .BSLtoEnglish,
+                questions: [
+                    QuestionType1(
+                        text: "What BSL sign is this? (Gesture would be played of some signing 'Whats your name')",
+                        answers: [
+                            Answer(text: "Hello there", correct: false),
+                            Answer(text: "Whats your name", correct: true),
+                            Answer(text: "Hell no to the no no no", correct: false),
+                            Answer(text: "My precious", correct: false)
+                        ]
+                    ),
+                    QuestionType1(
+                        text: "What BSL sign is this? (Gesture would be played of someone signing 'How are you?')",
+                        answers: [
+                            Answer(text: "What do you want biotch", correct: false),
+                            Answer(text: "Mammaaaa ooooooo", correct: false),
+                            Answer(text: "What do you mean", correct: false),
+                            Answer(text: "How are you", correct: true)
+                        ]
+                    )
+                ]
+            ),
+            Quiz(
+                title: "Learn the basics 2!",
+                type: .EnglishtoBSL,
+                questions: [
+                    QuestionType2(
+                        //prompt of what to sign
+                        text: "Translate 'Yes' into BSL",
+                        //answer would be sign in real time then the button to check it
+                        answers: [Answer(text: "Yes", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'Sorry' into BSL",
+                        answers: [Answer(text: "Sorry", correct: true)]
+                    )
+                ]
+            ),
+            // Add more quizzes as needed
             Quiz(
                 title: "Greetings English Quiz",
                 type: .EnglishtoBSL,
@@ -80,14 +127,19 @@ class QuizOptionViewController: UIViewController {
                         answers: [Answer(text: "Hello", correct: true)]
                     ),
                     QuestionType2(
-                        text: "Translate 'Goodbye' into BSL",
-                        answers: [Answer(text: "Goodbye", correct: true)]
+                        text: "Translate 'See you later' into BSL",
+                        answers: [Answer(text: "See you later", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'Good afternoon' into BSL",
+                        answers: [Answer(text: "Good afternoon", correct: true)]
                     )
                 ]
-            )
-            // Add more quizzes as needed
+            ),
         ]
     }
+    
+    
     
     
     
@@ -136,6 +188,7 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tableViewQuizzes {
             
+            
             let identifier = QuizTableViewCell.identifier
             guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? QuizTableViewCell else {
                 fatalError("Unable to dequeue a QuizTableViewCell")
@@ -145,9 +198,19 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
             let filteredQuizzes = quizzes.filter { $0.type == quizType }
             
             let quiz = filteredQuizzes[indexPath.row]
+            let quizScore = quizScores[quiz.title]
+            let finalScore = quizScore.map { "\($0.correctAnswers)/\($0.totalQuestions)" } ?? "No score"
             
-            cell.configure(with: quiz.title)
+            cell.configure(with: quiz.title, scoreText: finalScore)
+            print("\(finalScore)")
             cell.delegate = self
+            
+            if let score = quizScores[quiz.title] {
+                cell.scoreLabel?.text = "\(score.correctAnswers)/\(score.totalQuestions)"
+                
+            } else {
+                cell.scoreLabel?.text = "No score"
+            }
             return cell
         } else {
             
@@ -166,7 +229,6 @@ extension QuizOptionViewController: QuizTableViewDelegate {
     
     // some functionality here?? -> if quiz1 then play quiz 1, elsif quiz 2
     func didTapButton(with title: String) {
-        // Attempt to find the quiz based on the button's title
         guard let selectedQuiz = quizzes.first(where: { $0.title == title }) else {
             print("Quiz title \(title) did not match known quizzes")
             return
@@ -176,11 +238,24 @@ extension QuizOptionViewController: QuizTableViewDelegate {
         if let vc = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) as? GameViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.quiz = selectedQuiz
+            vc.onCompletion = { [weak self] correctAnswers, totalQuestions in
+                self?.quizScores[selectedQuiz.title] = (correctAnswers, totalQuestions)
+                DispatchQueue.main.async {
+                    self?.tableViewQuizzes.reloadData()
+                }
+            }
             present(vc, animated: true)
         } else if let vc = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) as? Game2ViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.quiz = selectedQuiz
+            vc.onCompletion = { [weak self] correctAnswers, totalQuestions in
+                self?.quizScores[selectedQuiz.title] = (correctAnswers, totalQuestions)
+                DispatchQueue.main.async {
+                    self?.tableViewQuizzes.reloadData()
+                }
+            }
             present(vc, animated: true)
         }
     }
+
 }

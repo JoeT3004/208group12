@@ -21,6 +21,10 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var label: UILabel!
     @IBOutlet var answerTable: UITableView!
     
+    //For completion block
+    var onCompletion: ((Int, Int) -> Void)?
+
+    
     var quiz: Quiz? {
         didSet {
             if isViewLoaded {
@@ -53,6 +57,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         answerTable.delegate = self
         answerTable.dataSource = self
     }
+
     
     private func checkAnswer(answer: Answer, question: QuestionType1) -> Bool{
         return question.answers.contains(where: { $0.text == answer.text}) && answer.correct
@@ -110,9 +115,9 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             answerTable.reloadData()
         }
         else {
+            onCompletion?(correctAnswers, questions.count)
             completionAlert()
         }
-        
     }
     
     
@@ -164,7 +169,6 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }))
                     present(alert, animated: true)
                 }
-
             }
         }
     }
@@ -177,6 +181,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         }))
         alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
+            
         }))
         
         present(alert, animated: true)
