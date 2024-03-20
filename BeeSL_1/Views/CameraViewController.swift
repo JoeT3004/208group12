@@ -32,6 +32,7 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
         super.viewDidLoad()
         setupAVSession()
     }
+    
     //starts session when view appears on screen
     //background thread avoids ui
     override func viewDidAppear(_ animated: Bool) {
@@ -53,32 +54,51 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     private func setupAVSession() {
         //dispatch to allow to work with ui
         DispatchQueue.global(qos: .userInitiated).async {
-            self.cameraFeedSession = AVCaptureSession()
+            
+            let session = AVCaptureSession()
+            
+            session.beginConfiguration()
             
             guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front),
                   let videoInput = try? AVCaptureDeviceInput(device: videoDevice),
-                  self.cameraFeedSession?.canAddInput(videoInput) ?? false else {
+            session.canAddInput(videoInput) else {
                 print("Failed to create video input")
                 return
             }
             
-            self.cameraFeedSession?.addInput(videoInput)
+            session.addInput(videoInput)
             
             let dataOutput = AVCaptureVideoDataOutput()
-            if self.cameraFeedSession?.canAddOutput(dataOutput) ?? false {
-                self.cameraFeedSession?.addOutput(dataOutput)
+            if session.canAddOutput(dataOutput) {
+                session.addOutput(dataOutput)
                 dataOutput.alwaysDiscardsLateVideoFrames = true
-                dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "CameraFeedOutput", qos: .userInteractive))
+                dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "CameraFeedOutputQueue", qos: .userInteractive))
             } else {
                 print("Failed to add video data output")
+                session.commitConfiguration()
                 return
             }
+            
+            session.commitConfiguration()
+            
             //main thread
             DispatchQueue.main.async { [weak self] in
+                
+                guard let self = self else { return }
                 //configures the preview layer to display the video feed
-                self?.cameraView.previewLayer?.session = self?.cameraFeedSession
-                self?.cameraView.previewLayer?.videoGravity = .resizeAspectFill
+                //removes previous layer to display video feed
+                let previewLayer = self.cameraView.previewLayer
+                previewLayer.session = session
+                previewLayer.frame = cameraView.bounds
+                previewLayer.videoGravity = .resizeAspectFill
             }
+            
+            
+            self.cameraFeedSession = session
         }
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        
     }
 }

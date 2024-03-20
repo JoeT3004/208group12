@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UW5-Sc-LcA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UW5-Sc-LcA">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -277,7 +277,7 @@
                                     <action selector="checkAnswerTapped:" destination="YtT-BB-yLb" eventType="touchUpInside" id="VRs-Fn-XJ0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWT-Zw-Skm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWT-Zw-Skm">
                                 <rect key="frame" x="38" y="84.333333333333329" width="316" height="27.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
@@ -287,14 +287,12 @@
                         <viewLayoutGuide key="safeArea" id="792-63-U7f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="leading" secondItem="792-63-U7f" secondAttribute="leading" constant="38" id="Kbs-wm-YVe"/>
-                            <constraint firstItem="792-63-U7f" firstAttribute="trailing" secondItem="RWT-Zw-Skm" secondAttribute="trailing" constant="39" id="O9f-mw-tF4"/>
-                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="top" secondItem="792-63-U7f" secondAttribute="top" constant="25.329999999999998" id="VVj-HD-BVg"/>
-                            <constraint firstItem="792-63-U7f" firstAttribute="trailing" secondItem="g4D-YQ-kVS" secondAttribute="trailing" constant="131" id="giO-HP-U1n"/>
-                            <constraint firstItem="g4D-YQ-kVS" firstAttribute="leading" secondItem="792-63-U7f" secondAttribute="leading" constant="152" id="nj9-sF-foT"/>
-                            <constraint firstItem="g4D-YQ-kVS" firstAttribute="top" secondItem="RWT-Zw-Skm" secondAttribute="bottom" constant="633" id="wsz-Jx-vzV"/>
-                            <constraint firstItem="792-63-U7f" firstAttribute="bottom" secondItem="g4D-YQ-kVS" secondAttribute="bottom" constant="23" id="xDR-or-IRH"/>
-                            <constraint firstItem="g4D-YQ-kVS" firstAttribute="top" secondItem="RWT-Zw-Skm" secondAttribute="bottom" constant="633" id="yF7-V5-HNO"/>
+                            <constraint firstItem="792-63-U7f" firstAttribute="bottom" secondItem="g4D-YQ-kVS" secondAttribute="bottom" constant="23" id="CYI-Ka-ld2"/>
+                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="leading" secondItem="792-63-U7f" secondAttribute="leading" constant="38" id="OJF-BU-zDu"/>
+                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="top" secondItem="792-63-U7f" secondAttribute="top" constant="25.333333333333314" id="OTN-ma-EOg"/>
+                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="centerX" secondItem="iEN-nS-qEW" secondAttribute="centerX" id="WPM-Qm-R5R"/>
+                            <constraint firstItem="792-63-U7f" firstAttribute="trailing" secondItem="g4D-YQ-kVS" secondAttribute="trailing" constant="131" id="Yry-5B-Xd7"/>
+                            <constraint firstItem="g4D-YQ-kVS" firstAttribute="leading" secondItem="792-63-U7f" secondAttribute="leading" constant="152" id="ZCa-BI-A04"/>
                         </constraints>
                     </view>
                     <connections>
@@ -447,27 +445,27 @@
         <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
         <image name="gamecontroller.fill" catalog="system" width="128" height="79"/>
-        <image name="person.3" catalog="system" width="128" height="62"/>
-        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="person.3" catalog="system" width="128" height="66"/>
+        <image name="person.3.fill" catalog="system" width="128" height="66"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
-        <image name="photo.stack" catalog="system" width="128" height="122"/>
-        <image name="photo.stack.fill" catalog="system" width="128" height="122"/>
+        <image name="photo.stack" catalog="system" width="126" height="128"/>
+        <image name="photo.stack.fill" catalog="system" width="126" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
