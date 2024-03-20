@@ -12,7 +12,17 @@ import AVFoundation
 class CameraView: UIView {
 
     //reference to display the video captured by the camera
-    var previewLayer: AVCaptureVideoPreviewLayer?
+    var previewLayer: AVCaptureVideoPreviewLayer {
+        guard let layer = layer as? AVCaptureVideoPreviewLayer else {
+            fatalError("Expected preview for type layer")
+        }
+        return layer
+    }
+    
+    //overide layer class to return to preview layer
+    override class var layerClass: AnyClass {
+        return AVCaptureVideoPreviewLayer.self
+    }
 
     
     //Initializer for creating the view programmatically
@@ -20,13 +30,16 @@ class CameraView: UIView {
         super.init(frame: frame)
         //sets background of the camera view to black
         self.backgroundColor = .black
-        setupCameraSession() //starts camera session
+        //setupCameraSession() //starts camera session
     }
     //required
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupCameraSession()
+        self.backgroundColor = .black
+        //setupCameraSession()
     }
+    
+    /*
     //standard function to set up the camera session to capture live video feed
     private func setupCameraSession() {
         let captureSession = AVCaptureSession()
@@ -61,4 +74,5 @@ class CameraView: UIView {
         
         captureSession.startRunning() //starts session
     }
+     */
 }
