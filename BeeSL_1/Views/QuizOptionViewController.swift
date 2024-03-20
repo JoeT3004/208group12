@@ -11,6 +11,8 @@ import UIKit
 
 class QuizOptionViewController: UIViewController {
 
+    
+    
     @IBOutlet weak var tableViewQuizzes: UITableView!
     
     @IBOutlet weak var tableViewCreatedQuizzes: UITableView!
@@ -25,8 +27,11 @@ class QuizOptionViewController: UIViewController {
     
     //var quizResults: [String: Int] = [:]
     
+    
+    //Array to hold quiz objects
     var quizzes: [Quiz] = []
     
+    //Dictionary to store quiz stores,
     var quizScores: [String: (correctAnswers: Int, totalQuestions: Int)] = [:]
 
     
@@ -35,7 +40,7 @@ class QuizOptionViewController: UIViewController {
         super.viewDidLoad()
         
         //quizzes = loadQuizzes()
-        
+        //Register the custom table view cell nib with the tableViewQuizzes
         tableViewQuizzes.register(QuizTableViewCell.nib(), forCellReuseIdentifier: QuizTableViewCell.identifier)
         
         tableViewQuizzes.delegate = self
@@ -48,18 +53,26 @@ class QuizOptionViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //function holds all quiz data
     func initializeQuizzes() {
         quizzes = [
+            //first quiz
             Quiz(
+                //this would be a displayed in cell row
                 title: "Animals BSL Quiz",
+                //knows its a question type 1 quiz
+                //has to now consistently be question type 1 (GameViewController)
                 type: .BSLtoEnglish,
+                //questions below
                 questions: [
+                    //question 1
                     QuestionType1(
-                        //Change to "What BSL sign is this"
+                        //label in GameViewController
                         text: "What BSL sign is this? (Dog)",
                         
+                        //Knows to get video file dog
                         videoFileName: "Dog",
-                        //Here would be vid of sign
+                        //answers in table view
                         answers: [
                             Answer(text: "Dog", correct: true),
                             Answer(text: "Cat", correct: false),
@@ -69,6 +82,7 @@ class QuizOptionViewController: UIViewController {
                         //error: Argument 'videoFileName' must precede argument 'answers'
                         
                     ),
+                    //question 2
                     QuestionType1(
                         text: "What BSL sign is this? (Cow)",
                         videoFileName: "Cow",
@@ -81,7 +95,7 @@ class QuizOptionViewController: UIViewController {
                     )
                 ]
             ),
-            
+            //second quiz
             Quiz(
                 title: "Learn the basics!",
                 type: .BSLtoEnglish,
@@ -110,12 +124,15 @@ class QuizOptionViewController: UIViewController {
             ),
             Quiz(
                 title: "Learn the basics 2!",
+                //knows its a question type 2 quiz
+                //has to now consistently be question type 2 (Game2ViewController)
                 type: .EnglishtoBSL,
                 questions: [
                     QuestionType2(
                         //prompt of what to sign
                         text: "Translate 'Yes' into BSL",
                         //answer would be sign in real time then the button to check it
+                        //functionailty not complete
                         answers: [Answer(text: "Yes", correct: true)]
                     ),
                     QuestionType2(
@@ -146,19 +163,6 @@ class QuizOptionViewController: UIViewController {
         ]
     }
     
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -167,18 +171,21 @@ class QuizOptionViewController: UIViewController {
 extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        //two sections for BSL quizzes not created quizzes table view
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tableViewQuizzes //if tableView.tag == 0{
         {
-            
+            //determines the amount of rows based on quiz type given
             let quizType = section == 0 ? QuizType.BSLtoEnglish : QuizType.EnglishtoBSL
             return quizzes.filter { $0.type == quizType }.count
             //return section == 0 ? BSLtoEnglish.count : EnglishToBSL.count
         }
         else{
+            //numer of created quizzes
+            //not implemented
             return selfMadeQuizzes.count
         }
 
@@ -187,6 +194,7 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if tableView == tableViewQuizzes {
+            //Header names for each section in quizzes table view
             return section == 0 ? "Learn BSL -> English!" : "Learn English -> BSL!"
         }
         return nil
@@ -195,7 +203,7 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tableViewQuizzes {
             
-            
+            //configuring cell for quiz item
             let identifier = QuizTableViewCell.identifier
             guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? QuizTableViewCell else {
                 fatalError("Unable to dequeue a QuizTableViewCell")
@@ -206,6 +214,8 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
             
             let quiz = filteredQuizzes[indexPath.row]
             let quizScore = quizScores[quiz.title]
+            //displays score in the table view
+            //quizScores[quiz.title] returns an optional tuple (Int, Int)?
             let finalScore = quizScore.map { "\($0.correctAnswers)/\($0.totalQuestions)" } ?? "No score"
             
             cell.configure(with: quiz.title, scoreText: finalScore)
@@ -213,14 +223,14 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
             cell.delegate = self
             
             if let score = quizScores[quiz.title] {
-                cell.scoreLabel?.text = "\(score.correctAnswers)/\(score.totalQuestions)"
+                cell.scoreLabel?.text = finalScore//"\(score.correctAnswers)/\(score.totalQuestions)"
                 
             } else {
                 cell.scoreLabel?.text = "No score"
             }
             return cell
         } else {
-            
+            //configure cell for user created items
             let cell = tableViewCreatedQuizzes.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = selfMadeQuizzes[indexPath.row]
             return cell
@@ -236,21 +246,29 @@ extension QuizOptionViewController: QuizTableViewDelegate {
     
     // some functionality here?? -> if quiz1 then play quiz 1, elsif quiz 2
     func didTapButton(with title: String) {
+        
+        //Find the quiz that was selected by the title chosen
         guard let selectedQuiz = quizzes.first(where: { $0.title == title }) else {
-            print("Quiz title \(title) did not match known quizzes")
+            print("\(title) did not find a actual quiz")
             return
         }
         
+        //depending on the quiz type selected it will instantiate to the correct view controller
+        //"game" is ID to GameViewController
+        //"game2" is ID to Game2ViewController
         let storyboardIdentifier = selectedQuiz.type == .BSLtoEnglish ? "game" : "game2"
         if let vc = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) as? GameViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.quiz = selectedQuiz
+            //completion handler used to store and update total questions and correctAnswers
             vc.onCompletion = { [weak self] correctAnswers, totalQuestions in
                 self?.quizScores[selectedQuiz.title] = (correctAnswers, totalQuestions)
+                //UI update performed to main thread as completion handler may be called in different thread
                 DispatchQueue.main.async {
                     self?.tableViewQuizzes.reloadData()
                 }
             }
+            //Presents the gameview controller
             present(vc, animated: true)
         } else if let vc = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) as? Game2ViewController {
             vc.modalPresentationStyle = .fullScreen
@@ -261,6 +279,7 @@ extension QuizOptionViewController: QuizTableViewDelegate {
                     self?.tableViewQuizzes.reloadData()
                 }
             }
+            //Presents game2viewcontroller
             present(vc, animated: true)
         }
     }

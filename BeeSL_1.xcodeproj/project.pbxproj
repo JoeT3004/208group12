@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29E2CF3B2BAA3B3300086579 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3A2BAA3B3300086579 /* CameraView.swift */; };
+		29E2CF3D2BAA3B6A00086579 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */; };
 		9070C2772BA9D4B000158D83 /* Dog.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C2762BA9D4AF00158D83 /* Dog.mp4 */; };
 		9070C27D2BA9DA3D00158D83 /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27A2BA9DA3800158D83 /* Cow.mp4 */; };
 		9070C27E2BA9DA3D00158D83 /* How are you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27B2BA9DA3B00158D83 /* How are you.mp4 */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29E2CF3A2BAA3B3300086579 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9070C2762BA9D4AF00158D83 /* Dog.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dog.mp4; sourceTree = "<group>"; };
 		9070C27A2BA9DA3800158D83 /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cow.mp4; sourceTree = "<group>"; };
 		9070C27B2BA9DA3B00158D83 /* How are you.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How are you.mp4"; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				90D8717D2B9F84FB00F282A0 /* LoginViewController.swift */,
 				90DE78E32BA08D6F00623E8D /* GameViewController.swift */,
 				90DCAB162BA36E10004957A1 /* Game2ViewController.swift */,
+				29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 				90DE78DB2BA0746E00623E8D /* QuizTableViewCell.swift */,
 				90DE78DC2BA0746E00623E8D /* QuizTableViewCell.xib */,
 				90E2AC032BA8A714005FBDBF /* ModelFiles.swift */,
+				29E2CF3A2BAA3B3300086579 /* CameraView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -318,8 +324,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				90FE3EC22B90C9C00091C9BC /* AppDelegate.swift in Sources */,
+				29E2CF3D2BAA3B6A00086579 /* CameraViewController.swift in Sources */,
 				90DE78DD2BA0746E00623E8D /* QuizTableViewCell.swift in Sources */,
 				90D8717A2B9F778A00F282A0 /* QuizOptionViewController.swift in Sources */,
+				29E2CF3B2BAA3B3300086579 /* CameraView.swift in Sources */,
 				90D8717E2B9F84FB00F282A0 /* LoginViewController.swift in Sources */,
 				90DE78E42BA08D6F00623E8D /* GameViewController.swift in Sources */,
 				90FE3EC42B90C9C00091C9BC /* SceneDelegate.swift in Sources */,
@@ -506,14 +514,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GG5LF3K8VH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeeSL_1/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "BeeSL_1 Need to access camera in order for user to make signs";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,14 +544,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GG5LF3K8VH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BeeSL_1/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "BeeSL_1 Need to access camera in order for user to make signs";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
