@@ -7,7 +7,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-base_options = python.BaseOptions(model_asset_path='exported_model\gesture_recognizer.task')
+base_options = python.BaseOptions(model_asset_path='exported_model_6_(copy)\gesture_recognizer.task')
 options = vision.GestureRecognizerOptions(base_options=base_options)
 recognizer = vision.GestureRecognizer.create_from_options(options)
 
@@ -115,7 +115,7 @@ while True:
     
     # Line thickness of 2 px 
     thickness = 2
-    
+    #np.copy(image.numpy_view())
     final_image = cv2.putText(np.copy(image.numpy_view()), gesture, org, font,  
                    fontScale, color, thickness, cv2.LINE_AA) 
     
