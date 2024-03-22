@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+import MediaPipeTasksVision
 
 class QuizOptionViewController: UIViewController {
 
