@@ -47,4 +47,6 @@ protocol QuestionTypes{
     //hand gesture variable
 }
 
-
+protocol GestureRecognitionDelegate: AnyObject {
+    func didRecognizeGesture(_ gesture: String)
+}

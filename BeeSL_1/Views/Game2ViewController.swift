@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import MediaPipeTasksVision
 
-class Game2ViewController: UIViewController {
+class Game2ViewController: UIViewController, GestureRecognitionDelegate {
     
     //ui components
     @IBOutlet weak var questionLabel: UILabel!
    // @IBOutlet weak var answerTextField: UITextField!
+    @IBOutlet weak var debugLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     
     //Array holding the quizs QuestionType2 objects
@@ -28,8 +30,14 @@ class Game2ViewController: UIViewController {
     var lastRecognisedGesture: String?
     //reference to use cameraViewController
     var cameraViewController: CameraViewController!
+    
+    var gestureRecognizerService: GestureRecognizerService?
+    
+    var recognizedGestures: [String] = []
+    
+    var gestureTimer: Timer?
 
-
+    
     //sets up quesitons when a new quiz gets assigned
     var quiz: Quiz? {
         didSet {
@@ -42,7 +50,9 @@ class Game2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupQuestions()
+        
+        
+
         //currentQuestionIndex = 0
         loadQuizQuestions()
         // Do any additional setup after loading the view.
@@ -54,6 +64,10 @@ class Game2ViewController: UIViewController {
         cameraViewController.didMove(toParent: self)
         // Position the camera view
         positionCameraView()
+        
+        //Setup GestureRecognizerService and set delegate
+        gestureRecognizerService = GestureRecognizerService()
+        gestureRecognizerService?.setGestureRecognitionDelegate(self)
         
     }
     
@@ -71,7 +85,6 @@ class Game2ViewController: UIViewController {
     
     //prepares first quesiton
     func loadQuizQuestions() {
-        
         
         guard let quizQuestions = quiz?.questions as? [QuestionType2] else { return }
         questions = quizQuestions
@@ -96,7 +109,7 @@ class Game2ViewController: UIViewController {
             
             let currentQuestion = questions[currentQuestionIndex]
             questionLabel.text = currentQuestion.text
-            startGestureRecognition()
+            //startGestureRecognition()
             //answerTextField.text = ""
         }
         else {
@@ -108,7 +121,7 @@ class Game2ViewController: UIViewController {
     
     //This adjusted method randomly picks one of the current question's answers as the "recognized gesture" after a simulated delay, allowing you to proceed as if a gesture had been recognized.
     
-    
+    /*
     //This is a place holder function
     //picks a answer
     //change function so it works with questiontype2 properly (shown in QuizOptionVC)
@@ -124,27 +137,133 @@ class Game2ViewController: UIViewController {
             if let correctAnswer = self.questions[self.currentQuestionIndex].answers.first(where: { $0.correct }) {
                 self.lastRecognisedGesture = correctAnswer.text
                 // Using UI-based feedback for debugging
-                self.questionLabel.text = "Debug -> Proceed \(correctAnswer.text)"
+                /*
+                self.questionLabel.text = "Debsug -> Proceed \(correctAnswer.text)"
             } else {
                 self.questionLabel.text = "no answer"
+                 */
+            }
+        }
+    }
+    */
+    //MARK: GestureRecognitionDelegate
+    func didRecognizeGesture(_ gesture: String) {
+        DispatchQueue.main.async {
+            self.recognizedGestures.append(gesture)
+            
+            // Check if enough gestures have been recognized to form an answer
+            self.debugLabel.text = "Last Gesture: \(gesture)"
+            self.checkAnswerAutomatic()
+
+            // Restart the timer to clear recognized gestures if no more gestures are recognized within 10 seconds
+            self.gestureTimer?.invalidate()
+            self.gestureTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
+                self.recognizedGestures.removeAll()
+            }
+        }
+    }
+    
+    func checkAnswerAutomatic() {
+        if let currentQuestion = questions[currentQuestionIndex] as? QuestionType2 {
+            let expectedAnswer = currentQuestion.answers.first?.text.replacingOccurrences(of: " ", with: "").lowercased() ?? ""
+            let userAnswer = recognizedGestures.joined(separator: "").lowercased()
+
+            // If the user's answer matches the expected answer and has the same length
+            if userAnswer == expectedAnswer && userAnswer.count == expectedAnswer.count {
+                correctAnswers += 1
+                // Move to the next question
+                currentQuestionIndex += 1
+                if currentQuestionIndex < questions.count {
+                    moveOntoNextQuestion()
+                } else {
+                    // End of the quiz
+                    onCompletion?(correctAnswers, questions.count)
+                    completionAlert()
+                }
+
+                // Clear recognized gestures for the next question
+                recognizedGestures.removeAll()
+                gestureTimer?.invalidate()
             }
         }
     }
 
 
 
+
+
+
     //checks the recognised gesture function when button is tapped
     @IBAction func checkAnswerTapped(_ sender: UIButton) {
         
-        guard let recognisedGesture = lastRecognisedGesture else {
-            
-            //
-            //alert here to say: "No gesture recognised, try again" with retry button
+        // Assuming the lastRecognisedGesture might not be used directly in this context,
+        // but you can still keep your guard if it has some use
+        guard ((lastRecognisedGesture?.isEmpty) == nil) else {
+            // Alert to say "No gesture recognised, try again" with retry button
+            noGestureAlert()
             return
         }
         
-        checkAnswer(withGesture: recognisedGesture)
+        // Now directly call checkAnswer as you are already dealing with recognized gestures
+        checkAnswer()
     }
+    
+    // Compares the recognized gestures against the question correct answer
+    func checkAnswer() {
+    //Ensure execution on the main thread
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, self.currentQuestionIndex < self.questions.count else {
+                self?.completionAlert() // If not show the completion alert
+                return
+            }
+            let currentQuestion = self.questions[self.currentQuestionIndex]
+            
+            //Assuming the correct answer for BSL translation is the first in the answers array
+            let correctAnswer = currentQuestion.answers.first?.text.lowercased() ?? ""
+            
+            //Concatenate recognized gestures to form the user's answer
+            let userAnswer = self.recognizedGestures.joined(separator: "").lowercased()
+            
+            //Check if user's answer matches the correct answer
+            if userAnswer == correctAnswer {
+                self.correctAnswers += 1 // Increment correct answers
+                self.correctAnswerAlert() // Optional: Show an alert for a correct answer
+            } else {
+                self.wrongAnswerAlert()
+            }
+
+            //Proceed to the next question or end the quiz if all questions answered
+            self.currentQuestionIndex += 1
+            
+            if self.currentQuestionIndex < self.questions.count {
+                self.moveOntoNextQuestion()
+            } else {
+                self.onCompletion?(self.correctAnswers, self.questions.count)
+                self.completionAlert()
+            }
+            
+            // Clear recognized gestures for the next question
+            self.recognizedGestures.removeAll()
+        }
+    }
+
+    func noGestureAlert() {
+        let alert = UIAlertController(title: "No Gesture Recognized", message: "Try signing the answer again.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    func correctAnswerAlert() {
+        let alert = UIAlertController(title: "Correct!", message: "You've got the right answer.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Next Question", style: .default, handler: { [weak self] _ in
+            self?.moveOntoNextQuestion()
+        }))
+        present(alert, animated: true)
+    }
+    
+    
+    
+    /*
     //compares the recognized gesture against question correct answer.
     func checkAnswer(withGesture gesture: String) {
         DispatchQueue.main.async { [weak self] in
@@ -173,6 +292,7 @@ class Game2ViewController: UIViewController {
             }
         }
     }
+     */
 
 //explained in gameviewcontroller
     

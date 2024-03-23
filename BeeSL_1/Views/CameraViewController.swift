@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import MediaPipeTasksVision
 
 
 //Moved the calls to startRunning and stopRunning to a background thread by wrapping them in DispatchQueue.global(qos: .userInitiated).async.
@@ -18,6 +19,9 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     
     //holds session which holds data from camera input device to the output
     private var cameraFeedSession: AVCaptureSession?
+    
+    private var gestureRecognizerService: GestureRecognizerService?
+
     
     //sets to instance of camera view
     override func loadView() {
@@ -74,31 +78,41 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
                 dataOutput.alwaysDiscardsLateVideoFrames = true
                 dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "CameraFeedOutputQueue", qos: .userInteractive))
             } else {
-                print("Failed to add video data output")
+                print("failed to add video data output")
                 session.commitConfiguration()
                 return
             }
-            
             session.commitConfiguration()
             
             //main thread
             DispatchQueue.main.async { [weak self] in
                 
-                guard let self = self else { return }
-                //configures the preview layer to display the video feed
-                //removes previous layer to display video feed
-                let previewLayer = self.cameraView.previewLayer
-                previewLayer.session = session
-                previewLayer.frame = cameraView.bounds
-                previewLayer.videoGravity = .resizeAspectFill
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    //Configures the preview layer to display the video feed
+                    let previewLayer = self.cameraView.previewLayer
+                    previewLayer.session = session
+                    previewLayer.frame = self.cameraView.bounds
+                    previewLayer.videoGravity = .resizeAspectFill
+                    
+                    //Initialize the gesture recognizer service
+                    self.gestureRecognizerService = GestureRecognizerService()
+                }
+
             }
             
             
             self.cameraFeedSession = session
         }
+        
+        
+
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
+        
+        gestureRecognizerService?.processSampleBuffer(sampleBuffer)
+
     }
 }
