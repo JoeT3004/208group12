@@ -1,0 +1,14 @@
+READ ME - how to build Xcode project from clone repo & push it after changes.  What Ive had to work out to get the framework working  Build Xcode project from cloned repo
+
+A file in the project uses git lfs, this is a large file that requires the framework to work. This file is too large for GitHub to push to (Over 100mb) as such git ifs is required. This means every time you clone the repo you have to pull the git lfs original files.  Do this in terminal.
+
+Navigate to projects directory using ‘cd’.
+
+Install git lfs if not already:  brew install git-lfs  Then:
+
+git lfs install  Then:  git lfs pull   Push it after changes  Terminal commands:
+
+git add -A
+git commit -m "Your meaningful commit message here" 
+Make sure git lfs supports tracking for files with .a Terminal commands:  git lfs track "*.a"  git lfs push --all origin main  git push origin main --force
+
