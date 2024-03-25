@@ -77,7 +77,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         let player = AVPlayer(url: URL(fileURLWithPath: path))
         playerViewController = AVPlayerViewController()
         playerViewController?.player = player
-        playerViewController?.view.frame = CGRect(x: 0, y: 180, width: 390, height: 200)
+        playerViewController?.view.frame = CGRect(x: 0, y: 180, width: 393, height: 400)
         if let playerView = playerViewController?.view {
             self.view.addSubview(playerView)
         }

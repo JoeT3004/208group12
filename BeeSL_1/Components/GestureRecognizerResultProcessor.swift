@@ -11,10 +11,10 @@ class GestureRecognizerResultProcessor: NSObject, GestureRecognizerLiveStreamDel
     weak var delegate: GestureRecognitionDelegate?
     
     func gestureRecognizer(_ gestureRecognizer: GestureRecognizer, didFinishRecognition result: GestureRecognizerResult?, timestampInMilliseconds: Int, error: Error?) {
-        // Example processing, adapt based on actual result structure
+        //Example processing, adapt based on actual result structure
         guard let result = result else { return }
-        // Assuming result contains a way to get the recognized gesture as a String
-        let recognizedGesture = "SomeGesture" // Placeholder, replace with actual logic to extract gesture from result
+        //Assuming result contains a way to get the recognized gesture as a String
+        let recognizedGesture = "" //Placeholder, options. here
         delegate?.didRecognizeGesture(recognizedGesture)
     }
 }

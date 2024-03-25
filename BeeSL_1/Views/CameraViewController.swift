@@ -27,7 +27,7 @@ final class CameraViewController: UIViewController, AVCaptureVideoDataOutputSamp
     override func loadView() {
         view = CameraView()
     }
-  //Create a computed property called cameraView to access the root view as CameraView. You can safely force cast here because you recently assigned an instance of CameraView to view in step one.
+  //Create a computed property called cameraView to access the root view as CameraView, force dasrs
     private var cameraView: CameraView {
         return view as! CameraView
     }
