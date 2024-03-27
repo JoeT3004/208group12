@@ -46,6 +46,12 @@ class QuizTableViewCell: UITableViewCell {
         scoreLabel.text = scoreText
         //print("\(scoreText ?? title)")
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.bringSubviewToFront(scoreLabel)
+    }
+
    
     //called when cell is loaded from the nib()
     override func awakeFromNib() {
