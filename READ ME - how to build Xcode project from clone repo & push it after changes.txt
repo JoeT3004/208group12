@@ -4,12 +4,23 @@ A file in the project uses git lfs, this is a large file that requires the frame
 
 Navigate to projects directory using ‘cd’.
 
+Install pods and make sure correct version:
+Terminal command:
+sudo gem install cocoapods
+
+If the repsonse is an error may have to do this terminal command:
+sudo gem install activesupport -v 6.1.7.7
+
+pod install
+
 Install git lfs if not already:  
 
-Terminal commands
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Terminal commands:
 brew install git-lfs
 
+^if failes complete commands below
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 Follow the steps below that the terminal gives you after the /bin/... line.
 Next steps (may be different depending on the device I am not sure) :
 - Run these two commands in your terminal to add Homebrew to your PATH:
@@ -19,6 +30,7 @@ Next steps (may be different depending on the device I am not sure) :
 - Further documentation:
     https://docs.brew.sh
 
+now do this again:
 brew install git-lfs
 
 Terminal commands after git lfs install:
