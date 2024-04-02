@@ -49,7 +49,8 @@ if ($stmt = $con->prepare($sql))
                 if (password_verify($inpassword, $password)) {
                 // if ($inpassword === $password) {
                         // Verification success! User has logged-in!
-                        // Create sessions, so we know the user is logged in, they basically act like cookies but remem$                        session_regenerate_id();
+                        // Create sessions, so we know the user is logged in, they basically act like cookies but remem$                        
+                        session_regenerate_id();
                         $_SESSION['loggedin'] = TRUE;
                         $_SESSION['username'] = $username;
                         // $_SESSION['id'] = $id;
