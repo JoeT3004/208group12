@@ -1,3 +1,7 @@
+###--------------------------------------------------------------------------------------------------###
+Be aware that some of the code on here may be out of date compared to the code in use on the web server.
+###--------------------------------------------------------------------------------------------------###
+
 GUIDE FOR CONNECTING TO SQL SERVER ON LINUX FARM (SSH):
 
 1. Connect to university linux farm with 'ssh -m hmac-sha2-512 <username>@lxfarm08.csc.liv.ac.uk' on command line
