@@ -10,6 +10,7 @@ GUIDE FOR CONNECTING TO SQL SERVER ON LINUX FARM (SSH):
 
 PHP PAGES THAT ARE WORKING - 
 
+Access by logging into the linux farm (as above), before accessing the phpwebservice folder with 'cd public_html/phpwebservice' - then just nano whichever file you need to edit.
 Where there is a symbol like <USERNAME>, replace with a variable as entered by the user. (or for testing purposes just add your own testing arguments)
 
 USER ACCOUNT PAGES:
