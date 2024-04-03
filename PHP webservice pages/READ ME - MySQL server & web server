@@ -4,9 +4,9 @@ Be aware that some of the code on here may be out of date compared to the code i
 
 GUIDE FOR CONNECTING TO SQL SERVER ON LINUX FARM (SSH):
 
-1. Connect to university linux farm with 'ssh -m hmac-sha2-512 <username>@lxfarm08.csc.liv.ac.uk' on command line
+1. Connect to university linux farm with 'ssh -m hmac-sha2-512 sgtbrett@lxfarm08.csc.liv.ac.uk' on command line
 2. Log into MySQL workbench and make sure that the server is running on lxfarm08
-3. Enter 'mysql -h studdb.csc.liv.ac.uk <database-name>' on command line to connect to the database
+3. Enter 'mysql -h studdb.csc.liv.ac.uk sgtbrett' on command line to connect to the database
 
 PHP PAGES THAT ARE WORKING - 
 
