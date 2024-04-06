@@ -99,7 +99,7 @@ while True:
     #hand_landmarks = recognition_result.hand_landmarks    
     #cv2_imshow(cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
 
-    #Handannotated_image = Handdraw_landmarks_on_image(image.numpy_view(), recognition_result)
+    Handannotated_image = Handdraw_landmarks_on_image(image.numpy_view(), recognition_result)
     
     # font 
     font = cv2.FONT_HERSHEY_SIMPLEX 
