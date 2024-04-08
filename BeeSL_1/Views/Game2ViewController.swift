@@ -55,7 +55,7 @@ class Game2ViewController: UIViewController, GestureRecognitionDelegate {
 
         //currentQuestionIndex = 0
         loadQuizQuestions()
-        // Do any additional setup after loading the view.
+    
         // Setup CameraViewController
         //Initializes and sets up the camera view
         cameraViewController = CameraViewController()
@@ -168,7 +168,7 @@ class Game2ViewController: UIViewController, GestureRecognitionDelegate {
             let expectedAnswer = currentQuestion.answers.first?.text.replacingOccurrences(of: " ", with: "").lowercased() ?? ""
             let userAnswer = recognizedGestures.joined(separator: "").lowercased()
 
-            // If the user's answer matches the expected answer and has the same length
+            // If the users answer matches the expected answer and has the same length
             if userAnswer == expectedAnswer && userAnswer.count == expectedAnswer.count {
                 correctAnswers += 1
                 // Move to the next question

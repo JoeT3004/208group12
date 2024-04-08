@@ -9,32 +9,17 @@ import UIKit
 import MediaPipeTasksVision
 
 class GestureRecognizerService: NSObject {
-    private var poseGestureRecognizer: GestureRecognizer?
     private var handGestureRecognizer: GestureRecognizer?
     private let processor = GestureRecognizerResultProcessor()
 
     override init() {
         super.init()
-        configurePoseGestureRecognizer()
         configureHandGestureRecognizer()
-    }
-    
-    private func configurePoseGestureRecognizer() {
-        do {
-            let modelPath = Bundle.main.path(forResource: "pose_landmarker", ofType: "task")!
-            let options = GestureRecognizerOptions()
-            options.baseOptions.modelAssetPath = modelPath
-            options.runningMode = .liveStream
-            options.gestureRecognizerLiveStreamDelegate = processor
-            poseGestureRecognizer = try GestureRecognizer(options: options)
-        } catch {
-            print("Error initializing pose gesture recognizer: \(error)")
-        }
     }
     
     private func configureHandGestureRecognizer() {
         do {
-            let modelPath = Bundle.main.path(forResource: "hand_landmarker", ofType: "task")!
+            let modelPath = Bundle.main.path(forResource: "gesture_recognizer", ofType: "task")!
             let options = GestureRecognizerOptions()
             options.baseOptions.modelAssetPath = modelPath
             options.runningMode = .liveStream
@@ -49,7 +34,6 @@ class GestureRecognizerService: NSObject {
         do {
             let image = try MPImage(sampleBuffer: sampleBuffer)
             let timestamp = Int(CMSampleBufferGetPresentationTimeStamp(sampleBuffer).seconds) * 1000
-            try poseGestureRecognizer?.recognizeAsync(image: image, timestampInMilliseconds: timestamp)
             try handGestureRecognizer?.recognizeAsync(image: image, timestampInMilliseconds: timestamp)
         } catch {
             print("Error processing sample buffer: \(error)")
