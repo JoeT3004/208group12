@@ -14,9 +14,11 @@ Access by logging into the linux farm (as above), before accessing the phpwebser
 Where there is a symbol like <USERNAME>, replace with a variable as entered by the user. (or for testing purposes just add your own testing arguments)
 
 USER ACCOUNT PAGES:
-Register new user: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/adduser.php?username=<USERNAME>&firstname=<FIRSTNAME>&lastname=<LASTNAME>&password=<PASSWORD>
-Login: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/verifyuser.php?username=<USERNAME>&password=<PASSWORD>
-Delete account: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/deleteuser.php?password=<PASSWORD>
+Register new user: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/adduser.php?username=<12345>&firstname=<12345>&lastname=<12345>&password=<12345>
+Login: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/verifyuser.php?username=12345&password=12345
+Delete account: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/deleteuser.php?password=PASSWORD
+
+https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/deleteuser.php?password=\(password)")
 Logout: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/logout.php
 
 QUIZ/QUESTION RELATED PAGES:

@@ -7,6 +7,15 @@
 
 import Foundation
 
+
+struct User: Codable {
+    let username: String
+    let firstName: String
+    let lastName: String
+    let password: String
+}
+
+
 //defines BSL->English quesiton type = 1
 struct QuestionType1: QuestionTypes {
     var text: String //prompt of question (label)
@@ -45,8 +54,4 @@ protocol QuestionTypes{
     var text: String { get }
     var answers: [Answer] { get }
     //hand gesture variable
-}
-
-protocol GestureRecognitionDelegate: AnyObject {
-    func didRecognizeGesture(_ gesture: String)
 }

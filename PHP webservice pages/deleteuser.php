@@ -54,7 +54,6 @@ if ($stmt = $con->prepare($checkname)) {
                         } else {
                                 echo 'SQL Statement Failed';
                         }
-
                 } else {
                         exit('Incorrect password');
                 }
