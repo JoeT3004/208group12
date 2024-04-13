@@ -41,13 +41,19 @@ class ProfileViewController: UIViewController {
     }
     
     func logoutUser() {
-        //back to the login screen. Adjust this code if you're using a different method for navigation.
         DispatchQueue.main.async {
-            if let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") {
-                UIApplication.shared.keyWindow?.rootViewController = loginViewController
+            guard let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") else {
+                return
+            }
+
+            // Adjust this code to find the appropriate scene
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                windowScene.windows.first?.rootViewController = loginViewController
+                windowScene.windows.first?.makeKeyAndVisible()
             }
         }
     }
+
     
     func confirmAccountDeletion() {
         let alert = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account? ", preferredStyle: .alert)

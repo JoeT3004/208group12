@@ -107,11 +107,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         task.resume()
     }
-
-
-
-    
-
     
 
 }

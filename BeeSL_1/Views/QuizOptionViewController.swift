@@ -119,6 +119,16 @@ class QuizOptionViewController: UIViewController {
                             Answer(text: "What do you mean", correct: false),
                             Answer(text: "How are you", correct: true)
                         ]
+                    ),
+                    QuestionType1(
+                        text: "What BSL sign is this? ('Hello')",
+                        videoFileName: "Hello",
+                        answers: [
+                            Answer(text: "Nope", correct: false),
+                            Answer(text: "Yummy", correct: false),
+                            Answer(text: "Greetings", correct: false),
+                            Answer(text: "Hello", correct: true)
+                        ]
                     )
                 ]
             ),
@@ -138,6 +148,10 @@ class QuizOptionViewController: UIViewController {
                     QuestionType2(
                         text: "Translate 'Sorry' into BSL",
                         answers: [Answer(text: "Sorry", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'Maybe' into BSL",
+                        answers: [Answer(text: "Maybe", correct: true)]
                     )
                 ]
             ),
@@ -222,7 +236,7 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
             print("\(finalScore)")
             cell.delegate = self
             
-            if let score = quizScores[quiz.title] {
+            if quizScores[quiz.title] != nil {
                 cell.scoreLabel?.text = finalScore//"\(score.correctAnswers)/\(score.totalQuestions)"
                 
             } else {
@@ -279,7 +293,6 @@ extension QuizOptionViewController: QuizTableViewDelegate {
                     self?.tableViewQuizzes.reloadData()
                 }
             }
-            //Presents game2viewcontroller
             present(vc, animated: true)
         }
     }
