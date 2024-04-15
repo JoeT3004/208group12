@@ -23,3 +23,6 @@ Logout: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/logout.php
 
 QUIZ/QUESTION RELATED PAGES:
 Get question: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquestion.php?id=<ID>
+Get BSL to English questions from quiz: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getbsltoeng.php?id=<ID>
+Get English to BSL questions from quiz: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getengtobsl.php?id=<ID>
+
