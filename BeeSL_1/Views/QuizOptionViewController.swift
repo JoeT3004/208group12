@@ -23,7 +23,7 @@ class QuizOptionViewController: UIViewController {
     
     //let englishToBSL = ["Quiz a", "Quiz b", "Quiz z"]
 
-    let selfMadeQuizzes = ["Created quiz 1 (Coming soon)","Created quiz 2","Created quiz 3", "Created quiz 4"]
+    let selfMadeQuizzes = ["Created quiz 1 (Coming soon...maybe)","Created quiz 2","Created quiz 3", "Created quiz 4"]
     
     //var quizResults: [String: Int] = [:]
     
@@ -87,8 +87,8 @@ class QuizOptionViewController: UIViewController {
                         
                         videoFileName: "Bird",
                         answers: [
-                            Answer(text: "Horse", correct: true),
-                            Answer(text: "Bird", correct: false),
+                            Answer(text: "Horse", correct: false),
+                            Answer(text: "Bird", correct: true),
                             Answer(text: "Giraffe", correct: false),
                             Answer(text: "Bear", correct: false)
                         ]
@@ -248,7 +248,6 @@ class QuizOptionViewController: UIViewController {
             ),
         ]
     }
-    
 
 }
 

@@ -9,18 +9,6 @@ import UIKit
 import AVFoundation
 
 
-//Define a structure to hold video information
-struct Video {
-    var name: String
-    var thumbnail: UIImage?
-    var asset: AVAsset?
-}
-
-//Define a structure for a video category
-struct VideoCategory {
-    var title: String
-    var videos: [Video]
-}
 
 
 class VideoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -28,7 +16,7 @@ class VideoViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // Array of video categories
+    //Array of video categories
     var categories: [VideoCategory] = []
     
     func videoNames(forCategory title: String) -> [String] {
@@ -78,7 +66,9 @@ class VideoViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     
-    // Generate thumbnail for a video
+    //Generate thumbnail for a video
+    //Grabs the first second of every video so it can used as an iamge
+    //image will be used on each video thumbnail in this view controller
     func generateThumbnail(asset: AVAsset) -> UIImage? {
         let generator = AVAssetImageGenerator(asset: asset)
         generator.appliesPreferredTrackTransform = true
@@ -102,6 +92,7 @@ class VideoViewController: UIViewController, UICollectionViewDelegate, UICollect
         return categories[section].videos.count
     }
     
+    //make image be thumbnail image
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCell", for: indexPath) as! VideoCollectionViewCell
         let video = categories[indexPath.section].videos[indexPath.row]
@@ -110,10 +101,14 @@ class VideoViewController: UIViewController, UICollectionViewDelegate, UICollect
         return cell
     }
     
+    //height of thumbnails
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 50) //Adjust header height as needed
     }
 
+    //categorise the thumbnails
+    //Uses header function
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else {
             return UICollectionReusableView()
@@ -124,23 +119,27 @@ class VideoViewController: UIViewController, UICollectionViewDelegate, UICollect
         let categoryTitle = categories[indexPath.section].title
         header.configure(with: categoryTitle)
         
+        
         return header
     }
 
     // MARK: UICollectionViewDelegateFlowLayout
-
+    
+    //format of placement of each cell
+    //2 cells in each row/column
+    //393 is width of collection view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfColumns: CGFloat = 2
-        let width = (collectionView.frame.size.width - (numberOfColumns - 1) * 10 - 20) / numberOfColumns
-        return CGSize(width: width, height: width) // Adjust height based on your aspect ratio
+        let width = (393 - (numberOfColumns - 1) * 10 - 20) / numberOfColumns
+        return CGSize(width: width, height: width) //Adjusts height based on your aspect ratio for each cell
     }
     
     // MARK: Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail",
-           let cell = sender as? UICollectionViewCell, // Use the sender as the cell
-           let indexPath = collectionView.indexPath(for: cell), // Correct method call
+           let cell = sender as? UICollectionViewCell, //Use the sender as the cell
+           let indexPath = collectionView.indexPath(for: cell), //Correct method call
            let detailVC = segue.destination as? VideoPlayerViewController {
             
             let selectedVideo = categories[indexPath.section].videos[indexPath.row]

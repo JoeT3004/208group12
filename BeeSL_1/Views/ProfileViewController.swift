@@ -63,13 +63,14 @@ class ProfileViewController: UIViewController {
         
     }
     
+    //sends user back to the logoin menu allowing user to sign in with a different account
     func logoutUser() {
         DispatchQueue.main.async {
             guard let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") else {
                 return
             }
 
-            // Adjust this code to find the appropriate scene
+            //finds the appropriate scene
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 windowScene.windows.first?.rootViewController = loginViewController
                 windowScene.windows.first?.makeKeyAndVisible()
@@ -80,7 +81,7 @@ class ProfileViewController: UIViewController {
     
     func confirmAccountDeletion() {
         
-        print("Current username: \(user?.username ?? "nil")") // Debug statement to check the username value
+        print("Current username: \(user?.username ?? "nil")") //Debug statement to check the username value
         
         if let user = (self.tabBarController as? TabBarViewController)?.user {
             //Check if the current user is a guest
@@ -116,8 +117,8 @@ class ProfileViewController: UIViewController {
                 
             }
         } else {
-            // Fallback if user is somehow nil - might be useful to handle unexpected cases
-            //Present an alert that indicates deletion is not possible for guest accounts
+            //if user is somehow nil
+            //just acts if user is guest
             let alert = UIAlertController(title: "Unavailable", message: "Can't delete account as using a guest account", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) // Only a cancel option
             alert.addAction(cancelAction)
@@ -151,7 +152,7 @@ class ProfileViewController: UIViewController {
             if let responseString = String(data: data, encoding: .utf8) {
                 DispatchQueue.main.async {
                     if responseString.contains("successfully deleted") {
-                        self?.logoutUser() // Navigate back to login screen
+                        self?.logoutUser() //Navigate back to login screen
                     } else {
                         print("Deletion failed: \(responseString)") // Log or handle the error
                     }

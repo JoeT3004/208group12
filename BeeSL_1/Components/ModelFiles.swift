@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import AVFoundation
 
 
 struct User: Codable {
@@ -55,3 +57,17 @@ protocol QuestionTypes{
     var answers: [Answer] { get }
     //hand gesture variable
 }
+
+//Define a structure to hold video information
+struct Video {
+    var name: String
+    var thumbnail: UIImage?
+    var asset: AVAsset?
+}
+
+//Define a structure for a video category
+struct VideoCategory {
+    var title: String
+    var videos: [Video]
+}
+

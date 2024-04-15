@@ -118,9 +118,9 @@ class Game2ViewController: UIViewController {
     }
     
     func simulateGestureRecognition() {
-        // Simulate recognition of a gesture after a delay
+        //dimulate recognition of a gesture after a delay
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.lastRecognisedGesture = "Simulated gesture" // Set a dummy gesture for testing
+            self?.lastRecognisedGesture = "Simulated gesture" //dummy gesture for testing
         }
     }
     
@@ -133,8 +133,7 @@ class Game2ViewController: UIViewController {
     //checks the recognised gesture function when button is tapped
     @IBAction func checkAnswerTapped(_ sender: UIButton) {
         
-        // Assuming the lastRecognisedGesture might not be used directly in this context,
-        // but you can still keep your guard if it has some use
+        //understands last gestures (not working), if no gesture debug label lets user know
         guard let recognisedGesture = lastRecognisedGesture, !recognisedGesture.isEmpty else {
             debugLabel.text = "No gesture recognised. Please try again."
             return
@@ -142,8 +141,8 @@ class Game2ViewController: UIViewController {
         checkAnswer(withGesture: recognisedGesture)
     }
     
-    // Compares the recognized gestures against the question correct answer
-    //compares the recognized gesture against question correct answer.
+    //compares the recognized gestures against the question correct answer
+
     func checkAnswer(withGesture gesture: String) {
         if currentQuestionIndex < questions.count {
             let currentQuestion = questions[currentQuestionIndex]
@@ -153,7 +152,7 @@ class Game2ViewController: UIViewController {
                 currentQuestionIndex += 1
                 moveOntoNextQuestion()
             } else {
-                debugLabel.text = "Incorrect! Correct answer was: \(currentQuestion.answers.first { $0.correct }?.text ?? "N/A")"
+                debugLabel.text = "Incorrect! Correct answer was: \(currentQuestion.answers.first { $0.correct }?.text ?? "wrong")"
                 wrongAnswerAlert()
             }
         } else {
@@ -196,8 +195,6 @@ class Game2ViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
-
-    
 }
 
 

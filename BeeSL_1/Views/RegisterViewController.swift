@@ -30,7 +30,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             regLastNameTextField.text?.isEmpty ?? true ||
             regPassTextField.text?.isEmpty ?? true {
             // If any text field is empty, show an error message.
-            regResult.text = "All fields are required. Please fill out each field."
+            regResult.text = "All fields are required, please fill out each field."
             regResult.isHidden = false
         } else {
             regResult.isHidden = true
@@ -42,7 +42,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                              firstName: regFirstNameTextField.text ?? "",
                              lastName: regLastNameTextField.text ?? "",
                              password: regPassTextField.text ?? "")
-            regResult.text = "Registration made, please now go back and login"
+            regResult.text = "Registration made! Please now go back and login"
         }
     }
     

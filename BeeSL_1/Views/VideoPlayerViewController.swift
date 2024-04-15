@@ -26,6 +26,8 @@ class VideoPlayerViewController: UIViewController {
         setupVideoPlayer()
     }
 
+    
+    //simple video player
     func setupVideoPlayer() {
         guard let videoAsset = videoAsset else { return }
         let playerItem = AVPlayerItem(asset: videoAsset)
@@ -35,7 +37,7 @@ class VideoPlayerViewController: UIViewController {
         playerLayer.frame = videoContainerView.bounds
         videoContainerView.layer.addSublayer(playerLayer)
 
-        // Add observer to loop the video
+        //Add observer to loop the video indefinetly
         NotificationCenter.default.addObserver(self, selector: #selector(loopVideo), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
 
         player?.play()

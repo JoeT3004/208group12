@@ -164,7 +164,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                 //if correct increments index and moves to next question
                 //counter for correctAnswers so it can be displayed
                 correctAnswers += 1
-                if let index = questions.firstIndex(where: { $0.text == question.text }) {
+                if questions.firstIndex(where: { $0.text == question.text }) != nil {
                     moveToNextQuestion()
                 }
             } else {

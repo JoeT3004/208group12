@@ -8,13 +8,14 @@
 import UIKit
 
 class VideoSectionHeaderView: UICollectionReusableView {
+    
     static let reuseIdentifier = "VideoSectionHeaderView"
     
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .yellow
+        
         return label
     }()
     
