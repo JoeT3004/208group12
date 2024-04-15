@@ -26,3 +26,4 @@ Get question: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquestion.
 Get BSL to English questions from quiz: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getbsltoeng.php?id=<ID>
 Get English to BSL questions from quiz: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getengtobsl.php?id=<ID>
 
+Store a new score for a new attempt: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/newattempt.php?username=<USERNAME>&id=<ID>&score=<SCORE>
