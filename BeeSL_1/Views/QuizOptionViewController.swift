@@ -23,7 +23,7 @@ class QuizOptionViewController: UIViewController {
     
     //let englishToBSL = ["Quiz a", "Quiz b", "Quiz z"]
 
-    let selfMadeQuizzes = ["Created quiz 1","Created quiz 2","Created quiz 3"]
+    let selfMadeQuizzes = ["Created quiz 1 (Coming soon)","Created quiz 2","Created quiz 3", "Created quiz 4"]
     
     //var quizResults: [String: Int] = [:]
     
@@ -68,7 +68,7 @@ class QuizOptionViewController: UIViewController {
                     //question 1
                     QuestionType1(
                         //label in GameViewController
-                        text: "What BSL sign is this? (Dog)",
+                        text: "What BSL sign is this?",
                         
                         //Knows to get video file dog
                         videoFileName: "Dog",
@@ -79,12 +79,25 @@ class QuizOptionViewController: UIViewController {
                             Answer(text: "Elephant", correct: false),
                             Answer(text: "Frog", correct: false)
                         ]
+                        
+                        
+                    ),
+                    QuestionType1(
+                        text: "What BSL sign is this?",
+                        
+                        videoFileName: "Bird",
+                        answers: [
+                            Answer(text: "Horse", correct: true),
+                            Answer(text: "Bird", correct: false),
+                            Answer(text: "Giraffe", correct: false),
+                            Answer(text: "Bear", correct: false)
+                        ]
                         //error: Argument 'videoFileName' must precede argument 'answers'
                         
                     ),
                     //question 2
                     QuestionType1(
-                        text: "What BSL sign is this? (Cow)",
+                        text: "What BSL sign is this?",
                         videoFileName: "Cow",
                         answers: [
                             Answer(text: "Pig", correct: false),
@@ -101,33 +114,69 @@ class QuizOptionViewController: UIViewController {
                 type: .BSLtoEnglish,
                 questions: [
                     QuestionType1(
-                        text: "What BSL sign is this? ('Whats your name')",
+                        text: "What BSL sign is this?",
                         videoFileName: "Whats your name",
                         answers: [
                             Answer(text: "Hello there", correct: false),
                             Answer(text: "Whats your name", correct: true),
-                            Answer(text: "Hell no to the no no no", correct: false),
+                            Answer(text: "What do you mean", correct: false),
                             Answer(text: "My precious", correct: false)
                         ]
                     ),
                     QuestionType1(
-                        text: "What BSL sign is this? ('How are you?')",
+                        text: "What BSL sign is this?",
                         videoFileName: "How are you",
                         answers: [
-                            Answer(text: "What do you want biotch", correct: false),
-                            Answer(text: "Mammaaaa ooooooo", correct: false),
+                            Answer(text: "Who are you", correct: false),
+                            Answer(text: "Are you okay", correct: false),
                             Answer(text: "What do you mean", correct: false),
                             Answer(text: "How are you", correct: true)
                         ]
                     ),
                     QuestionType1(
-                        text: "What BSL sign is this? ('Hello')",
+                        text: "What BSL sign is this?",
                         videoFileName: "Hello",
                         answers: [
                             Answer(text: "Nope", correct: false),
                             Answer(text: "Yummy", correct: false),
-                            Answer(text: "Greetings", correct: false),
-                            Answer(text: "Hello", correct: true)
+                            Answer(text: "Hello", correct: true),
+                            Answer(text: "Morning", correct: false)
+                        ]
+                    )
+                ]
+            ),
+            Quiz(
+                title: "Learn the colours!",
+                type: .BSLtoEnglish,
+                questions: [
+                    QuestionType1(
+                        text: "What BSL colour sign is this?",
+                        videoFileName: "Blue",
+                        answers: [
+                            Answer(text: "Brown", correct: false),
+                            Answer(text: "Red", correct: false),
+                            Answer(text: "Blue", correct: true),
+                            Answer(text: "Yellow", correct: false)
+                        ]
+                    ),
+                    QuestionType1(
+                        text: "What BSL colour sign is this?",
+                        videoFileName: "Yellow",
+                        answers: [
+                            Answer(text: "Orange", correct: false),
+                            Answer(text: "Black", correct: false),
+                            Answer(text: "Green", correct: true),
+                            Answer(text: "Yellow", correct: true)
+                        ]
+                    ),
+                    QuestionType1(
+                        text: "What BSL colour sign is this?",
+                        videoFileName: "Pink",
+                        answers: [
+                            Answer(text: "Pink", correct: true),
+                            Answer(text: "Green", correct: false),
+                            Answer(text: "Purple", correct: false),
+                            Answer(text: "Gold", correct: false)
                         ]
                     )
                 ]
@@ -171,6 +220,29 @@ class QuizOptionViewController: UIViewController {
                     QuestionType2(
                         text: "Translate 'Good afternoon' into BSL",
                         answers: [Answer(text: "Good afternoon", correct: true)]
+                    )
+                ]
+            ),
+            Quiz(
+                title: "Learn the basics Colours 2!",
+                //knows its a question type 2 quiz
+                //has to now consistently be question type 2 (Game2ViewController)
+                type: .EnglishtoBSL,
+                questions: [
+                    QuestionType2(
+                        //prompt of what to sign
+                        text: "Translate 'Red' into BSL",
+                        //answer would be sign in real time then the button to check it
+                        //functionailty not complete
+                        answers: [Answer(text: "Red", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'Brown' into BSL",
+                        answers: [Answer(text: "Brown", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'Purple' into BSL",
+                        answers: [Answer(text: "Purple", correct: true)]
                     )
                 ]
             ),

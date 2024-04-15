@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29AADC7E2BCC942300D5807A /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7C2BCC942300D5807A /* Cow.mp4 */; };
+		29AADC7F2BCC942300D5807A /* Whats your name.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7D2BCC942300D5807A /* Whats your name.mp4 */; };
 		29E2CF3B2BAA3B3300086579 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3A2BAA3B3300086579 /* CameraView.swift */; };
 		29E2CF3D2BAA3B6A00086579 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */; };
 		6BE23EB82BC3694400AEA1B6 /* Slow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E972BC368F700AEA1B6 /* Slow.mp4 */; };
-		6BE23EB92BC3694400AEA1B6 /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E982BC368F700AEA1B6 /* Cow.mp4 */; };
 		6BE23EBA2BC3694400AEA1B6 /* Thank you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */; };
 		6BE23EBB2BC3694400AEA1B6 /* Pink.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */; };
 		6BE23EBC2BC3694400AEA1B6 /* Colour.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9B2BC368FB00AEA1B6 /* Colour.mp4 */; };
 		6BE23EBD2BC3694400AEA1B6 /* Good Afternoon.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9C2BC368FC00AEA1B6 /* Good Afternoon.mp4 */; };
 		6BE23EBE2BC3694400AEA1B6 /* Good Morning.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9D2BC368FD00AEA1B6 /* Good Morning.mp4 */; };
-		6BE23EBF2BC3694400AEA1B6 /* Whats your name.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9E2BC368FE00AEA1B6 /* Whats your name.mp4 */; };
 		6BE23EC02BC3694400AEA1B6 /* Bird.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9F2BC368FF00AEA1B6 /* Bird.mp4 */; };
 		6BE23EC12BC3694400AEA1B6 /* My name is.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA02BC3690100AEA1B6 /* My name is.mp4 */; };
 		6BE23EC22BC3694400AEA1B6 /* Cat.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA12BC3690800AEA1B6 /* Cat.mp4 */; };
@@ -84,16 +84,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29AADC7C2BCC942300D5807A /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cow.mp4; sourceTree = "<group>"; };
+		29AADC7D2BCC942300D5807A /* Whats your name.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Whats your name.mp4"; sourceTree = "<group>"; };
 		29E2CF3A2BAA3B3300086579 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6BE23E972BC368F700AEA1B6 /* Slow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Slow.mp4; sourceTree = "<group>"; };
-		6BE23E982BC368F700AEA1B6 /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Cow.mp4; path = ../../Documents/Cow.mp4; sourceTree = "<group>"; };
 		6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thank you.mp4"; sourceTree = "<group>"; };
 		6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pink.mp4; sourceTree = "<group>"; };
 		6BE23E9B2BC368FB00AEA1B6 /* Colour.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Colour.mp4; sourceTree = "<group>"; };
 		6BE23E9C2BC368FC00AEA1B6 /* Good Afternoon.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Good Afternoon.mp4"; sourceTree = "<group>"; };
 		6BE23E9D2BC368FD00AEA1B6 /* Good Morning.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Good Morning.mp4"; sourceTree = "<group>"; };
-		6BE23E9E2BC368FE00AEA1B6 /* Whats your name.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Whats your name.mp4"; path = "../../Documents/Whats your name.mp4"; sourceTree = "<group>"; };
 		6BE23E9F2BC368FF00AEA1B6 /* Bird.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bird.mp4; sourceTree = "<group>"; };
 		6BE23EA02BC3690100AEA1B6 /* My name is.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My name is.mp4"; sourceTree = "<group>"; };
 		6BE23EA12BC3690800AEA1B6 /* Cat.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cat.mp4; sourceTree = "<group>"; };
@@ -187,13 +187,14 @@
 				6BE23E9B2BC368FB00AEA1B6 /* Colour.mp4 */,
 				6BE23ED92BC3699500AEA1B6 /* Dog.mp4 */,
 				6BE23EDA2BC3699700AEA1B6 /* How are you.mp4 */,
-				6BE23E982BC368F700AEA1B6 /* Cow.mp4 */,
 				6BE23EA22BC3691200AEA1B6 /* Fish.mp4 */,
 				6BE23EB42BC3693E00AEA1B6 /* Green.mp4 */,
 				6BE23EA52BC3692000AEA1B6 /* Maybe.mp4 */,
 				6BE23EA02BC3690100AEA1B6 /* My name is.mp4 */,
 				6BE23EA92BC3692C00AEA1B6 /* No.mp4 */,
 				6BE23EA62BC3692300AEA1B6 /* Orange.mp4 */,
+				29AADC7C2BCC942300D5807A /* Cow.mp4 */,
+				29AADC7D2BCC942300D5807A /* Whats your name.mp4 */,
 				6BE23EB52BC3694100AEA1B6 /* Pig.mp4 */,
 				6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */,
 				6BE23EA72BC3692700AEA1B6 /* Please.mp4 */,
@@ -205,7 +206,6 @@
 				6BE23EA82BC3692A00AEA1B6 /* Sorry.mp4 */,
 				6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */,
 				6BE23EB22BC3693B00AEA1B6 /* Wait.mp4 */,
-				6BE23E9E2BC368FE00AEA1B6 /* Whats your name.mp4 */,
 				6BE23EA32BC3691A00AEA1B6 /* Yellow.mp4 */,
 				6BE23EAD2BC3693200AEA1B6 /* Yes.mp4 */,
 			);
@@ -410,7 +410,6 @@
 				6BE23EBE2BC3694400AEA1B6 /* Good Morning.mp4 in Resources */,
 				6BE23EC92BC3694400AEA1B6 /* Sorry.mp4 in Resources */,
 				6BE23ED42BC3694400AEA1B6 /* See you later.mp4 in Resources */,
-				6BE23EBF2BC3694400AEA1B6 /* Whats your name.mp4 in Resources */,
 				6BE23EC42BC3694400AEA1B6 /* Yellow.mp4 in Resources */,
 				6BE23ED02BC3694400AEA1B6 /* Purple.mp4 in Resources */,
 				6BE23ECB2BC3694400AEA1B6 /* Sign Language.mp4 in Resources */,
@@ -420,15 +419,16 @@
 				6BE23ECF2BC3694400AEA1B6 /* Good Evening.mp4 in Resources */,
 				90DE78DE2BA0746E00623E8D /* QuizTableViewCell.xib in Resources */,
 				6BE23ED72BC3694400AEA1B6 /* Red.mp4 in Resources */,
-				6BE23EB92BC3694400AEA1B6 /* Cow.mp4 in Resources */,
 				6BE23EBD2BC3694400AEA1B6 /* Good Afternoon.mp4 in Resources */,
 				6BE23ED62BC3694400AEA1B6 /* Pig.mp4 in Resources */,
 				6BE23ECC2BC3694400AEA1B6 /* Brown.mp4 in Resources */,
+				29AADC7F2BCC942300D5807A /* Whats your name.mp4 in Resources */,
 				6BE23EC12BC3694400AEA1B6 /* My name is.mp4 in Resources */,
 				6BE23EBA2BC3694400AEA1B6 /* Thank you.mp4 in Resources */,
 				6BE23ED12BC3694400AEA1B6 /* Blue.mp4 in Resources */,
 				6BE23EC82BC3694400AEA1B6 /* Please.mp4 in Resources */,
 				6BE23ECE2BC3694400AEA1B6 /* Yes.mp4 in Resources */,
+				29AADC7E2BCC942300D5807A /* Cow.mp4 in Resources */,
 				6BE23EC02BC3694400AEA1B6 /* Bird.mp4 in Resources */,
 				6BE23EBC2BC3694400AEA1B6 /* Colour.mp4 in Resources */,
 				6BE23ED32BC3694400AEA1B6 /* Wait.mp4 in Resources */,
@@ -693,7 +693,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -723,7 +723,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

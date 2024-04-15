@@ -31,6 +31,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
 
     }
+    
+    @IBAction func guestButton(_ sender: UIButton) {
+        let guestUser = User(username: "Guest", firstName: "", lastName: "", password: "")
+        navigateToMainTabBarController(with: guestUser)
+    }
+    
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -121,8 +128,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func navigateToMainTabBarController(with user: User) {
         DispatchQueue.main.async {
-            if let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? TabBarViewController{
-                mainTabBarController.user = user // Pass the user to the tab bar controller
+            if let mainTabBarController = self.storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? TabBarViewController {
+                mainTabBarController.user = user // Make sure this user is being set
                 if let windowScene = self.view.window?.windowScene, let window = windowScene.windows.first {
                     window.rootViewController = mainTabBarController
                     window.makeKeyAndVisible()

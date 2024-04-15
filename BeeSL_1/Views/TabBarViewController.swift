@@ -20,6 +20,7 @@ class TabBarViewController: UITabBarController {
             for viewController in viewControllers {
                 if let profileVC = viewController as? ProfileViewController {
                     profileVC.user = user
+                    print("User passed to ProfileVC: \(String(describing: user?.username))") // Debug statement
                     break
                 }
             }

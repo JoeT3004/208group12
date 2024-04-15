@@ -36,11 +36,11 @@ class VideoViewController: UIViewController, UICollectionViewDelegate, UICollect
         case "Animals":
             return ["Cow", "Dog", "Fish", "Bird", "Cat", "Pig"]
         case "Basics":
-            return ["How are you", "Maybe", "My name is"]
+            return ["How are you", "Maybe", "My name is", "Whats your name", "Sorry", "Please", "Sign Language", "Wait", "No", "Yes", "Thank you", "Maybe", "Slow"]
         case "Colours":
-            return ["Red", "Green", "Blue"]
+            return ["Red", "Green", "Blue", "Brown", "Yellow", "Orange", "Purple", "Pink", "Colour"]
         case "Greetings":
-            return ["Good Morning", "Good Evening", "Good Night"]
+            return ["Hello", "Good Morning", "Good Evening", "Good Night", "See you later", "Good Afternoon"]
         default:
             return []
         }
@@ -111,7 +111,7 @@ class VideoViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 50) // Adjust header height as needed
+        return CGSize(width: collectionView.bounds.width, height: 50) //Adjust header height as needed
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
