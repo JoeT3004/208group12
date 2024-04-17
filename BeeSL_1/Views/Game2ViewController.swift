@@ -22,6 +22,9 @@ class Game2ViewController: UIViewController {
     var currentQuestionIndex: Int = 0
     var correctAnswers: Int = 0
     
+    var handle_BSL: BSL_Handler?
+    var type_of_quiz: String?
+    
     //For completion block
     //called on completion which will pass the score back to the quizoption view controller
     var onCompletion: ((Int, Int) -> Void)?
@@ -29,8 +32,8 @@ class Game2ViewController: UIViewController {
     //placeholder, this is just a string representation
     var lastRecognisedGesture: String?
     //reference to use cameraViewController
-    var cameraViewController: CameraViewController!
     
+    var currentquestion: String?
     
     /*
     var recognizedGestures: [String] = []
@@ -42,7 +45,7 @@ class Game2ViewController: UIViewController {
     var quiz: Quiz? {
         didSet {
             if isViewLoaded {
-                loadQuizQuestions()
+                
             }
         }
     }
@@ -51,34 +54,15 @@ class Game2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCameraView()
+        //setupCameraView()
 
         //currentQuestionIndex = 0
         loadQuizQuestions()
     
         
-        
     }
     //initalizes camera view setup
-    func setupCameraView() {
-        cameraViewController = CameraViewController()
-        addChild(cameraViewController)
-        view.addSubview(cameraViewController.view)
-        cameraViewController.didMove(toParent: self)
-        positionCameraView()
-    }
-    
-    //positions the camera view inbetween the label and the check button
-    func positionCameraView() {
-        
-        cameraViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            cameraViewController.view.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 20),
-            cameraViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            cameraViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cameraViewController.view.bottomAnchor.constraint(equalTo: checkButton.topAnchor, constant: -20)
-        ])
-    }
+
     
     //prepares first quesiton
     func loadQuizQuestions() {
@@ -86,9 +70,26 @@ class Game2ViewController: UIViewController {
         guard let quizQuestions = quiz?.questions as? [QuestionType2] else { return }
         questions = quizQuestions
         currentQuestionIndex = 0
+        
+        type_of_quiz = "Action"
+        
+         handle_BSL = BSL_Handler(session_Type_param:type_of_quiz!)
+        
+        if let working_handle_BSL = handle_BSL{
+            if(working_handle_BSL.working == false)
+            {
+                printbadServerAlert()
+            }
+        }
+        else {
+            printbadServerAlert()
+        }
+        
+        adviseAlert()
         moveOntoNextQuestion()
         
     }
+    
     
     //if restart button is pressed in alert then resets all values and goes to first question in quiz
     func restartQuiz() {
@@ -101,64 +102,113 @@ class Game2ViewController: UIViewController {
     func moveOntoNextQuestion() {
         //resets the 'gesture'
         //lastRecognisedGesture = nil
+        /*
+         index += 1
+         if index < questions.count {
+             let nextQuestion = questions[index]
+             configureUI(question: nextQuestion)
+             playerViewController?.view.removeFromSuperview()
+             playVideoForQuestion(question: nextQuestion)
+             answerTable.reloadData()
+         }
+         else {
+             onCompletion?(correctAnswers, questions.count)
+             completionAlert()
+         }
+         */
+        print("got to this point")
         
+        print(questions.count)
+        print(currentQuestionIndex)
         if currentQuestionIndex < questions.count {
             
             let currentQuestion = questions[currentQuestionIndex]
+            
             questionLabel.text = currentQuestion.text
+            
+            currentquestion = questions[currentQuestionIndex].answers[0].text
+            
             //startGestureRecognition()
             //answerTextField.text = ""
-            simulateGestureRecognition()
+            
+            
+            currentQuestionIndex = currentQuestionIndex + 1
         }
         else {
             //alert when all questions are completed for the given quiz
-            completionAlert()
-        }
-        
-    }
-    
-    func simulateGestureRecognition() {
-        //dimulate recognition of a gesture after a delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.lastRecognisedGesture = "Simulated gesture" //dummy gesture for testing
-        }
-    }
-    
-    
-
-
-
-
-
-    //checks the recognised gesture function when button is tapped
-    @IBAction func checkAnswerTapped(_ sender: UIButton) {
-        
-        //understands last gestures (not working), if no gesture debug label lets user know
-        guard let recognisedGesture = lastRecognisedGesture, !recognisedGesture.isEmpty else {
-            debugLabel.text = "No gesture recognised. Please try again."
-            return
-        }
-        checkAnswer(withGesture: recognisedGesture)
-    }
-    
-    //compares the recognized gestures against the question correct answer
-
-    func checkAnswer(withGesture gesture: String) {
-        if currentQuestionIndex < questions.count {
-            let currentQuestion = questions[currentQuestionIndex]
-            if currentQuestion.answers.contains(where: { $0.text.lowercased() == gesture.lowercased() && $0.correct }) {
-                correctAnswers += 1
-                debugLabel.text = "Correct!"
-                currentQuestionIndex += 1
-                moveOntoNextQuestion()
-            } else {
-                debugLabel.text = "Incorrect! Correct answer was: \(currentQuestion.answers.first { $0.correct }?.text ?? "wrong")"
-                wrongAnswerAlert()
-            }
-        } else {
             onCompletion?(correctAnswers, questions.count)
             completionAlert()
         }
+        
+        
+    }
+    
+ 
+    func startGestureRecognition() -> String{
+       
+        
+        
+        if let working_handle_BSL = handle_BSL{
+            var handled_question = working_handle_BSL.check_Gesture(gesture: currentquestion!)
+            print(handled_question)
+            return handled_question
+        }
+        else {
+            printbadServerAlert()
+            return "Error"
+        }
+       
+        
+    }
+    
+    
+    @IBAction func checkButtonPressed(_ sender: UIButton) {
+        
+        checkAnswer()
+    }
+    
+    
+    
+    func checkAnswer() {
+        
+            var answer = startGestureRecognition()
+            if (answer == "Correct")
+            {
+                if(currentQuestionIndex < questions.count)
+                {
+                    correctAnswers += 1
+                    debugLabel.text = "Correct!"
+                    CorrectAnswerAlert()
+                    moveOntoNextQuestion()
+                }
+                else
+                {
+                    correctAnswers += 1
+                    debugLabel.text = "Correct!"
+                    moveOntoNextQuestion()
+                }
+                
+            }
+            else if (answer == "False")
+            {
+                if(currentQuestionIndex < questions.count)
+                {
+                    wrongAnswerAlert()
+                    moveOntoNextQuestion()
+                }
+                else
+                {
+                    moveOntoNextQuestion()
+                }
+                
+            }
+            else
+            {
+                printbadServerAlert()
+                print("error")
+            }
+            
+
     }
 
 
@@ -166,19 +216,55 @@ class Game2ViewController: UIViewController {
     
     
    
+func printbadServerAlert()
+    {
+        let alert = UIAlertController(title: "BAD server", message: "please ensure the server is on before starting static or action questions", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+            DispatchQueue.main.async {
+                guard let quizOptionViewController = self?.storyboard?.instantiateViewController(withIdentifier: "quiz") else {
+                    return
+                }
 
+                //finds the appropriate scene
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    windowScene.windows.first?.rootViewController = quizOptionViewController
+                    windowScene.windows.first?.makeKeyAndVisible()
+                }
+            }
+        }))
+        
+            present(alert, animated: true)
+        
+    }
 
 //explained in gameviewcontroller
     
     func wrongAnswerAlert() {
-        let alert = UIAlertController(title: "Incorrect", message: "The answer is incorrect, please move onto the next question", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Incorrect", message: "Ran out of time, please move onto the next question", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-            self?.currentQuestionIndex += 1
-            self?.moveOntoNextQuestion()
+           
         }))
-        DispatchQueue.main.async {
+        
             self.present(alert, animated: true)
-        }
+        
+    }
+    
+    func CorrectAnswerAlert() {
+        let alert = UIAlertController(title: "Correct", message: "You signed it correctly!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+           
+        }))
+            self.present(alert, animated: true)
+        
+    }
+    func adviseAlert() {
+        let alert = UIAlertController(title: "Wait read this", message: "Sometimes changing speed, switching hands or changing distance from camera helps your signs be identified easier", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+            
+        }))
+        
+            self.present(alert, animated: true)
+        
     }
     
     func completionAlert() {
@@ -190,12 +276,15 @@ class Game2ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Finish", style: .default, handler: { [weak self] _ in
             self?.onCompletion?(self?.correctAnswers ?? 0, self?.questions.count ?? 0)
             self?.dismiss(animated: true, completion: nil)
+            self?.handle_BSL?.end()
         }))
-        DispatchQueue.main.async {
+        
             self.present(alert, animated: true)
-        }
+        
     }
 }
+
+
 
 
 

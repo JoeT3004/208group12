@@ -210,16 +210,16 @@ class QuizOptionViewController: UIViewController {
                 type: .EnglishtoBSL,
                 questions: [
                     QuestionType2(
-                        text: "Translate 'Hello' into BSL",
-                        answers: [Answer(text: "Hello", correct: true)]
+                        text: "Translate 'how-are-you' into BSL",
+                        answers: [Answer(text: "how-are-you", correct: true)]
                     ),
                     QuestionType2(
                         text: "Translate 'See you later' into BSL",
-                        answers: [Answer(text: "See you later", correct: true)]
+                        answers: [Answer(text: "see-you-later", correct: true)]
                     ),
                     QuestionType2(
-                        text: "Translate 'Good afternoon' into BSL",
-                        answers: [Answer(text: "Good afternoon", correct: true)]
+                        text: "Translate 'purple' into BSL",
+                        answers: [Answer(text: "purple", correct: true)]
                     )
                 ]
             ),
