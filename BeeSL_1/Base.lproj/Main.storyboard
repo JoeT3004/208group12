@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UW5-Sc-LcA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UW5-Sc-LcA">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -379,8 +379,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWT-Zw-Skm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWT-Zw-Skm">
                                 <rect key="frame" x="38" y="84.333333333333329" width="316" height="27.666666666666671"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -392,37 +393,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4D-YQ-kVS">
-                                <rect key="frame" x="141" y="725" width="110" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyk-jl-DrQ">
+                                <rect key="frame" x="16" y="699" width="361" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Check">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Check answer">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="29"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="checkAnswerTapped:" destination="YtT-BB-yLb" eventType="touchUpInside" id="VRs-Fn-XJ0"/>
+                                    <action selector="checkButtonPressed:" destination="YtT-BB-yLb" eventType="touchUpInside" id="FTi-oc-ReU"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="792-63-U7f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="792-63-U7f" firstAttribute="bottom" secondItem="g4D-YQ-kVS" secondAttribute="bottom" constant="23" id="CYI-Ka-ld2"/>
-                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="leading" secondItem="792-63-U7f" secondAttribute="leading" constant="38" id="OJF-BU-zDu"/>
-                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="top" secondItem="792-63-U7f" secondAttribute="top" constant="25.333333333333314" id="OTN-ma-EOg"/>
-                            <constraint firstItem="RWT-Zw-Skm" firstAttribute="centerX" secondItem="iEN-nS-qEW" secondAttribute="centerX" id="WPM-Qm-R5R"/>
-                            <constraint firstItem="792-63-U7f" firstAttribute="trailing" secondItem="g4D-YQ-kVS" secondAttribute="trailing" constant="131" id="Yry-5B-Xd7"/>
-                            <constraint firstItem="g4D-YQ-kVS" firstAttribute="leading" secondItem="792-63-U7f" secondAttribute="leading" constant="152" id="ZCa-BI-A04"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="checkButton" destination="g4D-YQ-kVS" id="78C-zR-tsf"/>
                         <outlet property="debugLabel" destination="hv1-rX-Yci" id="Ovr-Gg-fJg"/>
                         <outlet property="questionLabel" destination="RWT-Zw-Skm" id="BYb-Dr-CFR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBd-eb-wcl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1682" y="5667"/>
+            <point key="canvasLocation" x="-1683.206106870229" y="5666.9014084507044"/>
         </scene>
         <!--Video Player View Controller-->
         <scene sceneID="gTH-3w-rLN">

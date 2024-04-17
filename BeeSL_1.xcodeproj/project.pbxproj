@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ACD10752BD03AD4006A89EB /* BSL_Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD10742BD03AD4006A89EB /* BSL_Handler.swift */; };
+		0ACD10782BD03AFB006A89EB /* BlueSocketTestCommonLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 0ACD10772BD03AFB006A89EB /* BlueSocketTestCommonLibrary */; };
+		0ACD107A2BD03AFB006A89EB /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 0ACD10792BD03AFB006A89EB /* Socket */; };
 		29AADC7E2BCC942300D5807A /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7C2BCC942300D5807A /* Cow.mp4 */; };
 		29AADC7F2BCC942300D5807A /* Whats your name.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7D2BCC942300D5807A /* Whats your name.mp4 */; };
 		29E2CF3B2BAA3B3300086579 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3A2BAA3B3300086579 /* CameraView.swift */; };
-		29E2CF3D2BAA3B6A00086579 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */; };
 		6BE23EB82BC3694400AEA1B6 /* Slow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E972BC368F700AEA1B6 /* Slow.mp4 */; };
 		6BE23EBA2BC3694400AEA1B6 /* Thank you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */; };
 		6BE23EBB2BC3694400AEA1B6 /* Pink.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */; };
@@ -84,10 +86,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0ACD10742BD03AD4006A89EB /* BSL_Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSL_Handler.swift; sourceTree = "<group>"; };
 		29AADC7C2BCC942300D5807A /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cow.mp4; sourceTree = "<group>"; };
 		29AADC7D2BCC942300D5807A /* Whats your name.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Whats your name.mp4"; sourceTree = "<group>"; };
 		29E2CF3A2BAA3B3300086579 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6BE23E972BC368F700AEA1B6 /* Slow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Slow.mp4; sourceTree = "<group>"; };
 		6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thank you.mp4"; sourceTree = "<group>"; };
 		6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pink.mp4; sourceTree = "<group>"; };
@@ -152,6 +154,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ACD10782BD03AFB006A89EB /* BlueSocketTestCommonLibrary in Frameworks */,
+				0ACD107A2BD03AFB006A89EB /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +223,6 @@
 				90D8717D2B9F84FB00F282A0 /* LoginViewController.swift */,
 				90DE78E32BA08D6F00623E8D /* GameViewController.swift */,
 				90DCAB162BA36E10004957A1 /* Game2ViewController.swift */,
-				29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */,
 				6BE23EDD2BC36DBB00AEA1B6 /* VideoViewController.swift */,
 				6BE23EDF2BC36F2B00AEA1B6 /* VideoPlayerViewController.swift */,
 				6BE23EE72BC5E1D900AEA1B6 /* RegisterViewController.swift */,
@@ -238,6 +241,7 @@
 				29E2CF3A2BAA3B3300086579 /* CameraView.swift */,
 				6BE23EE32BC372A700AEA1B6 /* VideoCollectionViewCell.swift */,
 				6BE23EE52BC3969900AEA1B6 /* VideoSectionHeader.swift */,
+				0ACD10742BD03AD4006A89EB /* BSL_Handler.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -311,6 +315,10 @@
 			dependencies = (
 			);
 			name = BeeSL_1;
+			packageProductDependencies = (
+				0ACD10772BD03AFB006A89EB /* BlueSocketTestCommonLibrary */,
+				0ACD10792BD03AFB006A89EB /* Socket */,
+			);
 			productName = BeeSL_1;
 			productReference = 90FE3EBE2B90C9C00091C9BC /* BeeSL_1.app */;
 			productType = "com.apple.product-type.application";
@@ -384,6 +392,9 @@
 				Base,
 			);
 			mainGroup = 90FE3EB52B90C9C00091C9BC;
+			packageReferences = (
+				0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */,
+			);
 			productRefGroup = 90FE3EBF2B90C9C00091C9BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -487,11 +498,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				90FE3EC22B90C9C00091C9BC /* AppDelegate.swift in Sources */,
-				29E2CF3D2BAA3B6A00086579 /* CameraViewController.swift in Sources */,
 				6BE23EE42BC372A700AEA1B6 /* VideoCollectionViewCell.swift in Sources */,
 				6BE23EEA2BC8108600AEA1B6 /* TabBarViewController.swift in Sources */,
 				6BE23EE02BC36F2B00AEA1B6 /* VideoPlayerViewController.swift in Sources */,
 				90DE78DD2BA0746E00623E8D /* QuizTableViewCell.swift in Sources */,
+				0ACD10752BD03AD4006A89EB /* BSL_Handler.swift in Sources */,
 				90D8717A2B9F778A00F282A0 /* QuizOptionViewController.swift in Sources */,
 				6BE23EDE2BC36DBB00AEA1B6 /* VideoViewController.swift in Sources */,
 				6BE23EEC2BC810C300AEA1B6 /* ProfileViewController.swift in Sources */,
@@ -693,7 +704,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -723,7 +734,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -849,6 +860,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/BlueSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0ACD10772BD03AFB006A89EB /* BlueSocketTestCommonLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = BlueSocketTestCommonLibrary;
+		};
+		0ACD10792BD03AFB006A89EB /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 90FE3EB62B90C9C00091C9BC /* Project object */;
 }
