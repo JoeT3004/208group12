@@ -7,6 +7,8 @@ from mediapipe.tasks.python import vision
 from mediapipe import solutions
 from mediapipe.framework.formats import landmark_pb2
 
+import tensorflow
+
 
 import numpy as np
 
@@ -102,14 +104,14 @@ mp_hands = mp.solutions.hands.Hands(static_image_mode=True,
 mp_pose = mp.solutions.pose.Pose(static_image_mode=True,                                     
                                     min_detection_confidence=0.2,  # Adjust this value as needed
                                     min_tracking_confidence=0.2)
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 
 class_Dictionary = Get_Classes()
 
 multi_Array = Setup_multiarray()
 
 # Load the saved model
-loaded_model = load_model("Test_Model2_noBird.h5")
+loaded_model = load_model("Test_Model_long.h5")
 
 cap = cv2.VideoCapture(0)
 
