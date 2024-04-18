@@ -29,3 +29,4 @@ Get English to BSL questions from quiz: https://student.csc.liv.ac.uk/~sgtbrett/
 
 Store a new score for a new attempt: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/newattempt.php?username=<USERNAME>&id=<ID>&score=<SCORE>
 Returns the score for a quiz: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getscore.php?id=<ID> (must be logged in!)
+Returns the score for a quiz as a fraction of the total questions: https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getscorefrac.php?id=<QUIZ ID> (must be logged in!)

@@ -124,7 +124,7 @@ def Start_Session(client_socket):
   #means that socket will timeout if message is not recieved within 15 seconds 
      
   
-    time_for_each_question = 2
+    time_for_each_question = 30
         
     message_data = client_socket.recv(1024)
     test_Action = message_data.decode('utf-8')+'\n'

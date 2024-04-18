@@ -27,16 +27,18 @@ struct QuestionType1: QuestionTypes {
 //defines English->BSL quesiton type = 2
 struct QuestionType2: QuestionTypes {
     var text: String //prompt of question (label)
+    //var isWord: Bool //if true it is a question the user needs to make by adding static signs together
     var answers: [Answer]
 }
 
 //Quiz structure which is a collection of quesitions listed in QuizOptionViewController
 struct Quiz {
+    let id: Int
     let title: String
     //The type of quiz as either BSLtoEnglish or EnglishtoBSL
-    let type: QuizType
+    var type: QuizType
     //seems like it allows for mixed quesiton types but does not
-    let questions: [QuestionTypes]
+    var questions: [QuestionTypes]
 }
 
 //answer for questions
@@ -46,10 +48,12 @@ struct Answer {
 }
 
 //enumarates quiz type supported
-enum QuizType {
-    case BSLtoEnglish
-    case EnglishtoBSL
+enum QuizType: String {
+    case BSLtoEnglish = "bsltoeng"
+    case EnglishtoBSL = "action"
+    case EnglishtoStaticBSL = "static"
 }
+
 
 //defines requiresments for quesiton type
 protocol QuestionTypes{

@@ -12,7 +12,7 @@ class Game2ViewController: UIViewController {
     
     //ui components
     @IBOutlet weak var questionLabel: UILabel!
-   // @IBOutlet weak var answerTextField: UITextField!
+   //@IBOutlet weak var answerTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     
@@ -42,14 +42,16 @@ class Game2ViewController: UIViewController {
      */
     
     //sets up quesitons when a new quiz gets assigned
-    var quiz: Quiz? {
+    
+    var quiz: Quiz?/*
+    {
         didSet {
             if isViewLoaded {
                 
             }
         }
     }
-    
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()

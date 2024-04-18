@@ -27,7 +27,7 @@ if ( !isset($inusername, $inpassword) ) {
 
 
 // searches the users table for a user with a matching username
-$sql = "SELECT Username, Password FROM Users WHERE Username=?";
+$sql = "SELECT Username, FirstName, LastName, Password FROM Users WHERE Username=?";
 
 // Check if there are results
 if ($stmt = $con->prepare($sql))
@@ -40,7 +40,7 @@ if ($stmt = $con->prepare($sql))
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-                $stmt->bind_result($username, $password);
+                $stmt->bind_result($username, $firstname, $lastname, $password);
                 $stmt->fetch();
 
                 // Account exists, now we verify the password.
@@ -49,12 +49,14 @@ if ($stmt = $con->prepare($sql))
                 if (password_verify($inpassword, $password)) {
                 // if ($inpassword === $password) {
                         // Verification success! User has logged-in!
-                        // Create sessions, so we know the user is logged in, they basically act like cookies but remem$                        
-                        session_regenerate_id();
+                        // Create sessions, so we know the user is logged in, they basically act like cookies but remem$                        session_regenerate_id();
                         $_SESSION['loggedin'] = TRUE;
                         $_SESSION['username'] = $username;
+
+                        $row = array($username, $firstname, $lastname);
+                        echo json_encode($row);
                         // $_SESSION['id'] = $id;
-                        echo 'Welcome back, ' . $username . '!';
+                        // echo $username . ',' . $firstname . ',' . $lastname;
                 } else {
                         // Incorrect password
                         echo 'Incorrect username and/or password!';

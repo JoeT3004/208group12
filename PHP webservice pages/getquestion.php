@@ -18,14 +18,13 @@ if (mysqli_connect_errno())
 
 if ( !isset($id) ) {
         // Couldn't access the id
-        exit('No question inputted...');
+        exit('Inaccessible data');
 }
 
 
 
-// searches the users table for a user with a matching username
-$sql = "SELECT Prompt, CorrectAnswer, WrongAnswer1, WrongAnswer2, WrongAnswer3 FROM Questions WHERE QuestionID=?";
-
+// searches the questions table for a question with a matching id
+$sql = "SELECT Prompt, CorrectAnswer, WrongAnswer1, WrongAnswer2, WrongAnswer3 FROM QuestionsBSLtoENG WHERE QuestionID=$
 // Check if there are results
 if ($stmt = $con->prepare($sql))
 {
