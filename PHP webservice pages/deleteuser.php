@@ -42,7 +42,7 @@ if ($stmt = $con->prepare($checkname)) {
         // $rows = $stmt->num_rows;
         if ($stmt->num_rows > 0) {
                 $stmt->bind_result($password);
-                $stmt->fetch();
+		$stmt->fetch();
 
                 if (password_verify($inpassword, $password)) {
                         $removeuser = "DELETE FROM Users WHERE Username=?;";
@@ -54,6 +54,7 @@ if ($stmt = $con->prepare($checkname)) {
                         } else {
                                 echo 'SQL Statement Failed';
                         }
+
                 } else {
                         exit('Incorrect password');
                 }
