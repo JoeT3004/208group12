@@ -18,7 +18,7 @@ if (mysqli_connect_errno())
 
 if ( !isset($id) ) {
         // Couldn't access the id
-        exit('No question inputted...');
+        exit('Inaccessible data');
 }
 
 
