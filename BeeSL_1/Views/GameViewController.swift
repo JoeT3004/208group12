@@ -104,7 +104,6 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //moves onto the next question or finishes the quiz
     func moveToNextQuestion() {
-        index += 1
         if index < questions.count {
             let nextQuestion = questions[index]
             configureUI(question: nextQuestion)
@@ -134,7 +133,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Safely unwrap currentQuestion using optional binding
         if let currentQuestion = currentQuestion {
-            return currentQuestion.answers.count
+            return currentQuestion.answers.count-1
         } else {
             return 0
         }
@@ -144,7 +143,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         // Use optional chaining to access answers property safely
-        cell.textLabel?.text = currentQuestion?.answers[indexPath.row].text
+        cell.textLabel?.text = currentQuestion?.answers[indexPath.row+1].text
         return cell
     }
 
@@ -154,9 +153,10 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
        
         // Safely unwrap currentQuestion using optional binding
         if let question = currentQuestion {
+            index += 1
             
             //gets selectedAnswer based on which row the user tapped
-            let selectedAnswer = question.answers[indexPath.row]
+            let selectedAnswer = question.answers[indexPath.row+1]
            
             //compares selected answer to correct answer
             if checkAnswer(answer: selectedAnswer, question: question as! QuestionType1) {
@@ -167,14 +167,25 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if questions.firstIndex(where: { $0.text == question.text }) != nil {
                     moveToNextQuestion()
                 }
+            } else if index < questions.count {
+                print("wrong")
+                //alert to tell user they got a question wrong.
+                if let correctAnswer = findCorrectAnswer(for: question) {
+                    //Presents an alert with the correct answer
+                    let alert = UIAlertController(title: "Wrong", message: "The correct answer is: \(correctAnswer.text)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Next question", style: .default, handler: { [weak self] _ in
+                        self?.moveToNextQuestion()
+                    }))
+                    present(alert, animated: true)
+                }
             } else {
                 print("wrong")
                 //alert to tell user they got a question wrong.
                 if let correctAnswer = findCorrectAnswer(for: question) {
                     //Presents an alert with the correct answer
-                    let alert = UIAlertController(title: "Wrong", message: "Get Gud, the correct answer is: \(correctAnswer.text)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Next question", style: .default, handler: { [weak self] _ in
-                        self?.moveToNextQuestion()
+                    let alert = UIAlertController(title: "Wrong", message: "The correct answer is: \(correctAnswer.text)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Score", style: .default, handler: { [weak self] _ in
+                        self?.moveToNextQuestion()  //for last question only
                     }))
                     present(alert, animated: true)
                 }
@@ -187,7 +198,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     //alert to tell user the quiz is finished
     func completionAlert(){
         //displays how many user got correct when quiz is finished
-        let alert = UIAlertController(title: "Done", message: "You got this many correct answers: \(correctAnswers)/\(index)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Done", message: "Your score is: \(correctAnswers)/\(index)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Retry?", style: .default, handler: { [weak self] _ in
             //restart quiz from currentQuestionIndex (index) of 0
             self?.restartQuiz()

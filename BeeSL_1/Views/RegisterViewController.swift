@@ -69,6 +69,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+        }
+    
     func constructRegisterURL(username: String, firstName: String, lastName: String, password: String) -> URL? {
         let baseURL = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/adduser.php"
         let queryItems = [
