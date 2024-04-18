@@ -10,6 +10,9 @@ import UIKit
 
 class Game2ViewController: UIViewController {
     
+    var user: User?
+
+    
     //ui components
     @IBOutlet weak var questionLabel: UILabel!
    //@IBOutlet weak var answerTextField: UITextField!
@@ -63,6 +66,11 @@ class Game2ViewController: UIViewController {
     
         
     }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        adviseAlert()
+    }
     //initalizes camera view setup
 
     
@@ -87,7 +95,6 @@ class Game2ViewController: UIViewController {
             printbadServerAlert()
         }
         
-        adviseAlert()
         moveOntoNextQuestion()
         
     }
@@ -243,7 +250,7 @@ func printbadServerAlert()
     
     func wrongAnswerAlert() {
         let alert = UIAlertController(title: "Incorrect", message: "Ran out of time, please move onto the next question", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Next question", style: .default, handler: { [weak self] _ in
            
         }))
         
@@ -260,7 +267,7 @@ func printbadServerAlert()
         
     }
     func adviseAlert() {
-        let alert = UIAlertController(title: "Wait read this", message: "Sometimes changing speed, switching hands or changing distance from camera helps your signs be identified easier", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Wait read this", message: "Sometimes changing speed, switching hands or changing distance from camera helps your signs be identified easier. Also please do not close the app unexpectedly", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
             
         }))

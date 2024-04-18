@@ -10,6 +10,9 @@ import UIKit
 class Game3ViewController: UIViewController {
 
     
+    var user: User?
+
+    
     //ui components
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -66,6 +69,11 @@ class Game3ViewController: UIViewController {
     
         
     }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        adviseAlert()
+    }
     //initalizes camera view setup
 
     
@@ -90,7 +98,6 @@ class Game3ViewController: UIViewController {
             printbadServerAlert()
         }
         
-        adviseAlert()
         moveOntoNextQuestion()
         
     }
@@ -264,7 +271,7 @@ func printbadServerAlert()
         
     }
     func adviseAlert() {
-        let alert = UIAlertController(title: "Wait read this", message: "Sometimes changing speed, switching hands or changing distance from camera helps your signs be identified easier", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Wait read this", message: "Sometimes changing speed, switching hands or changing distance from camera helps your signs be identified easier. Also please do not close the app unexpectedly", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
             
         }))

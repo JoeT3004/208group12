@@ -24,10 +24,10 @@ class BSL_Handler {
             print(IP)
             print(port)
             if let working_Socket = socket{
-                try working_Socket.connect(to: "127.0.0.1", port: 9999)
+                try working_Socket.connect(to: "127.0.0.1", port: 9999, timeout: 10)
             }
             else {
-                print("WOrkig SocketNull")
+                working = false
             }
            
             print("WOrkig SocketNull")

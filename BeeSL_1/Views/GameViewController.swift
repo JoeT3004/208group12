@@ -16,6 +16,8 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Holds the current quizs questions of type QuestionType1 e.g BSL to English
     var questions = [QuestionType1]()
     
+    var user: User?
+
     
     var currentQuestion: QuestionTypes?
     var correctAnswers: Int = 0

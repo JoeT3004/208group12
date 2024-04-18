@@ -15,6 +15,8 @@ struct User: Codable {
     let firstName: String
     let lastName: String
     let password: String
+    var score: Int?
+    var totalQuestions: Int?
 }
 
 
