@@ -11,6 +11,7 @@
 		0ACD10782BD03AFB006A89EB /* BlueSocketTestCommonLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 0ACD10772BD03AFB006A89EB /* BlueSocketTestCommonLibrary */; };
 		0ACD107A2BD03AFB006A89EB /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 0ACD10792BD03AFB006A89EB /* Socket */; };
 		29476C2A2BD081E600E0E935 /* Game3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29476C292BD081E600E0E935 /* Game3ViewController.swift */; };
+		29476C2C2BD0BECC00E0E935 /* BEESL_LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 29476C2B2BD0BECC00E0E935 /* BEESL_LOGO.png */; };
 		29AADC7E2BCC942300D5807A /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7C2BCC942300D5807A /* Cow.mp4 */; };
 		29AADC7F2BCC942300D5807A /* Whats your name.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7D2BCC942300D5807A /* Whats your name.mp4 */; };
 		29E2CF3B2BAA3B3300086579 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3A2BAA3B3300086579 /* CameraView.swift */; };
@@ -89,6 +90,7 @@
 /* Begin PBXFileReference section */
 		0ACD10742BD03AD4006A89EB /* BSL_Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSL_Handler.swift; sourceTree = "<group>"; };
 		29476C292BD081E600E0E935 /* Game3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game3ViewController.swift; sourceTree = "<group>"; };
+		29476C2B2BD0BECC00E0E935 /* BEESL_LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BEESL_LOGO.png; sourceTree = "<group>"; };
 		29AADC7C2BCC942300D5807A /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cow.mp4; sourceTree = "<group>"; };
 		29AADC7D2BCC942300D5807A /* Whats your name.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Whats your name.mp4"; sourceTree = "<group>"; };
 		29E2CF3A2BAA3B3300086579 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		9070C2792BA9D53700158D83 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
+				29476C2B2BD0BECC00E0E935 /* BEESL_LOGO.png */,
 				6BE23E9D2BC368FD00AEA1B6 /* Good Morning.mp4 */,
 				6BE23E9C2BC368FC00AEA1B6 /* Good Afternoon.mp4 */,
 				6BE23EB12BC3693900AEA1B6 /* Hello.mp4 */,
@@ -420,6 +423,7 @@
 				6BE23EC22BC3694400AEA1B6 /* Cat.mp4 in Resources */,
 				90FE3ECB2B90C9C10091C9BC /* Assets.xcassets in Resources */,
 				6BE23EDB2BC3699700AEA1B6 /* Dog.mp4 in Resources */,
+				29476C2C2BD0BECC00E0E935 /* BEESL_LOGO.png in Resources */,
 				6BE23ECA2BC3694400AEA1B6 /* No.mp4 in Resources */,
 				6BE23EBE2BC3694400AEA1B6 /* Good Morning.mp4 in Resources */,
 				6BE23EC92BC3694400AEA1B6 /* Sorry.mp4 in Resources */,

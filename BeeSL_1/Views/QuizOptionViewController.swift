@@ -7,6 +7,71 @@
 
 import UIKit
 
+/*
+ case BSLtoEnglish
+ case EnglishtoBSL
+ case EnglishtoStaticBSL
+ */
+
+struct NetworkService {
+    func fetchQuizzes(type: QuizType, completion: @escaping ([Quiz]) -> Void) {
+        let urlString: String
+        switch type {
+        case .BSLtoEnglish:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=bsltoeng"
+        case .EnglishtoBSL:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=action"
+        case .EnglishtoStaticBSL:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=static"
+        }
+
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            completion([])
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error fetching quizzes: \(error?.localizedDescription ?? "Unknown error")")
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
+
+            do {
+                if let jsonArray = try JSONSerialization.jsonObject(with: data) as? [[Any]] {
+                    var quizzes: [Quiz] = []
+                    for item in jsonArray {
+                        if let id = item[0] as? Int,
+                           let title = item[1] as? String,
+                           let quizTypeString = item[2] as? String,
+                           let quizType = QuizType(rawValue: quizTypeString) { // safely unwrap the quiz type
+                            let quiz = Quiz(id: id, title: title, type: quizType, questions: [])
+                            quizzes.append(quiz)
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        completion(quizzes)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        print("Invalid JSON structure")
+                        completion([])
+                    }
+                }
+            } catch {
+                print("Failed to parse JSON: \(error)")
+                DispatchQueue.main.async {
+                    completion([])
+                }
+            }
+        }
+        task.resume()
+    }
+}
+
 
 
 class QuizOptionViewController: UIViewController {
@@ -52,7 +117,7 @@ class QuizOptionViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
+    /*
     //function holds all quiz data
     func initializeQuizzes() {
         quizzes = [
@@ -297,6 +362,30 @@ class QuizOptionViewController: UIViewController {
 
         ]
     }
+    */
+    
+    func initializeQuizzes() {
+        let networkService = NetworkService()
+        let quizTypes: [QuizType] = [.BSLtoEnglish, .EnglishtoBSL, .EnglishtoStaticBSL]
+        
+        for quizType in quizTypes {
+            networkService.fetchQuizzes(type: quizType) { [weak self] fetchedQuizzes in
+                for quiz in fetchedQuizzes {
+                    networkService.fetchQuestions(forQuizID: quiz.id, type: quiz.type) { questions in
+                        var updatedQuiz = quiz
+                        updatedQuiz.questions = questions
+                        self?.quizzes.append(updatedQuiz)
+                        DispatchQueue.main.async {
+                            self?.tableViewQuizzes.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
 }
 
@@ -462,4 +551,57 @@ extension QuizOptionViewController: QuizTableViewDelegate {
         }
     }
 
+}
+
+extension NetworkService {
+    func fetchQuestions(forQuizID quizID: Int, type: QuizType, completion: @escaping ([QuestionTypes]) -> Void) {
+        let urlString: String
+        switch type {
+        case .BSLtoEnglish:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getbsltoeng.php?id=\(quizID)"
+        case .EnglishtoBSL:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getengtobsl.php?id=\(quizID)"
+        case .EnglishtoStaticBSL:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getengtobsl.php?id=\(quizID)" // Assuming same URL for static
+        }
+
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            completion([])
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error fetching questions: \(error?.localizedDescription ?? "Unknown error")")
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
+
+            var questions: [QuestionTypes] = []
+            if let jsonArray = try? JSONSerialization.jsonObject(with: data) as? [[String]] {
+                for questionData in jsonArray {
+                    let question = parseQuestion(from: questionData, type: type)
+                    questions.append(question)
+                }
+            }
+            DispatchQueue.main.async {
+                completion(questions)
+            }
+        }.resume()
+    }
+
+    private func parseQuestion(from data: [String], type: QuizType) -> QuestionTypes {
+        // Parse logic based on type and data format
+        switch type {
+        case .BSLtoEnglish:
+            let correctAnswer = Answer(text: data[0], correct: true)
+            let answers = data.map { Answer(text: $0, correct: $0 == data[0]) }
+            return QuestionType1(text: "What BSL sign is this?", videoFileName: data[0], answers: answers)
+        case .EnglishtoBSL, .EnglishtoStaticBSL:
+            return QuestionType2(text: "Translate '\(data[0])' into BSL", answers: [Answer(text: data[0], correct: true)])
+        }
+    }
 }
