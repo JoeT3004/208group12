@@ -38,41 +38,4 @@ class CameraView: UIView {
         self.backgroundColor = .black
         //setupCameraSession()
     }
-    
-    /*
-    //standard function to set up the camera session to capture live video feed
-    private func setupCameraSession() {
-        let captureSession = AVCaptureSession()
-        
-        //tries to get default camera device
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
-        let videoInput: AVCaptureDeviceInput
-        
-        do {
-            //creats input with video capture device
-            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-        } catch {
-            
-            //camera may not be avaliable
-            return
-        }
-        //checks if seesion can work with the video input
-        if (captureSession.canAddInput(videoInput)) {
-            
-            captureSession.addInput(videoInput)
-        } else {
-            return
-            //cant be added to session
-        }
-        
-        //preview layer with the capture function
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = self.bounds //preview to fill bounds of the view created
-        previewLayer.videoGravity = .resizeAspectFill //
-        self.layer.addSublayer(previewLayer) //Adds the preview layer as a sublayer of the camera views layer
-        self.previewLayer = previewLayer
-        
-        captureSession.startRunning() //starts session
-    }
-     */
 }

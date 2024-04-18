@@ -1,0 +1,58 @@
+READ ME - how to build Xcode project from clone repo & push it after changes.  What Ive had to work out to get the framework working  Build Xcode project from cloned repo
+
+A file in the project uses git lfs, this is a large file that requires the framework to work. 
+This file is too large for GitHub to push to (Over 100mb) as such git ifs is required. 
+This means every time you clone the repo you have to pull the git lfs original files.  
+Do this in terminal.
+
+clone the repo (I used to do this through xcode now has to be done through terminal)
+git clone https://github.com/JoeT3004/208group12.git
+
+Navigate to projects directory using ‘cd’.
+
+Install pods and make sure correct version:
+Terminal command:
+sudo gem install cocoapods
+
+If the repsonse is an error may have to do this terminal command:
+sudo gem install activesupport -v 6.1.7.7
+
+pod install
+
+Install git lfs if not already:  
+
+Terminal commands:
+brew install git-lfs
+
+^if failes complete commands below
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Follow the steps below that the terminal gives you after the /bin/... line.
+Next steps (may be different depending on the device I am not sure) :
+- Run these two commands in your terminal to add Homebrew to your PATH:
+    (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> /Users/JT/.zprofile
+    eval "$(/usr/local/bin/brew shellenv)"
+- Run brew help to get started
+- Further documentation:
+    https://docs.brew.sh
+
+now do this again:
+brew install git-lfs
+
+Terminal commands after git lfs install:
+git lfs install
+git lfs pull   
+
+Xcode should now be able to be built on phone.
+Next steps are for when you want to push to the repo not clone.
+Push it after changes Terminal commands:
+
+git add -A
+git commit -m "Your meaningful commit message here" 
+
+Make sure git lfs supports tracking for files with .a 
+Terminal commands:  
+git lfs track "*.a"  
+git lfs push --all origin main  
+git push origin main --force
+

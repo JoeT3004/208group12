@@ -7,12 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ACD10752BD03AD4006A89EB /* BSL_Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD10742BD03AD4006A89EB /* BSL_Handler.swift */; };
+		0ACD10782BD03AFB006A89EB /* BlueSocketTestCommonLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 0ACD10772BD03AFB006A89EB /* BlueSocketTestCommonLibrary */; };
+		0ACD107A2BD03AFB006A89EB /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 0ACD10792BD03AFB006A89EB /* Socket */; };
+		29476C2A2BD081E600E0E935 /* Game3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29476C292BD081E600E0E935 /* Game3ViewController.swift */; };
+		29476C2C2BD0BECC00E0E935 /* BEESL_LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 29476C2B2BD0BECC00E0E935 /* BEESL_LOGO.png */; };
+		29AADC7E2BCC942300D5807A /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7C2BCC942300D5807A /* Cow.mp4 */; };
+		29AADC7F2BCC942300D5807A /* Whats your name.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29AADC7D2BCC942300D5807A /* Whats your name.mp4 */; };
 		29E2CF3B2BAA3B3300086579 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3A2BAA3B3300086579 /* CameraView.swift */; };
-		29E2CF3D2BAA3B6A00086579 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */; };
-		9070C2772BA9D4B000158D83 /* Dog.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C2762BA9D4AF00158D83 /* Dog.mp4 */; };
-		9070C27D2BA9DA3D00158D83 /* Cow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27A2BA9DA3800158D83 /* Cow.mp4 */; };
-		9070C27E2BA9DA3D00158D83 /* How are you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27B2BA9DA3B00158D83 /* How are you.mp4 */; };
-		9070C27F2BA9DA3D00158D83 /* Whats your name.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9070C27C2BA9DA3D00158D83 /* Whats your name.mp4 */; };
+		6BE23EB82BC3694400AEA1B6 /* Slow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E972BC368F700AEA1B6 /* Slow.mp4 */; };
+		6BE23EBA2BC3694400AEA1B6 /* Thank you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */; };
+		6BE23EBB2BC3694400AEA1B6 /* Pink.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */; };
+		6BE23EBC2BC3694400AEA1B6 /* Colour.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9B2BC368FB00AEA1B6 /* Colour.mp4 */; };
+		6BE23EBD2BC3694400AEA1B6 /* Good Afternoon.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9C2BC368FC00AEA1B6 /* Good Afternoon.mp4 */; };
+		6BE23EBE2BC3694400AEA1B6 /* Good Morning.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9D2BC368FD00AEA1B6 /* Good Morning.mp4 */; };
+		6BE23EC02BC3694400AEA1B6 /* Bird.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23E9F2BC368FF00AEA1B6 /* Bird.mp4 */; };
+		6BE23EC12BC3694400AEA1B6 /* My name is.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA02BC3690100AEA1B6 /* My name is.mp4 */; };
+		6BE23EC22BC3694400AEA1B6 /* Cat.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA12BC3690800AEA1B6 /* Cat.mp4 */; };
+		6BE23EC32BC3694400AEA1B6 /* Fish.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA22BC3691200AEA1B6 /* Fish.mp4 */; };
+		6BE23EC42BC3694400AEA1B6 /* Yellow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA32BC3691A00AEA1B6 /* Yellow.mp4 */; };
+		6BE23EC62BC3694400AEA1B6 /* Maybe.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA52BC3692000AEA1B6 /* Maybe.mp4 */; };
+		6BE23EC72BC3694400AEA1B6 /* Orange.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA62BC3692300AEA1B6 /* Orange.mp4 */; };
+		6BE23EC82BC3694400AEA1B6 /* Please.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA72BC3692700AEA1B6 /* Please.mp4 */; };
+		6BE23EC92BC3694400AEA1B6 /* Sorry.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA82BC3692A00AEA1B6 /* Sorry.mp4 */; };
+		6BE23ECA2BC3694400AEA1B6 /* No.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EA92BC3692C00AEA1B6 /* No.mp4 */; };
+		6BE23ECB2BC3694400AEA1B6 /* Sign Language.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EAA2BC3692E00AEA1B6 /* Sign Language.mp4 */; };
+		6BE23ECC2BC3694400AEA1B6 /* Brown.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EAB2BC3692F00AEA1B6 /* Brown.mp4 */; };
+		6BE23ECE2BC3694400AEA1B6 /* Yes.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EAD2BC3693200AEA1B6 /* Yes.mp4 */; };
+		6BE23ECF2BC3694400AEA1B6 /* Good Evening.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EAE2BC3693300AEA1B6 /* Good Evening.mp4 */; };
+		6BE23ED02BC3694400AEA1B6 /* Purple.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EAF2BC3693600AEA1B6 /* Purple.mp4 */; };
+		6BE23ED12BC3694400AEA1B6 /* Blue.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB02BC3693800AEA1B6 /* Blue.mp4 */; };
+		6BE23ED22BC3694400AEA1B6 /* Hello.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB12BC3693900AEA1B6 /* Hello.mp4 */; };
+		6BE23ED32BC3694400AEA1B6 /* Wait.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB22BC3693B00AEA1B6 /* Wait.mp4 */; };
+		6BE23ED42BC3694400AEA1B6 /* See you later.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB32BC3693C00AEA1B6 /* See you later.mp4 */; };
+		6BE23ED52BC3694400AEA1B6 /* Green.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB42BC3693E00AEA1B6 /* Green.mp4 */; };
+		6BE23ED62BC3694400AEA1B6 /* Pig.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB52BC3694100AEA1B6 /* Pig.mp4 */; };
+		6BE23ED72BC3694400AEA1B6 /* Red.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB62BC3694300AEA1B6 /* Red.mp4 */; };
+		6BE23ED82BC3694400AEA1B6 /* Good Night.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EB72BC3694400AEA1B6 /* Good Night.mp4 */; };
+		6BE23EDB2BC3699700AEA1B6 /* Dog.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23ED92BC3699500AEA1B6 /* Dog.mp4 */; };
+		6BE23EDC2BC3699700AEA1B6 /* How are you.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23EDA2BC3699700AEA1B6 /* How are you.mp4 */; };
+		6BE23EDE2BC36DBB00AEA1B6 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE23EDD2BC36DBB00AEA1B6 /* VideoViewController.swift */; };
+		6BE23EE02BC36F2B00AEA1B6 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE23EDF2BC36F2B00AEA1B6 /* VideoPlayerViewController.swift */; };
+		6BE23EE42BC372A700AEA1B6 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE23EE32BC372A700AEA1B6 /* VideoCollectionViewCell.swift */; };
+		6BE23EE62BC3969A00AEA1B6 /* VideoSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE23EE52BC3969900AEA1B6 /* VideoSectionHeader.swift */; };
+		6BE23EE82BC5E1DA00AEA1B6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE23EE72BC5E1D900AEA1B6 /* RegisterViewController.swift */; };
+		6BE23EEA2BC8108600AEA1B6 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE23EE92BC8108600AEA1B6 /* TabBarViewController.swift */; };
+		6BE23EEC2BC810C300AEA1B6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE23EEB2BC810C300AEA1B6 /* ProfileViewController.swift */; };
 		90D8717A2B9F778A00F282A0 /* QuizOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D871792B9F778A00F282A0 /* QuizOptionViewController.swift */; };
 		90D8717E2B9F84FB00F282A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8717D2B9F84FB00F282A0 /* LoginViewController.swift */; };
 		90DCAB172BA36E10004957A1 /* Game2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DCAB162BA36E10004957A1 /* Game2ViewController.swift */; };
@@ -48,12 +88,50 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0ACD10742BD03AD4006A89EB /* BSL_Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSL_Handler.swift; sourceTree = "<group>"; };
+		29476C292BD081E600E0E935 /* Game3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game3ViewController.swift; sourceTree = "<group>"; };
+		29476C2B2BD0BECC00E0E935 /* BEESL_LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BEESL_LOGO.png; sourceTree = "<group>"; };
+		29AADC7C2BCC942300D5807A /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cow.mp4; sourceTree = "<group>"; };
+		29AADC7D2BCC942300D5807A /* Whats your name.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Whats your name.mp4"; sourceTree = "<group>"; };
 		29E2CF3A2BAA3B3300086579 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		9070C2762BA9D4AF00158D83 /* Dog.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dog.mp4; sourceTree = "<group>"; };
-		9070C27A2BA9DA3800158D83 /* Cow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cow.mp4; sourceTree = "<group>"; };
-		9070C27B2BA9DA3B00158D83 /* How are you.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How are you.mp4"; sourceTree = "<group>"; };
-		9070C27C2BA9DA3D00158D83 /* Whats your name.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Whats your name.mp4"; sourceTree = "<group>"; };
+		6BE23E972BC368F700AEA1B6 /* Slow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Slow.mp4; sourceTree = "<group>"; };
+		6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thank you.mp4"; sourceTree = "<group>"; };
+		6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pink.mp4; sourceTree = "<group>"; };
+		6BE23E9B2BC368FB00AEA1B6 /* Colour.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Colour.mp4; sourceTree = "<group>"; };
+		6BE23E9C2BC368FC00AEA1B6 /* Good Afternoon.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Good Afternoon.mp4"; sourceTree = "<group>"; };
+		6BE23E9D2BC368FD00AEA1B6 /* Good Morning.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Good Morning.mp4"; sourceTree = "<group>"; };
+		6BE23E9F2BC368FF00AEA1B6 /* Bird.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bird.mp4; sourceTree = "<group>"; };
+		6BE23EA02BC3690100AEA1B6 /* My name is.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My name is.mp4"; sourceTree = "<group>"; };
+		6BE23EA12BC3690800AEA1B6 /* Cat.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cat.mp4; sourceTree = "<group>"; };
+		6BE23EA22BC3691200AEA1B6 /* Fish.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fish.mp4; sourceTree = "<group>"; };
+		6BE23EA32BC3691A00AEA1B6 /* Yellow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Yellow.mp4; sourceTree = "<group>"; };
+		6BE23EA52BC3692000AEA1B6 /* Maybe.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Maybe.mp4; sourceTree = "<group>"; };
+		6BE23EA62BC3692300AEA1B6 /* Orange.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Orange.mp4; sourceTree = "<group>"; };
+		6BE23EA72BC3692700AEA1B6 /* Please.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Please.mp4; sourceTree = "<group>"; };
+		6BE23EA82BC3692A00AEA1B6 /* Sorry.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sorry.mp4; sourceTree = "<group>"; };
+		6BE23EA92BC3692C00AEA1B6 /* No.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = No.mp4; sourceTree = "<group>"; };
+		6BE23EAA2BC3692E00AEA1B6 /* Sign Language.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sign Language.mp4"; sourceTree = "<group>"; };
+		6BE23EAB2BC3692F00AEA1B6 /* Brown.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Brown.mp4; sourceTree = "<group>"; };
+		6BE23EAD2BC3693200AEA1B6 /* Yes.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Yes.mp4; sourceTree = "<group>"; };
+		6BE23EAE2BC3693300AEA1B6 /* Good Evening.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Good Evening.mp4"; sourceTree = "<group>"; };
+		6BE23EAF2BC3693600AEA1B6 /* Purple.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Purple.mp4; sourceTree = "<group>"; };
+		6BE23EB02BC3693800AEA1B6 /* Blue.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blue.mp4; sourceTree = "<group>"; };
+		6BE23EB12BC3693900AEA1B6 /* Hello.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hello.mp4; sourceTree = "<group>"; };
+		6BE23EB22BC3693B00AEA1B6 /* Wait.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wait.mp4; sourceTree = "<group>"; };
+		6BE23EB32BC3693C00AEA1B6 /* See you later.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "See you later.mp4"; sourceTree = "<group>"; };
+		6BE23EB42BC3693E00AEA1B6 /* Green.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Green.mp4; sourceTree = "<group>"; };
+		6BE23EB52BC3694100AEA1B6 /* Pig.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pig.mp4; sourceTree = "<group>"; };
+		6BE23EB62BC3694300AEA1B6 /* Red.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Red.mp4; sourceTree = "<group>"; };
+		6BE23EB72BC3694400AEA1B6 /* Good Night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Good Night.mp4"; sourceTree = "<group>"; };
+		6BE23ED92BC3699500AEA1B6 /* Dog.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dog.mp4; sourceTree = "<group>"; };
+		6BE23EDA2BC3699700AEA1B6 /* How are you.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "How are you.mp4"; sourceTree = "<group>"; };
+		6BE23EDD2BC36DBB00AEA1B6 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		6BE23EDF2BC36F2B00AEA1B6 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		6BE23EE32BC372A700AEA1B6 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		6BE23EE52BC3969900AEA1B6 /* VideoSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSectionHeader.swift; sourceTree = "<group>"; };
+		6BE23EE72BC5E1D900AEA1B6 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		6BE23EE92BC8108600AEA1B6 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		6BE23EEB2BC810C300AEA1B6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		90D871792B9F778A00F282A0 /* QuizOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizOptionViewController.swift; sourceTree = "<group>"; };
 		90D8717D2B9F84FB00F282A0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		90DCAB162BA36E10004957A1 /* Game2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +158,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ACD10782BD03AFB006A89EB /* BlueSocketTestCommonLibrary in Frameworks */,
+				0ACD107A2BD03AFB006A89EB /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,10 +183,40 @@
 		9070C2792BA9D53700158D83 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				9070C27A2BA9DA3800158D83 /* Cow.mp4 */,
-				9070C27B2BA9DA3B00158D83 /* How are you.mp4 */,
-				9070C27C2BA9DA3D00158D83 /* Whats your name.mp4 */,
-				9070C2762BA9D4AF00158D83 /* Dog.mp4 */,
+				29476C2B2BD0BECC00E0E935 /* BEESL_LOGO.png */,
+				6BE23E9D2BC368FD00AEA1B6 /* Good Morning.mp4 */,
+				6BE23E9C2BC368FC00AEA1B6 /* Good Afternoon.mp4 */,
+				6BE23EB12BC3693900AEA1B6 /* Hello.mp4 */,
+				6BE23EAE2BC3693300AEA1B6 /* Good Evening.mp4 */,
+				6BE23EB72BC3694400AEA1B6 /* Good Night.mp4 */,
+				6BE23E9F2BC368FF00AEA1B6 /* Bird.mp4 */,
+				6BE23EB02BC3693800AEA1B6 /* Blue.mp4 */,
+				6BE23EAB2BC3692F00AEA1B6 /* Brown.mp4 */,
+				6BE23EA12BC3690800AEA1B6 /* Cat.mp4 */,
+				6BE23E9B2BC368FB00AEA1B6 /* Colour.mp4 */,
+				6BE23ED92BC3699500AEA1B6 /* Dog.mp4 */,
+				6BE23EDA2BC3699700AEA1B6 /* How are you.mp4 */,
+				6BE23EA22BC3691200AEA1B6 /* Fish.mp4 */,
+				6BE23EB42BC3693E00AEA1B6 /* Green.mp4 */,
+				6BE23EA52BC3692000AEA1B6 /* Maybe.mp4 */,
+				6BE23EA02BC3690100AEA1B6 /* My name is.mp4 */,
+				6BE23EA92BC3692C00AEA1B6 /* No.mp4 */,
+				6BE23EA62BC3692300AEA1B6 /* Orange.mp4 */,
+				29AADC7C2BCC942300D5807A /* Cow.mp4 */,
+				29AADC7D2BCC942300D5807A /* Whats your name.mp4 */,
+				6BE23EB52BC3694100AEA1B6 /* Pig.mp4 */,
+				6BE23E9A2BC368FA00AEA1B6 /* Pink.mp4 */,
+				6BE23EA72BC3692700AEA1B6 /* Please.mp4 */,
+				6BE23EAF2BC3693600AEA1B6 /* Purple.mp4 */,
+				6BE23EB62BC3694300AEA1B6 /* Red.mp4 */,
+				6BE23EB32BC3693C00AEA1B6 /* See you later.mp4 */,
+				6BE23EAA2BC3692E00AEA1B6 /* Sign Language.mp4 */,
+				6BE23E972BC368F700AEA1B6 /* Slow.mp4 */,
+				6BE23EA82BC3692A00AEA1B6 /* Sorry.mp4 */,
+				6BE23E992BC368F800AEA1B6 /* Thank you.mp4 */,
+				6BE23EB22BC3693B00AEA1B6 /* Wait.mp4 */,
+				6BE23EA32BC3691A00AEA1B6 /* Yellow.mp4 */,
+				6BE23EAD2BC3693200AEA1B6 /* Yes.mp4 */,
 			);
 			name = Videos;
 			sourceTree = "<group>";
@@ -118,7 +228,12 @@
 				90D8717D2B9F84FB00F282A0 /* LoginViewController.swift */,
 				90DE78E32BA08D6F00623E8D /* GameViewController.swift */,
 				90DCAB162BA36E10004957A1 /* Game2ViewController.swift */,
-				29E2CF3C2BAA3B6A00086579 /* CameraViewController.swift */,
+				29476C292BD081E600E0E935 /* Game3ViewController.swift */,
+				6BE23EDD2BC36DBB00AEA1B6 /* VideoViewController.swift */,
+				6BE23EDF2BC36F2B00AEA1B6 /* VideoPlayerViewController.swift */,
+				6BE23EE72BC5E1D900AEA1B6 /* RegisterViewController.swift */,
+				6BE23EE92BC8108600AEA1B6 /* TabBarViewController.swift */,
+				6BE23EEB2BC810C300AEA1B6 /* ProfileViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,6 +245,9 @@
 				90DE78DC2BA0746E00623E8D /* QuizTableViewCell.xib */,
 				90E2AC032BA8A714005FBDBF /* ModelFiles.swift */,
 				29E2CF3A2BAA3B3300086579 /* CameraView.swift */,
+				6BE23EE32BC372A700AEA1B6 /* VideoCollectionViewCell.swift */,
+				6BE23EE52BC3969900AEA1B6 /* VideoSectionHeader.swift */,
+				0ACD10742BD03AD4006A89EB /* BSL_Handler.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -203,6 +321,10 @@
 			dependencies = (
 			);
 			name = BeeSL_1;
+			packageProductDependencies = (
+				0ACD10772BD03AFB006A89EB /* BlueSocketTestCommonLibrary */,
+				0ACD10792BD03AFB006A89EB /* Socket */,
+			);
 			productName = BeeSL_1;
 			productReference = 90FE3EBE2B90C9C00091C9BC /* BeeSL_1.app */;
 			productType = "com.apple.product-type.application";
@@ -211,6 +333,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90FE3EEB2B90C9C20091C9BC /* Build configuration list for PBXNativeTarget "BeeSL_1Tests" */;
 			buildPhases = (
+				501C3F5CA7F12E4D0C86EEF1 /* [CP] Check Pods Manifest.lock */,
 				90FE3ED02B90C9C20091C9BC /* Sources */,
 				90FE3ED12B90C9C20091C9BC /* Frameworks */,
 				90FE3ED22B90C9C20091C9BC /* Resources */,
@@ -275,6 +398,9 @@
 				Base,
 			);
 			mainGroup = 90FE3EB52B90C9C00091C9BC;
+			packageReferences = (
+				0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */,
+			);
 			productRefGroup = 90FE3EBF2B90C9C00091C9BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -291,13 +417,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE23EBB2BC3694400AEA1B6 /* Pink.mp4 in Resources */,
 				90FE3ECE2B90C9C10091C9BC /* LaunchScreen.storyboard in Resources */,
-				9070C27F2BA9DA3D00158D83 /* Whats your name.mp4 in Resources */,
+				6BE23EC32BC3694400AEA1B6 /* Fish.mp4 in Resources */,
+				6BE23EC22BC3694400AEA1B6 /* Cat.mp4 in Resources */,
 				90FE3ECB2B90C9C10091C9BC /* Assets.xcassets in Resources */,
+				6BE23EDB2BC3699700AEA1B6 /* Dog.mp4 in Resources */,
+				29476C2C2BD0BECC00E0E935 /* BEESL_LOGO.png in Resources */,
+				6BE23ECA2BC3694400AEA1B6 /* No.mp4 in Resources */,
+				6BE23EBE2BC3694400AEA1B6 /* Good Morning.mp4 in Resources */,
+				6BE23EC92BC3694400AEA1B6 /* Sorry.mp4 in Resources */,
+				6BE23ED42BC3694400AEA1B6 /* See you later.mp4 in Resources */,
+				6BE23EC42BC3694400AEA1B6 /* Yellow.mp4 in Resources */,
+				6BE23ED02BC3694400AEA1B6 /* Purple.mp4 in Resources */,
+				6BE23ECB2BC3694400AEA1B6 /* Sign Language.mp4 in Resources */,
+				6BE23EDC2BC3699700AEA1B6 /* How are you.mp4 in Resources */,
+				6BE23ED52BC3694400AEA1B6 /* Green.mp4 in Resources */,
+				6BE23EB82BC3694400AEA1B6 /* Slow.mp4 in Resources */,
+				6BE23ECF2BC3694400AEA1B6 /* Good Evening.mp4 in Resources */,
 				90DE78DE2BA0746E00623E8D /* QuizTableViewCell.xib in Resources */,
-				9070C27E2BA9DA3D00158D83 /* How are you.mp4 in Resources */,
-				9070C27D2BA9DA3D00158D83 /* Cow.mp4 in Resources */,
-				9070C2772BA9D4B000158D83 /* Dog.mp4 in Resources */,
+				6BE23ED72BC3694400AEA1B6 /* Red.mp4 in Resources */,
+				6BE23EBD2BC3694400AEA1B6 /* Good Afternoon.mp4 in Resources */,
+				6BE23ED62BC3694400AEA1B6 /* Pig.mp4 in Resources */,
+				6BE23ECC2BC3694400AEA1B6 /* Brown.mp4 in Resources */,
+				29AADC7F2BCC942300D5807A /* Whats your name.mp4 in Resources */,
+				6BE23EC12BC3694400AEA1B6 /* My name is.mp4 in Resources */,
+				6BE23EBA2BC3694400AEA1B6 /* Thank you.mp4 in Resources */,
+				6BE23ED12BC3694400AEA1B6 /* Blue.mp4 in Resources */,
+				6BE23EC82BC3694400AEA1B6 /* Please.mp4 in Resources */,
+				6BE23ECE2BC3694400AEA1B6 /* Yes.mp4 in Resources */,
+				29AADC7E2BCC942300D5807A /* Cow.mp4 in Resources */,
+				6BE23EC02BC3694400AEA1B6 /* Bird.mp4 in Resources */,
+				6BE23EBC2BC3694400AEA1B6 /* Colour.mp4 in Resources */,
+				6BE23ED32BC3694400AEA1B6 /* Wait.mp4 in Resources */,
+				6BE23ED82BC3694400AEA1B6 /* Good Night.mp4 in Resources */,
+				6BE23EC72BC3694400AEA1B6 /* Orange.mp4 in Resources */,
+				6BE23EC62BC3694400AEA1B6 /* Maybe.mp4 in Resources */,
+				6BE23ED22BC3694400AEA1B6 /* Hello.mp4 in Resources */,
 				90FE3EC92B90C9C00091C9BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,18 +474,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		501C3F5CA7F12E4D0C86EEF1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeeSL_1Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		90FE3EBA2B90C9C00091C9BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				90FE3EC22B90C9C00091C9BC /* AppDelegate.swift in Sources */,
-				29E2CF3D2BAA3B6A00086579 /* CameraViewController.swift in Sources */,
+				6BE23EE42BC372A700AEA1B6 /* VideoCollectionViewCell.swift in Sources */,
+				6BE23EEA2BC8108600AEA1B6 /* TabBarViewController.swift in Sources */,
+				6BE23EE02BC36F2B00AEA1B6 /* VideoPlayerViewController.swift in Sources */,
 				90DE78DD2BA0746E00623E8D /* QuizTableViewCell.swift in Sources */,
+				0ACD10752BD03AD4006A89EB /* BSL_Handler.swift in Sources */,
 				90D8717A2B9F778A00F282A0 /* QuizOptionViewController.swift in Sources */,
+				6BE23EDE2BC36DBB00AEA1B6 /* VideoViewController.swift in Sources */,
+				6BE23EEC2BC810C300AEA1B6 /* ProfileViewController.swift in Sources */,
+				6BE23EE62BC3969A00AEA1B6 /* VideoSectionHeader.swift in Sources */,
 				29E2CF3B2BAA3B3300086579 /* CameraView.swift in Sources */,
 				90D8717E2B9F84FB00F282A0 /* LoginViewController.swift in Sources */,
 				90DE78E42BA08D6F00623E8D /* GameViewController.swift in Sources */,
+				6BE23EE82BC5E1DA00AEA1B6 /* RegisterViewController.swift in Sources */,
+				29476C2A2BD081E600E0E935 /* Game3ViewController.swift in Sources */,
 				90FE3EC42B90C9C00091C9BC /* SceneDelegate.swift in Sources */,
 				90DCAB172BA36E10004957A1 /* Game2ViewController.swift in Sources */,
 				90E2AC042BA8A714005FBDBF /* ModelFiles.swift in Sources */,
@@ -523,7 +712,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -553,7 +742,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -679,6 +868,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/BlueSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0ACD10772BD03AFB006A89EB /* BlueSocketTestCommonLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = BlueSocketTestCommonLibrary;
+		};
+		0ACD10792BD03AFB006A89EB /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ACD10762BD03AFB006A89EB /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 90FE3EB62B90C9C00091C9BC /* Project object */;
 }

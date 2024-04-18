@@ -77,7 +77,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         let player = AVPlayer(url: URL(fileURLWithPath: path))
         playerViewController = AVPlayerViewController()
         playerViewController?.player = player
-        playerViewController?.view.frame = CGRect(x: 0, y: 180, width: 390, height: 200)
+        playerViewController?.view.frame = CGRect(x: 0, y: 180, width: 393, height: 400)
         if let playerView = playerViewController?.view {
             self.view.addSubview(playerView)
         }
@@ -164,7 +164,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                 //if correct increments index and moves to next question
                 //counter for correctAnswers so it can be displayed
                 correctAnswers += 1
-                if let index = questions.firstIndex(where: { $0.text == question.text }) {
+                if questions.firstIndex(where: { $0.text == question.text }) != nil {
                     moveToNextQuestion()
                 }
             } else {
@@ -202,42 +202,3 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         return
     }
 }
-
-    //here there should be two types of questions (just one for now)
-    
-    //before reading below:
-    //game may be easier to code if we have two types of questinos that the user can pick from, this will be done with one table on the quiz optino view controller with two sections one for english -> bsl and the other section of quizzes for bsl -> english
-    
-    // the question for my app should have:
-    
-    //Question type 1: BSL -> English
-    //variable for the video player which is the quesiton variable
-    //count for question number
-    // Answers variable
-    /*
-    struct QuestionType1 {
-        var text: String //this will be replaced by a video of sign
-        var answers: [Answer]
-    }
-    
-
-    //Question type 2: English -> BSL
-    //To use both question types this is where a randomiser would be used to switch between them both.
-    struct QuestionType2 {
-        //This will be implemented after question type 1 implementation
-        var text: String
-        var answers: [Answer]
-        //hand gesture variable
-    }
-    */
-    //may have to have multiple answer types (not sure)
-    //if incorrect give the correct answer
-    //if question type 1 a correct video gesture displayed
-    // if question type 2 correct translated sword will show or will display in green and answer picked will be highlighted in red after user has chosen an answer.
-/*
- struct Answer {
- let text: String
- let correct: Bool
- 
- }
- */

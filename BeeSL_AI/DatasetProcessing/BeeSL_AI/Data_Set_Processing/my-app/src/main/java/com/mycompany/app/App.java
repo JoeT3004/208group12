@@ -13,6 +13,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.plaf.TreeUI;
+
 import java.io.File;
 
 import com.fasterxml.jackson.core.*;
@@ -30,10 +33,11 @@ import com.fasterxml.jackson.databind.node.ObjectNode;;
  */
 public class App 
 {
-    static final int numberOFVideos = 200;
+    static final int numberOFVideos = 60;
     static final float lengthOFSign = 2;
-    static final double radioOfTraining = 0.4;
+    static final double radioOfTraining = 0;
     
+
     public static String[] CreateCSV(String[] video, String label, float[] starts , int length)
     {
         String finalCSV[] = new String[length];
@@ -50,17 +54,17 @@ public class App
     public static void main( String[] args ) throws JsonParseException, IOException 
     {
         //First we create the CSVfile we want to work on
-        BufferedWriter writer = new BufferedWriter(new FileWriter("TrainingData.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("TrainingData_Words_Final.csv"));
         writer.write("video, label, start, end");
         writer.newLine();
 
         //First we create the CSVfile we want to work on
-        BufferedWriter testwriter = new BufferedWriter(new FileWriter("TestingData.txt"));
+        BufferedWriter testwriter = new BufferedWriter(new FileWriter("TestingData_Word_Final.csv"));
         testwriter.write("video, label, start, end");
         testwriter.newLine();
         //Then we set up our json parser
 
-        BufferedWriter listWriter = new BufferedWriter(new FileWriter("Label_to_Action.csv"));
+        BufferedWriter listWriter = new BufferedWriter(new FileWriter("Label_to_Action_Word_Final.csv"));
         listWriter.write("label, Action");
         listWriter.newLine();
         int label_Counter = 0;
@@ -70,7 +74,7 @@ public class App
         ArrayNode jsonArrayTraining = mapper.createArrayNode();
         ArrayNode jsonArrayTesting = mapper.createArrayNode();
 
-
+        //This is the input Dataset file we are using 
         JsonFactory jFactory = new JsonFactory();
         JsonParser jParser = jFactory.createParser(new File("dict_spottings.json"));
         JsonToken currentToken = jParser.nextToken();
@@ -94,13 +98,18 @@ public class App
         //does the user want to get the slimmed data or the data of specific videos in the number per video file
         String user_Answer = console_Reader.nextLine();
         ArrayList<String> video_Names_From_File = new ArrayList<String>();
+        ArrayList<String> specific_labels_to_use = new ArrayList<String>();
 
+        Boolean is_words = false;
         Boolean is_Specific= false;
+        int background_Num_Training = numberOFVideos;
+        int background_Num_Testing = (int)Math.floor(numberOFVideos * radioOfTraining);
+        System.out.println(user_Answer);
         if(user_Answer.equals("specific"))
         {
             is_Specific = true;
             System.out.println("Gettimg videos from file");
-            BufferedReader specifc_Reader = new BufferedReader(new FileReader("Number_Per_Video.txt"));
+            BufferedReader specifc_Reader = new BufferedReader(new FileReader("Number_Per_Video_Words.txt"));
             String line_From_File[] = specifc_Reader.readLine().split(",");
 
             System.out.println(line_From_File[0].substring(0,line_From_File[0].length()-4));
@@ -114,6 +123,24 @@ public class App
                 video_Names_From_File.add(line_From_File[0].substring(0,line_From_File[0].length()-4));
                 number_Per_Video = Integer.parseInt(line_From_File[1]);
             }                
+        }
+        else if(user_Answer.equals("words"))
+        {
+
+            is_words = true;
+            System.out.println("Gettimg specific words");
+            BufferedReader specifc_Reader = new BufferedReader(new FileReader("Words_To_Use.txt"));
+            String line_From_File=specifc_Reader.readLine();
+            while (line_From_File != null) 
+            {
+                String action = line_From_File.split(",")[1];
+                specific_labels_to_use.add(action);
+                line_From_File = specifc_Reader.readLine();
+            }                
+        }
+        else
+        {
+            System.out.println("AAAAH \n\n\n\n\n");
         }
 
         
@@ -194,17 +221,18 @@ public class App
 
                     // ok now all of the arraus are filled with the examples now we write our csv 
 
-                    if(sectionCounter < 25)
+                    if(sectionCounter > numberOFVideos-1 || specific_labels_to_use.contains(ActionName))
                     {   
                         String csvLines[] = CreateCSV(videoNames, String.valueOf(label_Counter), startTimes, sectionCounter);
 
                         int number_OF_testing = (int)Math.floor(sectionCounter * radioOfTraining);
                         
-
-
+                        Boolean random_Video = false;
                         for (int i = 0; i < sectionCounter-number_OF_testing; i++) 
+                        //Go through all of the lines we have collected
                         {
                             if (is_Specific == true) {
+                                //If we are getting only from specific videos
                                 if(video_Names_From_File.contains( videoNames[i]))
                                 {
                                     writer.write(csvLines[i]);   
@@ -220,25 +248,66 @@ public class App
                                     jsonArrayTraining.add(child_Node);
                                 }
                             }
+                            else if (is_words == true) 
+                            //If we are only getting specific words
+                            {
+                                //Need to add a random background Class
+                                if(specific_labels_to_use.contains( ActionName))
+                                {
+                                    writer.write(csvLines[i]);   
+                                    writer.newLine();     
+                                    //CSV
+                                    
+                                    ObjectNode child_Node = mapper.createObjectNode();
+                                    child_Node.put("video",videoNames[i]+".mp4");
+                                    child_Node.put("label",String.valueOf(label_Counter) );
+                                    child_Node.put("start",startTimes[i]);
+                                    child_Node.put("end",startTimes[i] +lengthOFSign);
+        
+                                    jsonArrayTraining.add(child_Node);
+                                }
+                                else if(random_Video == false && background_Num_Training-background_Num_Testing > 0)
+                                //This is for the backgriound class which must be filled with random but similar data
+                                {
+                                    String split_Line[] = csvLines[i].split(","); 
+                                    writer.write(split_Line[0] + "," + "Background" + "," +split_Line[2] + "," +split_Line[3]);   
+                                    writer.newLine();  
+                                    //CSV
+                                    
+                                    ObjectNode child_Node = mapper.createObjectNode();
+                                    child_Node.put("video",videoNames[i]+".mp4");
+                                    child_Node.put("label","Background");
+                                    child_Node.put("start",startTimes[i]);
+                                    child_Node.put("end",startTimes[i] +lengthOFSign);
+        
+                                    jsonArrayTraining.add(child_Node);
+                                    background_Num_Training = background_Num_Training -1;
+                                    random_Video =true;
+                                }
+                            }
                             else
                             {
-                            writer.write(csvLines[i]);   
-                            writer.newLine();     
-                            //CSV
-                            
-                            ObjectNode child_Node = mapper.createObjectNode();
-                            child_Node.put("video",videoNames[i]+".mp4");
-                            child_Node.put("label",String.valueOf(label_Counter) );
-                            child_Node.put("start",startTimes[i]);
-                            child_Node.put("end",startTimes[i] +lengthOFSign);
+                                writer.write(csvLines[i]);   
+                                writer.newLine();     
+                                //CSV
+                                
+                                ObjectNode child_Node = mapper.createObjectNode();
+                                child_Node.put("video",videoNames[i]+".mp4");
+                                child_Node.put("label",String.valueOf(label_Counter) );
+                                child_Node.put("start",startTimes[i]);
+                                child_Node.put("end",startTimes[i] +lengthOFSign);
 
-                            jsonArrayTraining.add(child_Node);
+                                jsonArrayTraining.add(child_Node);
                             }
                         }
                         //Write all of the training data ro CSV
+
+                        //This is the same but collects the Testing data
+                        random_Video = false;
                         for (int i =  sectionCounter-number_OF_testing; i < sectionCounter; i++) 
                         {
-                            if (is_Specific == true) {
+                            if (is_Specific == true)
+                            {
                                 if(video_Names_From_File.contains( videoNames[i]))
                                 {
                                     testwriter.write(csvLines[i]);   
@@ -252,6 +321,40 @@ public class App
                                     child_Node.put("end",startTimes[i] +lengthOFSign);
     
                                     jsonArrayTesting.add(child_Node);
+                                }
+                            }
+                            else if (is_words == true) 
+                            {
+                                if(specific_labels_to_use.contains( ActionName))
+                                {
+                                    testwriter.write(csvLines[i]);   
+                                    testwriter.newLine();     
+                                    //CSV
+    
+                                    ObjectNode child_Node = mapper.createObjectNode();
+                                    child_Node.put("video",videoNames[i]+".mp4");
+                                    child_Node.put("label",String.valueOf(label_Counter) );
+                                    child_Node.put("start",startTimes[i]);
+                                    child_Node.put("end",startTimes[i] +lengthOFSign);
+    
+                                    jsonArrayTesting.add(child_Node);
+                                }
+                                else if(random_Video == false && background_Num_Testing > 0)
+                                {
+                                    String split_Line[] = csvLines[i].split(","); 
+                                    testwriter.write(split_Line[0] + "," + "Background" + "," +split_Line[2] + "," +split_Line[3]);   
+                                    testwriter.newLine();     
+                                    //CSV
+                                    
+                                    ObjectNode child_Node = mapper.createObjectNode();
+                                    child_Node.put("video",videoNames[i]+".mp4");
+                                    child_Node.put("label","Background");
+                                    child_Node.put("start",startTimes[i]);
+                                    child_Node.put("end",startTimes[i] +lengthOFSign);
+        
+                                    jsonArrayTesting.add(child_Node);
+                                    background_Num_Testing = background_Num_Testing -1;
+                                    random_Video =true;
                                 }
                             }
                             else
