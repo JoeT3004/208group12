@@ -27,6 +27,7 @@ struct QuestionType1: QuestionTypes {
 //defines English->BSL quesiton type = 2
 struct QuestionType2: QuestionTypes {
     var text: String //prompt of question (label)
+    //var isWord: Bool //if true it is a question the user needs to make by adding static signs together
     var answers: [Answer]
 }
 
@@ -49,6 +50,7 @@ struct Answer {
 enum QuizType {
     case BSLtoEnglish
     case EnglishtoBSL
+    case EnglishtoStaticBSL
 }
 
 //defines requiresments for quesiton type

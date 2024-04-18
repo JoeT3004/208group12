@@ -25,7 +25,6 @@ class VideoPlayerViewController: UIViewController {
         videoNameLabel.text = "This BSL sign means, '\(videoName ?? "video name unknown")'"
         setupVideoPlayer()
     }
-
     
     //simple video player
     func setupVideoPlayer() {

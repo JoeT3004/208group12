@@ -192,15 +192,15 @@ class QuizOptionViewController: UIViewController {
                         text: "Translate 'Yes' into BSL",
                         //answer would be sign in real time then the button to check it
                         //functionailty not complete
-                        answers: [Answer(text: "Yes", correct: true)]
+                        answers: [Answer(text: "yes", correct: true)]
                     ),
                     QuestionType2(
                         text: "Translate 'Sorry' into BSL",
-                        answers: [Answer(text: "Sorry", correct: true)]
+                        answers: [Answer(text: "sorry", correct: true)]
                     ),
                     QuestionType2(
                         text: "Translate 'Maybe' into BSL",
-                        answers: [Answer(text: "Maybe", correct: true)]
+                        answers: [Answer(text: "maybe", correct: true)]
                     )
                 ]
             ),
@@ -232,20 +232,69 @@ class QuizOptionViewController: UIViewController {
                     QuestionType2(
                         //prompt of what to sign
                         text: "Translate 'Red' into BSL",
+                        
                         //answer would be sign in real time then the button to check it
                         //functionailty not complete
-                        answers: [Answer(text: "Red", correct: true)]
+                        answers: [Answer(text: "red", correct: true)]
                     ),
                     QuestionType2(
                         text: "Translate 'Brown' into BSL",
-                        answers: [Answer(text: "Brown", correct: true)]
+                        answers: [Answer(text: "brown", correct: true)]
                     ),
                     QuestionType2(
                         text: "Translate 'Purple' into BSL",
-                        answers: [Answer(text: "Purple", correct: true)]
+                        answers: [Answer(text: "purple", correct: true)]
                     )
                 ]
             ),
+            Quiz(
+                title: "Basic Letters Quiz",
+                type: .EnglishtoStaticBSL,
+                questions: [
+                    QuestionType2(
+                        text: "Translate 'F' into BSL",
+                        answers: [Answer(text: "F", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'C' into BSL",
+                        answers: [Answer(text: "C", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'X' into BSL",
+                        answers: [Answer(text: "X", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'O' into BSL",
+
+                        answers: [Answer(text: "O", correct: true)]
+                    )
+                    // Add more questions as needed
+                ]
+            ),
+            Quiz(
+                title: "Learn the static basics quiz!",
+                type: .EnglishtoStaticBSL,
+                questions: [
+                    QuestionType2(
+                        text: "Translate 'Yes' into BSL",
+                        //how would this be changed to take in letter + letter + letter to form a short word i.e yes
+                        answers: [Answer(text: "Y"+"E"+"S", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'Cat' into BSL",
+    
+                        answers: [Answer(text: "C+A+T", correct: true)]
+                    ),
+                    QuestionType2(
+                        text: "Translate 'No' into BSL",
+
+                        answers: [Answer(text: "N+O", correct: true)]
+                    )
+                    // Add more questions as needed
+                ]
+            ),
+            //add more static quizzes as needed
+
         ]
     }
 
@@ -257,33 +306,42 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         //two sections for BSL quizzes not created quizzes table view
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == tableViewQuizzes //if tableView.tag == 0{
-        {
-            //determines the amount of rows based on quiz type given
-            let quizType = section == 0 ? QuizType.BSLtoEnglish : QuizType.EnglishtoBSL
-            return quizzes.filter { $0.type == quizType }.count
-            //return section == 0 ? BSLtoEnglish.count : EnglishToBSL.count
-        }
-        else{
-            //numer of created quizzes
-            //not implemented
-            return selfMadeQuizzes.count
-        }
-
-        
+        return 3
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tableView == tableViewQuizzes {
-            //Header names for each section in quizzes table view
-            return section == 0 ? "Learn BSL -> English!" : "Learn English -> BSL!"
+        switch section {
+        case 0:
+            return "Learn BSL -> English!"
+        case 1:
+            return "Learn English -> BSL!"
+        case 2:
+            return "Learn English -> Static BSL!"
+        default:
+            return nil
         }
-        return nil
     }
+
+        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == tableViewQuizzes {
+            let quizType: QuizType
+            switch section {
+            case 0:
+                quizType = .BSLtoEnglish
+            case 1:
+                quizType = .EnglishtoBSL
+            case 2:
+                quizType = .EnglishtoStaticBSL
+            default:
+                return 0
+            }
+            return quizzes.filter { $0.type == quizType }.count
+        } else {
+            return selfMadeQuizzes.count
+        }
+    }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tableViewQuizzes {
@@ -294,7 +352,21 @@ extension QuizOptionViewController: UITableViewDelegate, UITableViewDataSource{
                 fatalError("Unable to dequeue a QuizTableViewCell")
             }
             
-            let quizType = indexPath.section == 0 ? QuizType.BSLtoEnglish : QuizType.EnglishtoBSL
+            //changed below from
+            //let quizType = indexPath.section == 0 ? QuizType.BSLtoEnglish : QuizType.EnglishtoBSL
+            // as this only accepts two arguments
+            
+            let quizType: QuizType
+                    switch indexPath.section {
+                    case 0:
+                        quizType = .BSLtoEnglish
+                    case 1:
+                        quizType = .EnglishtoBSL
+                    case 2:
+                        quizType = .EnglishtoStaticBSL
+                    default:
+                        fatalError("Unexpected section index")
+                    }
             let filteredQuizzes = quizzes.filter { $0.type == quizType }
             
             let quiz = filteredQuizzes[indexPath.row]
@@ -341,7 +413,17 @@ extension QuizOptionViewController: QuizTableViewDelegate {
         //depending on the quiz type selected it will instantiate to the correct view controller
         //"game" is ID to GameViewController
         //"game2" is ID to Game2ViewController
-        let storyboardIdentifier = selectedQuiz.type == .BSLtoEnglish ? "game" : "game2"
+        // Determine the appropriate view controller based on the quiz type
+        let storyboardIdentifier: String
+        switch selectedQuiz.type {
+        case .BSLtoEnglish:
+            storyboardIdentifier = "game"
+        case .EnglishtoBSL:
+            storyboardIdentifier = "game2"
+        case .EnglishtoStaticBSL:
+            storyboardIdentifier = "game3"
+        }
+        
         if let vc = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) as? GameViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.quiz = selectedQuiz
@@ -355,7 +437,19 @@ extension QuizOptionViewController: QuizTableViewDelegate {
             }
             //Presents the gameview controller
             present(vc, animated: true)
+            
         } else if let vc = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) as? Game2ViewController {
+            vc.modalPresentationStyle = .fullScreen
+            vc.quiz = selectedQuiz
+            vc.onCompletion = { [weak self] correctAnswers, totalQuestions in
+                self?.quizScores[selectedQuiz.title] = (correctAnswers, totalQuestions)
+                DispatchQueue.main.async {
+                    self?.tableViewQuizzes.reloadData()
+                }
+            }
+            present(vc, animated: true)
+            
+        } else if let vc = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) as? Game3ViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.quiz = selectedQuiz
             vc.onCompletion = { [weak self] correctAnswers, totalQuestions in

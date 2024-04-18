@@ -1,19 +1,22 @@
 //
-//  Game2ViewController.swift
+//  Game3ViewController.swift
 //  BeeSL_1
 //
-//  Created by Taylor, Joe [sgjtay21] on 14/03/2024.
+//  Created by Joe Taylor on 17/04/2024.
 //
 
 import UIKit
 
+class Game3ViewController: UIViewController {
 
-class Game2ViewController: UIViewController {
     
     //ui components
+    
     @IBOutlet weak var questionLabel: UILabel!
-   //@IBOutlet weak var answerTextField: UITextField!
+    //@IBOutlet weak var answerTextField: UITextField!
+    
     @IBOutlet weak var debugLabel: UILabel!
+    
     @IBOutlet weak var checkButton: UIButton!
     
     //Array holding the quizs QuestionType2 objects
@@ -73,7 +76,7 @@ class Game2ViewController: UIViewController {
         questions = quizQuestions
         currentQuestionIndex = 0
         
-        type_of_quiz = "Action"
+        type_of_quiz = "Static"
         
          handle_BSL = BSL_Handler(session_Type_param:type_of_quiz!)
         
@@ -165,7 +168,6 @@ class Game2ViewController: UIViewController {
     
     
     @IBAction func checkButtonPressed(_ sender: UIButton) {
-        
         checkAnswer()
     }
     
@@ -173,43 +175,45 @@ class Game2ViewController: UIViewController {
     
     func checkAnswer() {
         
-            var answer = startGestureRecognition()
-            if (answer == "Correct")
+        
+    
+        var answer = startGestureRecognition()
+        if (answer == "Correct")
+        {
+            if(currentQuestionIndex < questions.count)
             {
-                if(currentQuestionIndex < questions.count)
-                {
-                    correctAnswers += 1
-                    debugLabel.text = "Correct!"
-                    CorrectAnswerAlert()
-                    moveOntoNextQuestion()
-                }
-                else
-                {
-                    correctAnswers += 1
-                    debugLabel.text = "Correct!"
-                    moveOntoNextQuestion()
-                }
-                
-            }
-            else if (answer == "False")
-            {
-                if(currentQuestionIndex < questions.count)
-                {
-                    wrongAnswerAlert()
-                    moveOntoNextQuestion()
-                }
-                else
-                {
-                    moveOntoNextQuestion()
-                }
-                
+                correctAnswers += 1
+                debugLabel.text = "Correct!"
+                CorrectAnswerAlert()
+                moveOntoNextQuestion()
             }
             else
             {
-                printbadServerAlert()
-                print("error")
+                correctAnswers += 1
+                debugLabel.text = "Correct!"
+                moveOntoNextQuestion()
             }
             
+        }
+        else if (answer == "False")
+        {
+            if(currentQuestionIndex < questions.count)
+            {
+                wrongAnswerAlert()
+                moveOntoNextQuestion()
+            }
+            else
+            {
+                moveOntoNextQuestion()
+            }
+            
+        }
+        else
+        {
+            printbadServerAlert()
+            print("error")
+        }
+        
 
     }
 
@@ -243,7 +247,7 @@ func printbadServerAlert()
     
     func wrongAnswerAlert() {
         let alert = UIAlertController(title: "Incorrect", message: "Ran out of time, please move onto the next question", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Next question", style: .default, handler: { [weak self] _ in
            
         }))
         
@@ -285,6 +289,8 @@ func printbadServerAlert()
         
     }
 }
+
+
 
 
 
