@@ -7,69 +7,10 @@
 
 import UIKit
 
-/*
- case BSLtoEnglish
- case EnglishtoBSL
- case EnglishtoStaticBSL
- */
+
 
 struct NetworkService {
-    func fetchQuizzes(type: QuizType, completion: @escaping ([Quiz]) -> Void) {
-        let urlString: String
-        switch type {
-        case .BSLtoEnglish:
-            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=bsltoeng"
-        case .EnglishtoBSL:
-            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=action"
-        case .EnglishtoStaticBSL:
-            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=static"
-        }
-
-        guard let url = URL(string: urlString) else {
-            print("Invalid URL")
-            completion([])
-            return
-        }
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                print("Error fetching quizzes: \(error?.localizedDescription ?? "Unknown error")")
-                DispatchQueue.main.async {
-                    completion([])
-                }
-                return
-            }
-
-            do {
-                if let jsonArray = try JSONSerialization.jsonObject(with: data) as? [[Any]] {
-                    var quizzes: [Quiz] = []
-                    for item in jsonArray {
-                        if let id = item[0] as? Int,
-                           let title = item[1] as? String,
-                           let quizTypeString = item[2] as? String,
-                           let quizType = QuizType(rawValue: quizTypeString) { // safely unwrap the quiz type
-                            let quiz = Quiz(id: id, title: title, type: quizType, questions: [])
-                            quizzes.append(quiz)
-                        }
-                    }
-                    DispatchQueue.main.async {
-                        completion(quizzes)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        print("Invalid JSON structure")
-                        completion([])
-                    }
-                }
-            } catch {
-                print("Failed to parse JSON: \(error)")
-                DispatchQueue.main.async {
-                    completion([])
-                }
-            }
-        }
-        task.resume()
-    }
+    
 }
 
 
@@ -83,10 +24,7 @@ class QuizOptionViewController: UIViewController {
     @IBOutlet weak var tableViewCreatedQuizzes: UITableView!
     
     
-    //Originally the two arrays were here which should't be used in the first place
-    //let BSLtoEnglish = ["quiz 1","quiz 2","quiz 3", "quiz 4"]
-    
-    //let englishToBSL = ["Quiz a", "Quiz b", "Quiz z"]
+
 
     let selfMadeQuizzes = ["Created quiz 1 (Coming soon...maybe)","Created quiz 2","Created quiz 3", "Created quiz 4"]
     
@@ -112,9 +50,6 @@ class QuizOptionViewController: UIViewController {
         
         tableViewQuizzes.delegate = self
         tableViewQuizzes.dataSource = self
-        tableViewCreatedQuizzes.delegate = self
-        tableViewCreatedQuizzes.dataSource = self
-        
         initializeQuizzes()
         
         // Do any additional setup after loading the view.
@@ -307,6 +242,63 @@ extension QuizOptionViewController: QuizTableViewDelegate {
 }
 
 extension NetworkService {
+    func fetchQuizzes(type: QuizType, completion: @escaping ([Quiz]) -> Void) {
+        let urlString: String
+        switch type {
+        case .BSLtoEnglish:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=bsltoeng"
+        case .EnglishtoBSL:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=action"
+        case .EnglishtoStaticBSL:
+            urlString = "https://student.csc.liv.ac.uk/~sgtbrett/phpwebservice/getquiz.php?type=static"
+        }
+
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            completion([])
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error fetching quizzes: \(error?.localizedDescription ?? "Unknown error")")
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
+
+            do {
+                if let jsonArray = try JSONSerialization.jsonObject(with: data) as? [[Any]] {
+                    var quizzes: [Quiz] = []
+                    for item in jsonArray {
+                        if let id = item[0] as? Int,
+                           let title = item[1] as? String,
+                           let quizTypeString = item[2] as? String,
+                           let quizType = QuizType(rawValue: quizTypeString) { // safely unwrap the quiz type
+                            let quiz = Quiz(id: id, title: title, type: quizType, questions: [])
+                            quizzes.append(quiz)
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        completion(quizzes)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        print("Invalid JSON structure")
+                        completion([])
+                    }
+                }
+            } catch {
+                print("Failed to parse JSON: \(error)")
+                DispatchQueue.main.async {
+                    completion([])
+                }
+            }
+        }
+        task.resume()
+    }
+    
     func fetchQuestions(forQuizID quizID: Int, type: QuizType, completion: @escaping ([QuestionTypes]) -> Void) {
         let urlString: String
         switch type {
