@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let username = textFieldUser.text, let password = textFieldPass.text, !username.isEmpty, !password.isEmpty {
             loginUser(username: username, password: password)
         } else {
-            loginResult.text = "Username and password required please.."
+            loginResult.text = "Username and password required"
             loginResult.isHidden = false
         }
         
